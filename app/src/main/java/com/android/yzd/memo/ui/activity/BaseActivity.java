@@ -13,18 +13,22 @@ import com.android.yzd.memo.R;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.umeng.analytics.MobclickAgent;
 
+import butterknife.ButterKnife;
+
 /**
  * create by yezhidong 2016/1/12
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initWindow();
+
+        if (isApplyTranslucency()) initWindow();
         setContentView(getContentView());
+        if (isApplyButterKnife()) ButterKnife.bind(this);
         initToolbar();
     }
+
 
     protected void initToolBar(Toolbar toolbar) {
 
@@ -32,7 +36,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         toolbar.setBackgroundColor(getColorPrimary());
         toolbar.setTitle(getString(com.android.yzd.memo.R.string.app_name));
-        toolbar.setTitleTextColor(getColor(R.color.actionbar_title_color));
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
@@ -74,19 +77,26 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onResume() {
+    @Override protected void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
     }
 
-    @Override
-    protected void onPause() {
+    @Override protected void onPause() {
         super.onPause();
         MobclickAgent.onPause(this);
+    }
+
+    @Override protected void onDestroy() {
+        if (isApplyButterKnife()) ButterKnife.unbind(this);
+        super.onDestroy();
     }
 
     protected abstract int getContentView();
 
     protected abstract void initToolbar();
+
+    protected abstract boolean isApplyTranslucency();
+
+    protected abstract boolean isApplyButterKnife();
 }

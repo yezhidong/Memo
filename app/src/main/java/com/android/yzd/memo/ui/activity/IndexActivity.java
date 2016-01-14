@@ -4,15 +4,19 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 import com.android.yzd.memo.R;
+import com.android.yzd.memo.presenter.impl.IndexPreImpl;
 
 import butterknife.Bind;
 
 public class IndexActivity extends BaseActivity {
 
     @Bind(R.id.common_toolbar) Toolbar mToolbar;
+    private IndexPreImpl mIndexPre;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mIndexPre = new IndexPreImpl(this);
+        mIndexPre.onCreate();
     }
 
     @Override protected int getContentView() {

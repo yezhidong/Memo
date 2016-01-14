@@ -1,5 +1,7 @@
 package com.android.yzd.memo.presenter.impl;
 
+import android.content.Context;
+
 import com.android.yzd.memo.presenter.Presenter;
 
 /**
@@ -7,7 +9,11 @@ import com.android.yzd.memo.presenter.Presenter;
  */
 public class IndexPreImpl implements Presenter {
 
+    private Context mContext;
 
+    public IndexPreImpl(Context context) {
+        this.mContext = context;
+    }
 
     @Override
     public void onCreate() {

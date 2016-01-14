@@ -1,8 +1,15 @@
 <resources>
     <string name="app_name">密码备忘</string>
-    <string name="create_activity_welcome">欢迎使用密码备忘录!</string>
+    <string name="create_activity_welcome">欢迎使用密码备忘录</string>
     <string name="create_activity_first">第一次使用，请先设置密码</string>
     <string name="create_activity_warn">绘制解锁图案</string>
+    <string name="finger_press">完成后松开手指</string>
+    <string name="finger_up_first_error">至少连接4个点，请重试</string>
+    <string name="finger_up_first_success">请在次绘制解锁图案</string>
+    <string name="finger_up_second_error">与上次输入不一致，请重试</string>
+    <string name="finger_up_second_success">绘制成功</string>
+    <string name="check_default">请绘制手势密码，来解锁</string>
+    <string name="check_error">手势密码错误，请重试</string>
 
     <!-- 密码锁-->
     <string name="lockscreen_access_pattern_start">"Draw an unlock pattern"</string>

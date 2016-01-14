@@ -1,8 +1,10 @@
-package com.android.yzd.memo.ui.widget;
+package com.android.yzd.memo.utils;
 
 import android.content.Context;
 import android.os.FileObserver;
 import android.util.Log;
+
+import com.android.yzd.memo.ui.widget.LockPatternView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -66,7 +68,18 @@ public class LockPatternUtils {
 		}
 	}
 
-	public LockPatternUtils(Context context) {
+	private static LockPatternUtils instances;
+
+	public static LockPatternUtils getInstances(Context context) {
+		synchronized (LockPatternUtils.class) {
+			if (null == instances) {
+				instances = new LockPatternUtils(context);
+			}
+		}
+		return instances;
+	}
+
+	private LockPatternUtils(Context context) {
 		if (sLockPatternFilename == null) {
 			String dataSystemDirectory = context.getFilesDir()
 					.getAbsolutePath();

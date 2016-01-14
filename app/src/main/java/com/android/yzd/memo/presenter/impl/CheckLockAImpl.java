@@ -1,0 +1,74 @@
+package com.android.yzd.memo.presenter.impl;
+
+import android.content.Context;
+import android.view.animation.AnimationUtils;
+
+import com.android.yzd.memo.R;
+import com.android.yzd.memo.databinding.ActivityCheckLockBinding;
+import com.android.yzd.memo.model.bean.LockWarn;
+import com.android.yzd.memo.presenter.Presenter;
+import com.android.yzd.memo.ui.activity.IndexActivity;
+import com.android.yzd.memo.ui.widget.LockPatternView;
+import com.android.yzd.memo.utils.LockPatternUtils;
+import com.android.yzd.memo.view.CheckLockAView;
+
+import java.util.List;
+
+/**
+ * Created by Clearlove on 16/1/14.
+ */
+public class CheckLockAImpl implements Presenter {
+
+    private final Context mContext;
+    private final ActivityCheckLockBinding mDataBinding;
+    private LockWarn lockWarn;
+    private final CheckLockAView mCheckView;
+
+    public CheckLockAImpl(Context context, CheckLockAView view, ActivityCheckLockBinding binding) {
+        mContext = context;
+        mCheckView = view;
+        mDataBinding = binding;
+    }
+
+    @Override public void onCreate() {
+
+        lockWarn = new LockWarn(mContext.getString(R.string.check_default));
+        lockWarn.setColor(mContext.getResources().getColor(R.color.actionbar_title_color));
+        mDataBinding.setLockWarn(lockWarn);
+        mCheckView.initLockPatternView();
+    }
+
+    @Override public void onResume() {
+
+    }
+
+    @Override public void onStart() {
+
+    }
+
+    @Override public void onPause() {
+
+    }
+
+    @Override public void onStop() {
+
+    }
+
+    @Override public void onDestroy() {
+
+    }
+
+    public void check(List<LockPatternView.Cell> pattern) {
+        if (pattern == null) return;
+
+        LockPatternUtils instances = LockPatternUtils.getInstances(mContext);
+        if (instances.checkPattern(pattern)) {
+            mCheckView.readyGoThenKill(IndexActivity.class);
+        } else {
+            mCheckView.lockDisplayError();
+            lockWarn.setColor(mContext.getResources().getColor(R.color.text_red));
+            mDataBinding.setLockWarn(lockWarn);
+            mDataBinding.showText.startAnimation(AnimationUtils.loadAnimation(mContext, R.anim.shake_x));
+        }
+    }
+}

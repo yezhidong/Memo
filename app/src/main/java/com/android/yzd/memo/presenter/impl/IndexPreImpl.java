@@ -41,7 +41,7 @@ public class IndexPreImpl implements Presenter {
     }
 
     @Override
-    public void onDestory() {
+    public void onDestroy() {
 
     }
 }

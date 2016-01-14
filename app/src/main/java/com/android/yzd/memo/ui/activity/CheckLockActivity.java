@@ -4,33 +4,29 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.android.yzd.memo.R;
-import com.android.yzd.memo.databinding.ActivityCreateLockBinding;
-import com.android.yzd.memo.presenter.impl.CreateLockActivityImpl;
+import com.android.yzd.memo.databinding.ActivityCheckLockBinding;
+import com.android.yzd.memo.presenter.impl.CheckLockAImpl;
 import com.android.yzd.memo.ui.widget.LockPatternView;
-import com.android.yzd.memo.view.CreateLockAView;
+import com.android.yzd.memo.view.CheckLockAView;
 
 import java.util.List;
 
 import butterknife.Bind;
 
 
-public class CreateLockActivity extends BaseActivity implements CreateLockAView, LockPatternView.OnPatternListener {
+public class CheckLockActivity extends BaseActivity implements CheckLockAView, LockPatternView.OnPatternListener {
 
     @Bind(R.id.lockPatternView) LockPatternView mLockPatternView;
-
-    private ActivityCreateLockBinding binding;
-    private CreateLockActivityImpl mLockActivity;
+    private CheckLockAImpl mCheckLockA;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = (ActivityCreateLockBinding) this.mDataBinding;
-
-        mLockActivity = new CreateLockActivityImpl(this, this, binding);
-        mLockActivity.onCreate();
+        mCheckLockA = new CheckLockAImpl(this, this, (ActivityCheckLockBinding) mDataBinding);
+        mCheckLockA.onCreate();
     }
 
     @Override protected int getContentView() {
-        return R.layout.activity_create_lock;
+        return R.layout.activity_check_lock;
     }
 
     @Override protected void initToolbar() {
@@ -45,7 +41,8 @@ public class CreateLockActivity extends BaseActivity implements CreateLockAView,
         return true;
     }
 
-    @Override public void initLockPatternView() {
+    @Override
+    public void initLockPatternView() {
         mLockPatternView.setOnPatternListener(this);
     }
 
@@ -61,20 +58,22 @@ public class CreateLockActivity extends BaseActivity implements CreateLockAView,
         finish();
     }
 
-    @Override public void onPatternStart() {
-        mLockActivity.fingerPress();
+    @Override
+    public void onPatternStart() {
     }
 
-    @Override public void onPatternCleared() {
-
-    }
-
-    @Override public void onPatternCellAdded(List<LockPatternView.Cell> pattern) {
+    @Override
+    public void onPatternCleared() {
 
     }
 
-    @Override public void onPatternDetected(List<LockPatternView.Cell> pattern) {
-        mLockActivity.check(pattern);
+    @Override
+    public void onPatternCellAdded(List<LockPatternView.Cell> pattern) {
+
     }
 
+    @Override
+    public void onPatternDetected(List<LockPatternView.Cell> pattern) {
+        mCheckLockA.check(pattern);
+    }
 }

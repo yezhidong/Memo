@@ -1,6 +1,8 @@
 package com.android.yzd.memo.ui.activity;
 
 import android.annotation.TargetApi;
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,11 +22,13 @@ import butterknife.ButterKnife;
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
+    protected ViewDataBinding mDataBinding;
+
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         if (isApplyTranslucency()) initWindow();
-        setContentView(getContentView());
+        mDataBinding = DataBindingUtil.setContentView(this, getContentView());
         if (isApplyButterKnife()) ButterKnife.bind(this);
         initToolbar();
     }

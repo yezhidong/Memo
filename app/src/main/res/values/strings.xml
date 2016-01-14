@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">密码备忘</string>
+    <string name="create_activity_welcome">欢迎使用密码备忘录!</string>
+    <string name="create_activity_first">第一次使用，请先设置密码</string>
+    <string name="create_activity_warn">绘制解锁图案</string>
+
+    <!-- 密码锁-->
+    <string name="lockscreen_access_pattern_start">"Draw an unlock pattern"</string>
+    <string name="lockscreen_access_pattern_cleared">"Pattern Ereased"</string>
+    <string name="lockscreen_access_pattern_cell_added">"已添加单元格"</string>
+    <string name="lockscreen_access_pattern_detected">"Pattern Saved"</string>
+    <string name="lockpattern_retry_button_text">"Retry"</string>
+    <string name="lockpattern_continue_button_text">"Continue"</string>
+    <string name="lockpattern_confirm_button_text">"Confirm"</string>
+    <string name="lockpattern_recording_intro_header">"Draw a pattern to unlock"</string>
+    <string name="lockpattern_settings_help_how_to_record">"How to draw an unlock pattern"</string>
+    <string name="lockpattern_recording_incorrect_too_short">"Connect at least 4 dots.Try agin."</string>
+    <string name="lockpattern_pattern_entered_header">"Pattern Recorded"</string>
+    <string name="lockpattern_need_to_confirm">"Draw pattern again to confirm"</string>
+    <string name="lockpattern_need_to_unlock_wrong">"Sorry,try again"</string>
+    <string name="lockpattern_pattern_confirmed_header">"Confirm saved pattern"</string>
+    <string name="lockpattern_recording_inprogress">"Release finger when done"</string>
+    <string name="gesture_password_guide_text">Set up a unlock pattern to protect your privacy from being </string>
+    <string name="gesture_password_guide_creat_btn">Set up a pattern lock</string>
 </resources>

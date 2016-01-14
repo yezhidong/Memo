@@ -18,7 +18,7 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void pullActivity() {
-        Intent intent = new Intent(this, IndexActivity.class);
+        Intent intent = new Intent(this, CreateLockActivity.class);
         startActivity(intent);
         this.finish();
     }

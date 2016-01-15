@@ -11,6 +11,8 @@
     <string name="check_default">请绘制手势密码，来解锁</string>
     <string name="check_error">手势密码错误，请重试</string>
 
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
     <!-- 密码锁-->
     <string name="lockscreen_access_pattern_start">"Draw an unlock pattern"</string>
     <string name="lockscreen_access_pattern_cleared">"Pattern Ereased"</string>
@@ -29,4 +31,7 @@
     <string name="lockpattern_recording_inprogress">"Release finger when done"</string>
     <string name="gesture_password_guide_text">Set up a unlock pattern to protect your privacy from being </string>
     <string name="gesture_password_guide_creat_btn">Set up a pattern lock</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

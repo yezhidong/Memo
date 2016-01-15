@@ -5,8 +5,8 @@ import android.view.animation.AnimationUtils;
 
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.databinding.ActivityCheckLockBinding;
-import com.android.yzd.memo.model.bean.LockWarn;
-import com.android.yzd.memo.presenter.Presenter;
+import com.android.yzd.memo.model.bean.LockBean;
+import com.android.yzd.memo.presenter.ActivityPresenter;
 import com.android.yzd.memo.ui.activity.IndexActivity;
 import com.android.yzd.memo.ui.widget.LockPatternView;
 import com.android.yzd.memo.utils.LockPatternUtils;
@@ -17,11 +17,11 @@ import java.util.List;
 /**
  * Created by Clearlove on 16/1/14.
  */
-public class CheckLockAImpl implements Presenter {
+public class CheckLockAImpl implements ActivityPresenter {
 
     private final Context mContext;
     private final ActivityCheckLockBinding mDataBinding;
-    private LockWarn lockWarn;
+    private LockBean lockBean;
     private final CheckLockAView mCheckView;
 
     public CheckLockAImpl(Context context, CheckLockAView view, ActivityCheckLockBinding binding) {
@@ -32,9 +32,9 @@ public class CheckLockAImpl implements Presenter {
 
     @Override public void onCreate() {
 
-        lockWarn = new LockWarn(mContext.getString(R.string.check_default));
-        lockWarn.setColor(mContext.getResources().getColor(R.color.actionbar_title_color));
-        mDataBinding.setLockWarn(lockWarn);
+        lockBean = new LockBean(mContext.getString(R.string.check_default));
+        lockBean.setColor(mContext.getResources().getColor(R.color.actionbar_title_color));
+        mDataBinding.setLockWarn(lockBean);
         mCheckView.initLockPatternView();
     }
 
@@ -66,8 +66,8 @@ public class CheckLockAImpl implements Presenter {
             mCheckView.readyGoThenKill(IndexActivity.class);
         } else {
             mCheckView.lockDisplayError();
-            lockWarn.setColor(mContext.getResources().getColor(R.color.text_red));
-            mDataBinding.setLockWarn(lockWarn);
+            lockBean.setColor(mContext.getResources().getColor(R.color.text_red));
+            mDataBinding.setLockWarn(lockBean);
             mDataBinding.showText.startAnimation(AnimationUtils.loadAnimation(mContext, R.anim.shake_x));
         }
     }

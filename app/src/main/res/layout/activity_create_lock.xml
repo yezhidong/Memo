@@ -6,7 +6,7 @@
     <data>
         <variable
             name="lockWarn"
-            type="com.android.yzd.memo.model.bean.LockWarn"/>
+            type="com.android.yzd.memo.model.bean.LockBean"/>
     </data>
     <LinearLayout
         android:layout_width="match_parent"

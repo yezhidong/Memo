@@ -1,21 +1,32 @@
 package com.android.yzd.memo.ui.activity;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 
 import com.android.yzd.memo.R;
+import com.android.yzd.memo.databinding.ActivityIndexBinding;
 import com.android.yzd.memo.presenter.impl.IndexPreImpl;
+import com.android.yzd.memo.ui.adapter.IndexContentAdapter;
+import com.android.yzd.memo.view.IndexAView;
 
 import butterknife.Bind;
 
-public class IndexActivity extends BaseActivity {
+public class IndexActivity extends BaseActivity implements IndexAView{
 
-    @Bind(R.id.common_toolbar) Toolbar mToolbar;
+    @Bind(R.id.common_toolbar) Toolbar mToolBar;
     private IndexPreImpl mIndexPre;
+    private ActivityIndexBinding mDataBinding;
+    private ActionBarDrawerToggle mActionBarDrawerToggle;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mIndexPre = new IndexPreImpl(this);
+        mDataBinding = (ActivityIndexBinding) super.mDataBinding;
+        mIndexPre = new IndexPreImpl(this, this, mDataBinding);
         mIndexPre.onCreate();
     }
 
@@ -24,7 +35,7 @@ public class IndexActivity extends BaseActivity {
     }
 
     @Override protected void initToolbar() {
-        super.initToolBar(mToolbar);
+        super.initToolBar(mToolBar);
     }
 
     @Override protected boolean isApplyTranslucency() {
@@ -33,5 +44,56 @@ public class IndexActivity extends BaseActivity {
 
     @Override protected boolean isApplyButterKnife() {
         return true;
+    }
+
+    @Override public void initDrawerToggle() {
+        mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDataBinding.drawerLayout, mDataBinding.commonToolbar, 0, 0){
+            @Override public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
+            @Override public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+            }
+        };
+        mActionBarDrawerToggle.setDrawerIndicatorEnabled(true);
+        mDataBinding.drawerLayout.setDrawerListener(mActionBarDrawerToggle);
+    }
+
+    @Override public void initXViewPager() {
+        mDataBinding.content.setOffscreenPageLimit(3);
+        IndexContentAdapter indexContentAdapter = new IndexContentAdapter(getSupportFragmentManager());
+        mDataBinding.content.setAdapter(indexContentAdapter);
+    }
+
+    @Override protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        if (mActionBarDrawerToggle != null) {
+            mActionBarDrawerToggle.syncState();
+        }
+    }
+
+    @Override public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (mActionBarDrawerToggle != null) {
+            mActionBarDrawerToggle.onConfigurationChanged(newConfig);
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.setting:
+                return true;
+            case R.id.about:
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

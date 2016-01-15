@@ -3,12 +3,12 @@ package com.android.yzd.memo.model.bean;
 /**
  * Created by yezhidong on 2016/1/14.
  */
-public class LockWarn {
+public class LockBean {
 
     private String warn;
     private int color;
 
-    public LockWarn(String name ) {
+    public LockBean(String name ) {
         this.warn = name;
     }
 

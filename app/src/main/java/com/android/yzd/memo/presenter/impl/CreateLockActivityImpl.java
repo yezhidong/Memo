@@ -4,8 +4,8 @@ import android.content.Context;
 
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.databinding.ActivityCreateLockBinding;
-import com.android.yzd.memo.model.bean.LockWarn;
-import com.android.yzd.memo.presenter.Presenter;
+import com.android.yzd.memo.model.bean.LockBean;
+import com.android.yzd.memo.presenter.ActivityPresenter;
 import com.android.yzd.memo.ui.activity.IndexActivity;
 import com.android.yzd.memo.utils.LockPatternUtils;
 import com.android.yzd.memo.ui.widget.LockPatternView;
@@ -17,12 +17,12 @@ import java.util.List;
 /**
  * Created by Clearlove on 16/1/14.
  */
-public class CreateLockActivityImpl implements Presenter {
+public class CreateLockActivityImpl implements ActivityPresenter {
 
     private static final String CREATE_LOCK_SUCCESS = "CREATE_LOCK_SUCCESS";
     private final Context mContext;
     private final ActivityCreateLockBinding mBinding;
-    private LockWarn lockWarnText;
+    private LockBean lockBeanText;
     private final CreateLockAView mCreateLockAView;
     private boolean isFinishOnce = false;
 
@@ -34,8 +34,8 @@ public class CreateLockActivityImpl implements Presenter {
 
     @Override
     public void onCreate() {
-        lockWarnText = new LockWarn(mContext.getString(R.string.create_activity_warn));
-        mBinding.setLockWarn(lockWarnText);
+        lockBeanText = new LockBean(mContext.getString(R.string.create_activity_warn));
+        mBinding.setLockWarn(lockBeanText);
         mCreateLockAView.initLockPatternView();
     }
 
@@ -65,28 +65,28 @@ public class CreateLockActivityImpl implements Presenter {
     }
 
     public void fingerPress() {
-        lockWarnText.setWarn(mContext.getString(R.string.finger_press));
-        mBinding.setLockWarn(lockWarnText);
+        lockBeanText.setWarn(mContext.getString(R.string.finger_press));
+        mBinding.setLockWarn(lockBeanText);
     }
 
     public void fingerFirstUpError() {
-        lockWarnText.setWarn(mContext.getString(R.string.finger_up_first_error));
-        mBinding.setLockWarn(lockWarnText);
+        lockBeanText.setWarn(mContext.getString(R.string.finger_up_first_error));
+        mBinding.setLockWarn(lockBeanText);
     }
 
     public void fingerFirstUpSuccess() {
-        lockWarnText.setWarn(mContext.getString(R.string.finger_up_first_success));
-        mBinding.setLockWarn(lockWarnText);
+        lockBeanText.setWarn(mContext.getString(R.string.finger_up_first_success));
+        mBinding.setLockWarn(lockBeanText);
     }
 
     public void fingerSecondUpError() {
-        lockWarnText.setWarn(mContext.getString(R.string.finger_up_second_error));
-        mBinding.setLockWarn(lockWarnText);
+        lockBeanText.setWarn(mContext.getString(R.string.finger_up_second_error));
+        mBinding.setLockWarn(lockBeanText);
     }
 
     public void fingerSecondUpSucess() {
-        lockWarnText.setWarn(mContext.getString(R.string.finger_up_second_success));
-        mBinding.setLockWarn(lockWarnText);
+        lockBeanText.setWarn(mContext.getString(R.string.finger_up_second_success));
+        mBinding.setLockWarn(lockBeanText);
     }
 
     public void check(List<LockPatternView.Cell> pattern) {

@@ -8,4 +8,5 @@
 
     <color name="actionbar_title_color">@android:color/white</color>
     <color name="text_red">#ffff4081</color>
+    <color name="light_grey">#ffbebebe</color>
 </resources>

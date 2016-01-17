@@ -13,6 +13,12 @@
 
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
+    <string name="just_now">刚刚</string>
+    <string name="before_half_hour">半个小时之前</string>
+    <string name="before_hour" formatted="false">%d\u0020小时之前</string>
+    <string name="before_day" formatted="false">%d\u0020天之前</string>
+    <string name="before_month" formatted="false">%d\u0020个月之前</string>
+    <string name="before_year" formatted="false">%d\u0020年之前</string>
     <!-- 密码锁-->
     <string name="lockscreen_access_pattern_start">"Draw an unlock pattern"</string>
     <string name="lockscreen_access_pattern_cleared">"Pattern Ereased"</string>

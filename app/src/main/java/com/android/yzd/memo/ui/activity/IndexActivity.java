@@ -1,5 +1,6 @@
 package com.android.yzd.memo.ui.activity;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,6 +19,8 @@ import butterknife.Bind;
 
 public class IndexActivity extends BaseActivity implements IndexAView{
 
+    private static final int INDEX_REQUEST_CODE = 1;
+    private static final int EDIT_SAVE = 1;
     @Bind(R.id.common_toolbar) Toolbar mToolBar;
     private IndexPreImpl mIndexPre;
     private ActivityIndexBinding mDataBinding;
@@ -65,6 +68,11 @@ public class IndexActivity extends BaseActivity implements IndexAView{
         mDataBinding.content.setAdapter(indexContentAdapter);
     }
 
+    @Override
+    public void readyGoForResult(Class clazz) {
+        startActivityForResult(new Intent(this, clazz), INDEX_REQUEST_CODE);
+    }
+
     @Override protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         if (mActionBarDrawerToggle != null) {
@@ -90,10 +98,24 @@ public class IndexActivity extends BaseActivity implements IndexAView{
         switch (item.getItemId())
         {
             case R.id.setting:
+                Intent intent = new Intent(this, SettingActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.about:
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == INDEX_REQUEST_CODE) {
+            if (data != null) {
+                if (resultCode == EDIT_SAVE) {
+
+                }
+            }
+        }
     }
 }

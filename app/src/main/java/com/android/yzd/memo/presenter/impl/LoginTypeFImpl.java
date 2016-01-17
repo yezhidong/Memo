@@ -5,7 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.android.yzd.memo.presenter.FragmentPresenter;
-import com.android.yzd.memo.ui.adapter.RecyclerViewAdapter;
+import com.android.yzd.memo.ui.adapter.IndexViewAdapter;
 import com.android.yzd.memo.view.LoginTypeFView;
 
 /**
@@ -22,7 +22,7 @@ public class LoginTypeFImpl implements FragmentPresenter {
     }
     @Override
     public void onFirstUserVisible() {
-        RecyclerView.Adapter mAdapter = new RecyclerViewAdapter(mContext);
+        RecyclerView.Adapter mAdapter = new IndexViewAdapter(mContext);
         mLoginTypeFView.initRecycler(new LinearLayoutManager(mContext), mAdapter);
     }
 

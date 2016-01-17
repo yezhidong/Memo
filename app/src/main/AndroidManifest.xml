@@ -28,7 +28,9 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.activity.CreateLockActivity" />
-        <activity android:name=".ui.activity.CheckLockActivity"></activity>
+        <activity android:name=".ui.activity.CheckLockActivity" />
+        <activity android:name=".ui.activity.SettingActivity" />
+        <activity android:name=".ui.activity.EditActivity"></activity>
     </application>
 
 </manifest>

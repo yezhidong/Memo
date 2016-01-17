@@ -12,12 +12,12 @@ import com.android.yzd.memo.R;
 /**
  * Created by yezhidong on 2016/1/15.
  */
-public class RecyclerItemViewHolder extends RecyclerView.ViewHolder{
+public class IndexViewHolder extends RecyclerView.ViewHolder{
 
     private final TextView mNoteLabelTextView;
     private final TextView mNoteContentTextView;
     private final TextView mNoteTimeTextView;
-    public RecyclerItemViewHolder(View parent) {
+    public IndexViewHolder(View parent) {
         super(parent);
         mNoteLabelTextView = (TextView) parent.findViewById(R.id.note_label_text);
         mNoteContentTextView = (TextView) parent.findViewById(R.id.note_content_text);

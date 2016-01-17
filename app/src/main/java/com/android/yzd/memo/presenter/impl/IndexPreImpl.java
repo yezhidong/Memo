@@ -2,7 +2,6 @@ package com.android.yzd.memo.presenter.impl;
 
 import android.content.Context;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,6 +9,7 @@ import android.view.View;
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.databinding.ActivityIndexBinding;
 import com.android.yzd.memo.presenter.ActivityPresenter;
+import com.android.yzd.memo.ui.activity.EditActivity;
 import com.android.yzd.memo.view.IndexAView;
 
 /**
@@ -57,7 +57,7 @@ public class IndexPreImpl implements ActivityPresenter, View.OnClickListener, Na
 
     @Override
     public void onClick(View v) {
-        Snackbar.make(v, "sasasasasa",Snackbar.LENGTH_LONG).show();
+        mIndexView.readyGoForResult(EditActivity.class);
     }
 
     @Override

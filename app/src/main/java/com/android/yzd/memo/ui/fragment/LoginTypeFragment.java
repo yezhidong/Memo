@@ -4,7 +4,6 @@ package com.android.yzd.memo.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -29,6 +28,7 @@ public class LoginTypeFragment extends BaseFragment implements LoginTypeFView{
         super.onViewCreated(view, savedInstanceState);
         mLoginTypeFImpl = new LoginTypeFImpl(mActivity, this);
     }
+
 
     @Override protected void onFirstUserVisible() {
         mLoginTypeFImpl.onFirstUserVisible();
@@ -56,7 +56,7 @@ public class LoginTypeFragment extends BaseFragment implements LoginTypeFView{
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setAdapter(adapter);
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+//        new Handler().postDelayed(()->mRecyclerView.smoothScrollToPosition(0), 500);
     }
 
 }

@@ -5,13 +5,13 @@ import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
 import com.android.yzd.memo.R;
-import com.android.yzd.swipebacklibrary.BaseSBAppCompatActivity;
 import com.android.yzd.swipebacklibrary.SwipeBackLayout;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.umeng.analytics.MobclickAgent;
@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Clearlove on 16/1/15.
  */
-public abstract class BaseSwipeBackActivity extends BaseSBAppCompatActivity {
+public abstract class BaseSwipeBackActivity extends AppCompatActivity {
 
     protected ViewDataBinding mDataBinding;
     @Override protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public abstract class BaseSwipeBackActivity extends BaseSBAppCompatActivity {
         mDataBinding = DataBindingUtil.setContentView(this, getContentView());
         if (isApplyButterKnife()) ButterKnife.bind(this);
         initToolbar();
-        getSwipeBackLayout().setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
+//        getSwipeBackLayout().setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
     }
     protected void initToolBar(Toolbar toolbar) {
 

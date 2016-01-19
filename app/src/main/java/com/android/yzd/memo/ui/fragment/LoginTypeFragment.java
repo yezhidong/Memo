@@ -56,7 +56,6 @@ public class LoginTypeFragment extends BaseFragment implements LoginTypeFView{
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setAdapter(adapter);
-//        new Handler().postDelayed(()->mRecyclerView.smoothScrollToPosition(0), 500);
     }
 
 }

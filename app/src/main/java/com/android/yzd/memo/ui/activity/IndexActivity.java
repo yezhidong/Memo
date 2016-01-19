@@ -68,8 +68,7 @@ public class IndexActivity extends BaseActivity implements IndexAView{
         mDataBinding.content.setAdapter(indexContentAdapter);
     }
 
-    @Override
-    public void readyGoForResult(Class clazz) {
+    @Override public void readyGoForResult(Class clazz) {
         startActivityForResult(new Intent(this, clazz), INDEX_REQUEST_CODE);
     }
 
@@ -87,14 +86,12 @@ public class IndexActivity extends BaseActivity implements IndexAView{
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    @Override public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    @Override public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId())
         {
             case R.id.setting:
@@ -107,8 +104,7 @@ public class IndexActivity extends BaseActivity implements IndexAView{
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == INDEX_REQUEST_CODE) {
             if (data != null) {

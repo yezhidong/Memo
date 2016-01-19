@@ -14,13 +14,12 @@ import butterknife.Bind;
 public class EditActivity extends BaseActivity implements EditAView{
 
     @Bind(R.id.common_toolbar) Toolbar mToolBar;
-    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
 
     private EditAImpl mEditImpl;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mEditImpl = new EditAImpl(this, this);
+        mEditImpl = new EditAImpl(this);
         mEditImpl.onCreate();
     }
 
@@ -30,7 +29,7 @@ public class EditActivity extends BaseActivity implements EditAView{
 
     @Override protected void initToolbar() {
         initToolBar(mToolBar);
-        mToolBar.setTitle("编辑");
+        mToolBar.setTitle("添加");
     }
 
     @Override protected boolean isApplyTranslucency() {
@@ -41,9 +40,4 @@ public class EditActivity extends BaseActivity implements EditAView{
         return true;
     }
 
-    @Override public void initRecyclerView(LinearLayoutManager linearLayoutManager, RecyclerView.Adapter adapter) {
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(linearLayoutManager);
-        mRecyclerView.setAdapter(adapter);
-    }
 }

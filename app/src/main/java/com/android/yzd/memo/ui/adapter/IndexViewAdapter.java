@@ -17,9 +17,6 @@ import com.android.yzd.memo.utils.Utils;
 public class IndexViewAdapter extends RecyclerView.Adapter {
 
     private final Context mContext;
-    private boolean animateItems = true;
-    private int ANIMATED_ITEMS_COUNT = 2;
-    private int lastAnimatedPosition = -1;
 
     public IndexViewAdapter(Context context) {
         mContext = context;
@@ -32,7 +29,6 @@ public class IndexViewAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-//        runEnterAnimation(holder.itemView, position);
     }
 
     @Override
@@ -40,20 +36,4 @@ public class IndexViewAdapter extends RecyclerView.Adapter {
         return 20;
     }
 
-    private void runEnterAnimation(View view, int position) {
-
-        if (!animateItems || position >= ANIMATED_ITEMS_COUNT - 1) {
-            return;
-        }
-
-        if (position > lastAnimatedPosition) {
-            lastAnimatedPosition = position;
-            view.setTranslationY(Utils.getScreenHeight(mContext));
-            view.animate()
-                    .translationY(0)
-                    .setInterpolator(new DecelerateInterpolator(3.f))
-                    .setDuration(700)
-                    .start();
-        }
-    }
 }

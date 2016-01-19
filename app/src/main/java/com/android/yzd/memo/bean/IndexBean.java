@@ -1,6 +1,5 @@
-package com.android.yzd.memo.model.bean;
+package com.android.yzd.memo.bean;
 
-import com.android.yzd.memo.presenter.impl.IndexPreImpl;
 
 /**
  * Created by yezhidong on 2016/1/15.

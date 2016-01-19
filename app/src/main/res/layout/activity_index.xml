@@ -3,7 +3,7 @@
     <data>
         <variable
             name="index"
-            type="com.android.yzd.memo.model.bean.IndexBean"/>
+            type="com.android.yzd.memo.bean.IndexBean"/>
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

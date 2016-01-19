@@ -1,9 +1,11 @@
-package com.android.yzd.memo.model.bean;
+package com.android.yzd.memo.bean;
+
+import io.realm.RealmObject;
 
 /**
  * Created by Clearlove on 16/1/17.
  */
-public class God {
+public class God extends RealmObject{
 
     private String godType;
 
@@ -14,10 +16,18 @@ public class God {
     private String passWord;
 
     private String time;
-
     private String url;
-
     private String imageUrl;
+
+    public God() {}
+
+    public God(String godType, String company, String userName, String passWord, String time) {
+        this.godType = godType;
+        this.company = company;
+        this.userName = userName;
+        this.passWord = passWord;
+        this.time = time;
+    }
 
     public String getGodType() {
         return godType;

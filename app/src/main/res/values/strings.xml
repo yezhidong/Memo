@@ -44,4 +44,10 @@
     <string-array name="edit_company">
         <item>谷歌</item>
     </string-array>
+
+    <string-array name="spinner_item">
+        <item>登录</item>
+        <item>邮箱</item>
+        <item>记事本</item>
+    </string-array>
 </resources>

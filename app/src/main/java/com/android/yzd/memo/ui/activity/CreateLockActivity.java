@@ -26,7 +26,7 @@ public class CreateLockActivity extends BaseActivity implements CreateLockAView,
         binding = (ActivityCreateLockBinding) this.mDataBinding;
 
         mLockActivity = new CreateLockActivityImpl(this, this, binding);
-        mLockActivity.onCreate();
+        mLockActivity.onCreate(savedInstanceState);
     }
 
     @Override protected int getContentView() {

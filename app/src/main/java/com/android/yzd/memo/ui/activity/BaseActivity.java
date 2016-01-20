@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 
 import com.android.yzd.memo.R;
+import com.android.yzd.memo.otto.OttoBus;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.umeng.analytics.MobclickAgent;
 
@@ -30,9 +31,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (isApplyTranslucency()) initWindow();
         mDataBinding = DataBindingUtil.setContentView(this, getContentView());
         if (isApplyButterKnife()) ButterKnife.bind(this);
+        OttoBus.getInstances().register(this);
         initToolbar();
     }
-
 
     protected void initToolBar(Toolbar toolbar) {
 
@@ -92,6 +93,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     @Override protected void onDestroy() {
+        OttoBus.getInstances().unregister(this);
         if (isApplyButterKnife()) ButterKnife.unbind(this);
         super.onDestroy();
     }

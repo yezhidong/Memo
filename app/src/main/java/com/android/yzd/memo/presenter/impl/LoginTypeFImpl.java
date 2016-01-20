@@ -4,9 +4,11 @@ import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.android.yzd.memo.otto.Success;
 import com.android.yzd.memo.presenter.FragmentPresenter;
 import com.android.yzd.memo.ui.adapter.IndexViewAdapter;
 import com.android.yzd.memo.view.LoginTypeFView;
+import com.squareup.otto.Subscribe;
 
 /**
  * Created by Administrator on 2016/1/15.
@@ -15,6 +17,7 @@ public class LoginTypeFImpl implements FragmentPresenter {
 
     private final Context mContext;
     private final LoginTypeFView mLoginTypeFView;
+    private RecyclerView.Adapter mAdapter;
 
     public LoginTypeFImpl(Context context, LoginTypeFView view) {
         mContext = context;
@@ -22,7 +25,7 @@ public class LoginTypeFImpl implements FragmentPresenter {
     }
     @Override
     public void onFirstUserVisible() {
-        RecyclerView.Adapter mAdapter = new IndexViewAdapter(mContext);
+        mAdapter = new IndexViewAdapter(mContext);
         mLoginTypeFView.initRecycler(new LinearLayoutManager(mContext), mAdapter);
     }
 
@@ -35,4 +38,11 @@ public class LoginTypeFImpl implements FragmentPresenter {
     public void onUserInvisible() {
 
     }
+    @Subscribe
+    public void isSuccess(Success success) {
+        if (success.isSuccess()) {
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
 }

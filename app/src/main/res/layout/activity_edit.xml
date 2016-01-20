@@ -17,7 +17,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"
         android:text="选择密码类型:"/>
 
@@ -40,8 +40,6 @@
 
 
     </android.support.v7.widget.CardView>
-
-
 
     <android.support.v7.widget.CardView
         android:layout_margin="10dp"
@@ -107,7 +105,8 @@
                     app:met_floatingLabelTextColor="?attr/colorPrimary"
                     app:met_floatingLabelText="输入密码"
                     app:met_iconLeft="@mipmap/edit_pass_word"
-                    android:layout_weight="0.8"/>
+                    android:layout_weight="0.8"
+                    android:inputType="textPassword"/>
 
                 <CheckBox
                     android:id="@+id/eye"

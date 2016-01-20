@@ -1,6 +1,8 @@
 package com.android.yzd.memo.presenter.impl;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.animation.AnimationUtils;
 
 import com.android.yzd.memo.R;
@@ -30,12 +32,17 @@ public class CheckLockAImpl implements ActivityPresenter {
         mDataBinding = binding;
     }
 
-    @Override public void onCreate() {
+    @Override public void onCreate(Bundle savedInstanceState) {
 
         lockBean = new LockBean(mContext.getString(R.string.check_default));
         lockBean.setColor(mContext.getResources().getColor(R.color.actionbar_title_color));
         mDataBinding.setLockWarn(lockBean);
         mCheckView.initLockPatternView();
+    }
+
+    @Override
+    public void getIntent(Intent intent) {
+
     }
 
     @Override public void onResume() {

@@ -1,6 +1,8 @@
 package com.android.yzd.memo.presenter.impl;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.databinding.ActivityCreateLockBinding;
@@ -33,10 +35,16 @@ public class CreateLockActivityImpl implements ActivityPresenter {
     }
 
     @Override
-    public void onCreate() {
+    public void onCreate(Bundle savedInstanceState) {
         lockBeanText = new LockBean(mContext.getString(R.string.create_activity_warn));
         mBinding.setLockWarn(lockBeanText);
         mCreateLockAView.initLockPatternView();
+    }
+
+
+    @Override
+    public void getIntent(Intent intent) {
+
     }
 
     @Override

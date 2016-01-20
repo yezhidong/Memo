@@ -11,9 +11,12 @@ import android.view.View;
 
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.databinding.ActivityIndexBinding;
+import com.android.yzd.memo.otto.OttoBus;
+import com.android.yzd.memo.otto.Success;
 import com.android.yzd.memo.presenter.impl.IndexPreImpl;
 import com.android.yzd.memo.ui.adapter.IndexContentAdapter;
 import com.android.yzd.memo.view.IndexAView;
+import com.squareup.otto.Produce;
 
 import butterknife.Bind;
 
@@ -21,6 +24,7 @@ public class IndexActivity extends BaseActivity implements IndexAView{
 
     private static final int INDEX_REQUEST_CODE = 1;
     private static final int EDIT_SAVE = 1;
+    private int SUCCESS = 1;
     @Bind(R.id.common_toolbar) Toolbar mToolBar;
     private IndexPreImpl mIndexPre;
     private ActivityIndexBinding mDataBinding;
@@ -30,7 +34,7 @@ public class IndexActivity extends BaseActivity implements IndexAView{
         super.onCreate(savedInstanceState);
         mDataBinding = (ActivityIndexBinding) super.mDataBinding;
         mIndexPre = new IndexPreImpl(this, this, mDataBinding);
-        mIndexPre.onCreate();
+        mIndexPre.onCreate(savedInstanceState);
     }
 
     @Override protected int getContentView() {
@@ -107,11 +111,10 @@ public class IndexActivity extends BaseActivity implements IndexAView{
     @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == INDEX_REQUEST_CODE) {
-            if (data != null) {
-                if (resultCode == EDIT_SAVE) {
-
-                }
+            if (resultCode == EDIT_SAVE && resultCode == SUCCESS) {
+                OttoBus.getInstances().post(new Success(true));
             }
         }
     }
+
 }

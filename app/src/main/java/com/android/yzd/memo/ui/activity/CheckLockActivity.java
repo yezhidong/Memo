@@ -22,7 +22,7 @@ public class CheckLockActivity extends BaseActivity implements CheckLockAView, L
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mCheckLockA = new CheckLockAImpl(this, this, (ActivityCheckLockBinding) mDataBinding);
-        mCheckLockA.onCreate();
+        mCheckLockA.onCreate(savedInstanceState);
     }
 
     @Override protected int getContentView() {

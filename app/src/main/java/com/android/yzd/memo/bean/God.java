@@ -7,7 +7,7 @@ import io.realm.RealmObject;
  */
 public class God extends RealmObject{
 
-    private String godType;
+    private int godType;
 
     private String company;
 
@@ -15,13 +15,13 @@ public class God extends RealmObject{
 
     private String passWord;
 
-    private String time;
+    private long time;
     private String url;
     private String imageUrl;
 
     public God() {}
 
-    public God(String godType, String company, String userName, String passWord, String time) {
+    public God(int godType, String company, String userName, String passWord, long time) {
         this.godType = godType;
         this.company = company;
         this.userName = userName;
@@ -29,11 +29,11 @@ public class God extends RealmObject{
         this.time = time;
     }
 
-    public String getGodType() {
+    public int getGodType() {
         return godType;
     }
 
-    public void setGodType(String godType) {
+    public void setGodType(int godType) {
         this.godType = godType;
     }
 
@@ -53,11 +53,11 @@ public class God extends RealmObject{
         this.passWord = passWord;
     }
 
-    public String getTime() {
+    public long getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(long time) {
         this.time = time;
     }
 

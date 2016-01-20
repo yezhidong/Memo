@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.yzd.memo.otto.OttoBus;
+
 import java.lang.reflect.Field;
 
 import butterknife.ButterKnife;
@@ -39,6 +41,18 @@ public abstract class BaseFragment extends Fragment {
     @Override public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initPrepare();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        OttoBus.getInstances().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        OttoBus.getInstances().unregister(this);
+        super.onStop();
     }
 
     @Override

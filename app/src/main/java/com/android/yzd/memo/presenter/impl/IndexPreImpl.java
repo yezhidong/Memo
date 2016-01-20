@@ -1,6 +1,8 @@
 package com.android.yzd.memo.presenter.impl;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.view.MenuItem;
@@ -28,11 +30,16 @@ public class IndexPreImpl implements ActivityPresenter, View.OnClickListener, Na
         mDataBinding = dataBinding;
     }
 
-    @Override public void onCreate() {
+    @Override public void onCreate(Bundle savedInstanceState) {
         mIndexView.initDrawerToggle();
         mIndexView.initXViewPager();
         mDataBinding.fab.setOnClickListener(this);
         mDataBinding.navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    public void getIntent(Intent intent) {
+
     }
 
     @Override public void onResume() {

@@ -9,10 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.android.yzd.memo.R;
-import com.android.yzd.memo.otto.Success;
+import com.android.yzd.memo.model.evenbus.EventCenter;
 import com.android.yzd.memo.presenter.impl.LoginTypeFImpl;
 import com.android.yzd.memo.view.LoginTypeFView;
-import com.squareup.otto.Subscribe;
 
 import butterknife.Bind;
 
@@ -51,16 +50,21 @@ public class LoginTypeFragment extends BaseFragment implements LoginTypeFView{
         return true;
     }
 
+    @Override
+    protected boolean isApplyEventBus() {
+        return true;
+    }
+
+    @Override
+    protected void onEventComing(EventCenter eventCenter) {
+        mLoginTypeFImpl.onEventComing(eventCenter);
+    }
+
     @Override public void initRecycler(LinearLayoutManager linearLayoutManager, RecyclerView.Adapter adapter) {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setAdapter(adapter);
     }
 
-    @Subscribe public void isSuccess(Success success) {
-        if (success.isSuccess()) {
-
-        }
-    }
 
 }

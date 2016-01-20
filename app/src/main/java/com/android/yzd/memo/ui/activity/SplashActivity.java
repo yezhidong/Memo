@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.view.WindowManager;
 
 import com.android.yzd.memo.R;
+import com.android.yzd.memo.model.evenbus.EventCenter;
 import com.android.yzd.memo.utils.SPUtils;
 
 public class SplashActivity extends BaseActivity {
@@ -17,6 +18,11 @@ public class SplashActivity extends BaseActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);// 设置全屏
         new Handler().postDelayed( () ->  pullActivity() , 0);
+    }
+
+    @Override
+    protected void onEventComing(EventCenter eventCenter) {
+
     }
 
     private void pullActivity() {
@@ -48,6 +54,11 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected boolean isApplyButterKnife() {
+        return false;
+    }
+
+    @Override
+    protected boolean isApplyEventBus() {
         return false;
     }
 }

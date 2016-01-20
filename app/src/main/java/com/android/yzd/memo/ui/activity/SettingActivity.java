@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 import com.android.yzd.memo.R;
+import com.android.yzd.memo.model.evenbus.EventCenter;
 import com.android.yzd.memo.ui.fragment.SettingFragment;
 
 import butterknife.Bind;
@@ -29,6 +30,11 @@ public class SettingActivity extends BaseActivity {
         setTitle("设置");
     }
 
+    @Override
+    protected void onEventComing(EventCenter eventCenter) {
+
+    }
+
     @Override protected int getContentView() {
         return R.layout.activity_setting;
     }
@@ -43,5 +49,10 @@ public class SettingActivity extends BaseActivity {
 
     @Override protected boolean isApplyButterKnife() {
         return true;
+    }
+
+    @Override
+    protected boolean isApplyEventBus() {
+        return false;
     }
 }

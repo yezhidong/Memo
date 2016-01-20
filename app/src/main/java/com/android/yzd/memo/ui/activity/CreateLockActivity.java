@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.databinding.ActivityCreateLockBinding;
+import com.android.yzd.memo.model.evenbus.EventCenter;
 import com.android.yzd.memo.presenter.impl.CreateLockActivityImpl;
 import com.android.yzd.memo.ui.widget.LockPatternView;
 import com.android.yzd.memo.view.CreateLockAView;
@@ -29,6 +30,11 @@ public class CreateLockActivity extends BaseActivity implements CreateLockAView,
         mLockActivity.onCreate(savedInstanceState);
     }
 
+    @Override
+    protected void onEventComing(EventCenter eventCenter) {
+
+    }
+
     @Override protected int getContentView() {
         return R.layout.activity_create_lock;
     }
@@ -43,6 +49,11 @@ public class CreateLockActivity extends BaseActivity implements CreateLockAView,
 
     @Override protected boolean isApplyButterKnife() {
         return true;
+    }
+
+    @Override
+    protected boolean isApplyEventBus() {
+        return false;
     }
 
     @Override public void initLockPatternView() {

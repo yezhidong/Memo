@@ -16,7 +16,6 @@ import com.android.yzd.memo.bean.God;
 import com.android.yzd.memo.presenter.ActivityPresenter;
 import com.android.yzd.memo.utils.TimeUtils;
 import com.android.yzd.memo.view.EditAView;
-import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
 

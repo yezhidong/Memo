@@ -11,14 +11,13 @@ import android.view.View;
 
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.databinding.ActivityIndexBinding;
-import com.android.yzd.memo.otto.OttoBus;
-import com.android.yzd.memo.otto.Success;
+import com.android.yzd.memo.model.evenbus.EventCenter;
 import com.android.yzd.memo.presenter.impl.IndexPreImpl;
 import com.android.yzd.memo.ui.adapter.IndexContentAdapter;
 import com.android.yzd.memo.view.IndexAView;
-import com.squareup.otto.Produce;
 
 import butterknife.Bind;
+import de.greenrobot.event.EventBus;
 
 public class IndexActivity extends BaseActivity implements IndexAView{
 
@@ -29,6 +28,7 @@ public class IndexActivity extends BaseActivity implements IndexAView{
     private IndexPreImpl mIndexPre;
     private ActivityIndexBinding mDataBinding;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
+    private int INDEX_EVENT_SUCCESS = 1;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +51,11 @@ public class IndexActivity extends BaseActivity implements IndexAView{
 
     @Override protected boolean isApplyButterKnife() {
         return true;
+    }
+
+    @Override
+    protected boolean isApplyEventBus() {
+        return false;
     }
 
     @Override public void initDrawerToggle() {
@@ -108,11 +113,16 @@ public class IndexActivity extends BaseActivity implements IndexAView{
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onEventComing(EventCenter eventCenter) {
+    }
+
     @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == INDEX_REQUEST_CODE) {
             if (resultCode == EDIT_SAVE && resultCode == SUCCESS) {
-                OttoBus.getInstances().post(new Success(true));
+                EventCenter<Boolean> eventCenter = new EventCenter<>(INDEX_EVENT_SUCCESS, true);
+                EventBus.getDefault().post(eventCenter);
             }
         }
     }

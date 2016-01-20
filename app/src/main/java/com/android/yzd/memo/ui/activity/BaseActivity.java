@@ -12,11 +12,12 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 
 import com.android.yzd.memo.R;
-import com.android.yzd.memo.otto.OttoBus;
+import com.android.yzd.memo.model.evenbus.EventCenter;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.umeng.analytics.MobclickAgent;
 
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 
 /**
  * create by yezhidong 2016/1/12
@@ -31,8 +32,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (isApplyTranslucency()) initWindow();
         mDataBinding = DataBindingUtil.setContentView(this, getContentView());
         if (isApplyButterKnife()) ButterKnife.bind(this);
-        OttoBus.getInstances().register(this);
         initToolbar();
+        if (isApplyEventBus()) EventBus.getDefault().register(this);
     }
 
     protected void initToolBar(Toolbar toolbar) {
@@ -93,10 +94,18 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     @Override protected void onDestroy() {
-        OttoBus.getInstances().unregister(this);
         if (isApplyButterKnife()) ButterKnife.unbind(this);
+        if (isApplyEventBus()) EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
+
+//    public void onEventMainThread(EventCenter eventCenter) {
+//        if (eventCenter != null) {
+//            onEventComing(eventCenter);
+//        }
+//    }
+
+    protected abstract void onEventComing(EventCenter eventCenter);
 
     protected abstract int getContentView();
 
@@ -105,4 +114,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract boolean isApplyTranslucency();
 
     protected abstract boolean isApplyButterKnife();
+
+    protected abstract boolean isApplyEventBus();
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.databinding.ActivityCheckLockBinding;
+import com.android.yzd.memo.model.evenbus.EventCenter;
 import com.android.yzd.memo.presenter.impl.CheckLockAImpl;
 import com.android.yzd.memo.ui.widget.LockPatternView;
 import com.android.yzd.memo.view.CheckLockAView;
@@ -25,6 +26,11 @@ public class CheckLockActivity extends BaseActivity implements CheckLockAView, L
         mCheckLockA.onCreate(savedInstanceState);
     }
 
+    @Override
+    protected void onEventComing(EventCenter eventCenter) {
+
+    }
+
     @Override protected int getContentView() {
         return R.layout.activity_check_lock;
     }
@@ -39,6 +45,11 @@ public class CheckLockActivity extends BaseActivity implements CheckLockAView, L
 
     @Override protected boolean isApplyButterKnife() {
         return true;
+    }
+
+    @Override
+    protected boolean isApplyEventBus() {
+        return false;
     }
 
     @Override

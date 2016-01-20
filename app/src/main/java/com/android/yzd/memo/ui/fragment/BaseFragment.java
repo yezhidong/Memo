@@ -8,11 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.yzd.memo.otto.OttoBus;
+import com.android.yzd.memo.model.evenbus.EventCenter;
 
 import java.lang.reflect.Field;
 
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by Administrator on 2016/1/15.
@@ -36,6 +37,7 @@ public abstract class BaseFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mActivity = getActivity();
         if (isApplyButterKnife()) ButterKnife.bind(this, view);
+        if (isApplyEventBus()) EventBus.getDefault().register(this);
     }
 
     @Override public void onActivityCreated(Bundle savedInstanceState) {
@@ -46,17 +48,16 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        OttoBus.getInstances().register(this);
     }
 
     @Override
     public void onStop() {
-        OttoBus.getInstances().unregister(this);
         super.onStop();
     }
 
     @Override
     public void onDestroyView() {
+        if (isApplyEventBus()) EventBus.getDefault().unregister(this);
         if (isApplyButterKnife()) ButterKnife.unbind(this);
         super.onDestroyView();
 
@@ -122,6 +123,12 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
+    public void onEventMainThread(EventCenter eventCenter) {
+        if (eventCenter != null) {
+            onEventComing(eventCenter);
+        }
+    }
+
     /**
      * when fragment is visible for the first time, here we can do some initialized work or refresh data only once
      */
@@ -147,4 +154,8 @@ public abstract class BaseFragment extends Fragment {
     protected abstract int getContentViewLayoutID();
 
     protected abstract boolean isApplyButterKnife();
+
+    protected abstract boolean isApplyEventBus();
+
+    protected abstract void onEventComing(EventCenter eventCenter);
 }

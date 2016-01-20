@@ -1,23 +1,18 @@
 package com.android.yzd.memo.ui.activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
-import android.text.InputType;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import com.android.yzd.memo.R;
+import com.android.yzd.memo.model.evenbus.EventCenter;
 import com.android.yzd.memo.presenter.impl.EditAImpl;
 import com.android.yzd.memo.ui.widget.spinner.NiceSpinner;
 import com.android.yzd.memo.view.EditAView;
@@ -67,6 +62,11 @@ public class EditActivity extends BaseActivity implements EditAView {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onEventComing(EventCenter eventCenter) {
+
+    }
+
     @Override protected int getContentView() {
         return R.layout.activity_edit;
     }
@@ -82,6 +82,11 @@ public class EditActivity extends BaseActivity implements EditAView {
 
     @Override protected boolean isApplyButterKnife() {
         return true;
+    }
+
+    @Override
+    protected boolean isApplyEventBus() {
+        return false;
     }
 
     @Override public void initSpinner(List<String> data) {

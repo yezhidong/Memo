@@ -7,21 +7,29 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.android.yzd.memo.R;
+import com.balysv.materialripple.MaterialRippleLayout;
+
 
 
 /**
  * Created by yezhidong on 2016/1/15.
  */
-public class IndexViewHolder extends RecyclerView.ViewHolder{
+public class IndexViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     private final TextView mNoteLabelTextView;
     private final TextView mNoteContentTextView;
     private final TextView mNoteTimeTextView;
+    private final MaterialRippleLayout materialRippleLayout;
+    private OnRippleClick onRippleClick;
+
     public IndexViewHolder(View parent) {
         super(parent);
+        materialRippleLayout = (MaterialRippleLayout) parent.findViewById(R.id.ripple);
         mNoteLabelTextView = (TextView) parent.findViewById(R.id.note_label_text);
         mNoteContentTextView = (TextView) parent.findViewById(R.id.note_content_text);
         mNoteTimeTextView = (TextView) parent.findViewById(R.id.note_last_edit_text);
+
+        materialRippleLayout.setOnClickListener(this);
     }
 
     public void setLabelText(CharSequence text){
@@ -60,5 +68,18 @@ public class IndexViewHolder extends RecyclerView.ViewHolder{
         if (view == null || text <= 0)
             return;
         view.setText(text);
+    }
+
+    @Override
+    public void onClick(View v) {
+        onRippleClick.onRippleClick(v);
+    }
+
+    public void setOnRippleClickListener(OnRippleClick onRippleClick){
+        this.onRippleClick = onRippleClick;
+    }
+
+    public interface OnRippleClick{
+        void onRippleClick(View view);
     }
 }

@@ -13,6 +13,7 @@ import android.widget.CompoundButton;
 
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.bean.God;
+import com.android.yzd.memo.model.Realm.RealmHelper;
 import com.android.yzd.memo.presenter.ActivityPresenter;
 import com.android.yzd.memo.utils.TimeUtils;
 import com.android.yzd.memo.view.EditAView;
@@ -48,12 +49,18 @@ public class EditAImpl implements ActivityPresenter, TextWatcher, AdapterView.On
         int mode = intent.getIntExtra("CREATE_MODE", 1);
         switch (mode) {
             case 0:
-
+                int position = intent.getIntExtra("position", 0);
+                ArrayList<God> selector = selector();
+                mEditAView.initViewModel(selector.get(position));
                 break;
             case 1:
                 mEditAView.initCreateModel();
                 break;
         }
+    }
+
+    private ArrayList<God> selector() {
+        return RealmHelper.getInstances(mContext).selector(mContext, 0);
     }
 
     @Override public void onResume() {

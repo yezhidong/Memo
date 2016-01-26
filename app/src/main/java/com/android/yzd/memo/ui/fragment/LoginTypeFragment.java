@@ -68,9 +68,10 @@ public class LoginTypeFragment extends BaseFragment implements LoginTypeFView{
     }
 
     @Override
-    public void readGo(Class clazz, int type) {
+    public void readGo(Class clazz, int type, int position) {
         Intent intent = new Intent(mActivity, clazz);
         intent.putExtra("CREATE_MODE", type);
+        intent.putExtra("position", position);
         startActivity(intent);
     }
 

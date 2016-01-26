@@ -10,5 +10,5 @@ public interface LoginTypeFView {
 
     void initRecycler(LinearLayoutManager linearLayoutManager, RecyclerView.Adapter adapter);
 
-    void readGo(Class clazz, int type);
+    void readGo(Class clazz, int type, int position);
 }

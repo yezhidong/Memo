@@ -1,6 +1,6 @@
 package com.android.yzd.memo.view;
 
-import android.widget.EditText;
+import com.android.yzd.memo.bean.God;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ public interface EditAView {
     void initSpinner(List<String> data);
     void initCreateModel();
     void initEditModel();
-    void initViewModel();
+    void initViewModel(God god);
     String getTitleName();
     String getUserName();
     String getPassWord();

@@ -5,13 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.DecelerateInterpolator;
 
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.bean.God;
 import com.android.yzd.memo.ui.adapter.viewholder.IndexViewHolder;
 import com.android.yzd.memo.utils.TimeUtils;
-import com.android.yzd.memo.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +17,7 @@ import java.util.List;
 /**
  * Created by yezhidong on 2016/1/15.
  */
-public class IndexViewAdapter extends RecyclerView.Adapter<IndexViewHolder> implements View.OnClickListener {
+public class IndexViewAdapter extends RecyclerView.Adapter<IndexViewHolder> {
 
     private final Context mContext;
     private List<God> mGodList = new ArrayList<>();
@@ -34,7 +32,6 @@ public class IndexViewAdapter extends RecyclerView.Adapter<IndexViewHolder> impl
     @Override
     public IndexViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.recycler_item_layout, parent, false);
-        view.findViewById(R.id.ripple).setOnClickListener(this);
         return new IndexViewHolder(view);
     }
 
@@ -43,6 +40,14 @@ public class IndexViewAdapter extends RecyclerView.Adapter<IndexViewHolder> impl
         holder.setContentText(mGodList.get(position).getCompany());
         holder.setLabelText(mGodList.get(position).getUserName());
         holder.setTimeText(TimeUtils.getConciseTime((mGodList.get(position).getTime()), mContext));
+        holder.setOnRippleClickListener(new IndexViewHolder.OnRippleClick() {
+            @Override
+            public void onRippleClick(View view) {
+                if (listener != null) {
+                    listener.onRecyclerItemClick(view, position);
+                }
+            }
+        });
     }
 
     @Override
@@ -59,17 +64,11 @@ public class IndexViewAdapter extends RecyclerView.Adapter<IndexViewHolder> impl
         mGodList.addAll(godArrayList);
     }
 
-    @Override
-    public void onClick(View v) {
-        if (listener != null) {
-            listener.onRecyclerItemClick(v);
-        }
-    }
 
     public void setOnRecyclerItemClick(OnRecyclerItemClickListener onItemClickListener){
         listener = onItemClickListener;
     }
     public  interface OnRecyclerItemClickListener {
-        void onRecyclerItemClick(View view);
+        void onRecyclerItemClick(View view, int position);
     }
 }

@@ -2,7 +2,6 @@ package com.android.yzd.memo.presenter.impl;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.android.yzd.memo.Constans;
@@ -16,9 +15,6 @@ import com.android.yzd.memo.view.LoginTypeFView;
 
 import java.util.ArrayList;
 
-import io.realm.Realm;
-import io.realm.RealmQuery;
-
 /**
  * Created by Administrator on 2016/1/15.
  */
@@ -27,6 +23,7 @@ public class LoginTypeFImpl implements FragmentPresenter, IndexViewAdapter.OnRec
     private final Context mContext;
     private final LoginTypeFView mLoginTypeFView;
     private IndexViewAdapter mAdapter;
+    private ArrayList<God> selector;
 
     public LoginTypeFImpl(Context context, LoginTypeFView view) {
         mContext = context;
@@ -34,7 +31,7 @@ public class LoginTypeFImpl implements FragmentPresenter, IndexViewAdapter.OnRec
     }
     @Override
     public void onFirstUserVisible() {
-        ArrayList<God> selector = selector();
+        selector = selector();
         mAdapter = new IndexViewAdapter(mContext, selector);
         mAdapter.setOnRecyclerItemClick(this);
         mLoginTypeFView.initRecycler(new LinearLayoutManager(mContext), mAdapter);
@@ -58,7 +55,7 @@ public class LoginTypeFImpl implements FragmentPresenter, IndexViewAdapter.OnRec
         if (eventCenter.getEventCode() == 1) {
             boolean data = (boolean) eventCenter.getData();
             if (data) {
-                ArrayList<God> selector = selector();
+                selector = selector();
                 mAdapter.addAll(selector);
                 mAdapter.notifyDataSetChanged();
             }
@@ -67,7 +64,7 @@ public class LoginTypeFImpl implements FragmentPresenter, IndexViewAdapter.OnRec
 
 
     @Override
-    public void onRecyclerItemClick(View view) {
-        mLoginTypeFView.readGo(EditActivity.class, Constans.VIEW_MODE);
+    public void onRecyclerItemClick(View view, int position) {
+        mLoginTypeFView.readGo(EditActivity.class, Constans.VIEW_MODE, position);
     }
 }

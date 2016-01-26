@@ -51,7 +51,7 @@ public class IndexActivity extends BaseActivity implements IndexAView{
     }
 
     @Override protected boolean isApplyButterKnife() {
-        return true;
+        return false;
     }
 
     @Override

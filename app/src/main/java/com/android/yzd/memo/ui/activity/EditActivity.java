@@ -12,6 +12,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 
 import com.android.yzd.memo.R;
+import com.android.yzd.memo.bean.God;
 import com.android.yzd.memo.model.evenbus.EventCenter;
 import com.android.yzd.memo.presenter.impl.EditAImpl;
 import com.android.yzd.memo.ui.widget.spinner.NiceSpinner;
@@ -97,6 +98,10 @@ public class EditActivity extends BaseActivity implements EditAView {
     @Override public void initCreateModel() {
         mTitleEdt.requestFocus();
         showKeyBoard();
+        addEdtChangeListener();
+    }
+
+    private void addEdtChangeListener() {
         mTitleEdt.addTextChangedListener(mEditImpl);
         mUserNameEdt.addTextChangedListener(mEditImpl);
         mPassWordEdt.addTextChangedListener(mEditImpl);
@@ -106,9 +111,18 @@ public class EditActivity extends BaseActivity implements EditAView {
 
     }
 
-    @Override public void initViewModel() {
+    @Override
+    public void initViewModel(God god) {
+        hideKeyBoard();
+        mTitleEdt.setText(god.getCompany());
+        mUserNameEdt.setText(god.getUserName());
+        mPassWordEdt.setText(god.getPassWord());
+        mPassWordEdt.setTransformationMethod(HideReturnsTransformationMethod
+                .getInstance());
 
+        addEdtChangeListener();
     }
+
 
     @Override public String getTitleName() {
         return mTitleEdt.getText().toString().trim();

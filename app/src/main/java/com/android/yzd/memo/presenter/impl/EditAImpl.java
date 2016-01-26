@@ -45,7 +45,15 @@ public class EditAImpl implements ActivityPresenter, TextWatcher, AdapterView.On
     }
 
     @Override public void getIntent(Intent intent) {
-        mEditAView.initCreateModel();
+        int mode = intent.getIntExtra("CREATE_MODE", 1);
+        switch (mode) {
+            case 0:
+
+                break;
+            case 1:
+                mEditAView.initCreateModel();
+                break;
+        }
     }
 
     @Override public void onResume() {
@@ -96,6 +104,11 @@ public class EditAImpl implements ActivityPresenter, TextWatcher, AdapterView.On
         switch (item.getItemId()) {
             case R.id.done:
                 saveData();
+                return true;
+
+            case android.R.id.home:
+                mEditAView.hideKeyBoard();
+                mEditAView.finishActivity();
                 return true;
             default: return false;
         }

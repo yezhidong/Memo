@@ -1,6 +1,7 @@
 package com.android.yzd.memo.ui.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -64,6 +65,13 @@ public class LoginTypeFragment extends BaseFragment implements LoginTypeFView{
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void readGo(Class clazz, int type) {
+        Intent intent = new Intent(mActivity, clazz);
+        intent.putExtra("CREATE_MODE", type);
+        startActivity(intent);
     }
 
 

@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.android.yzd.memo.Constans;
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.databinding.ActivityIndexBinding;
 import com.android.yzd.memo.model.evenbus.EventCenter;
@@ -78,7 +79,9 @@ public class IndexActivity extends BaseActivity implements IndexAView{
     }
 
     @Override public void readyGoForResult(Class clazz) {
-        startActivityForResult(new Intent(this, clazz), INDEX_REQUEST_CODE);
+        Intent intent = new Intent(this, clazz);
+        intent.putExtra("CREATE_MODE", Constans.CREATE_MODE);
+        startActivityForResult(intent, INDEX_REQUEST_CODE);
     }
 
     @Override protected void onPostCreate(Bundle savedInstanceState) {
@@ -121,7 +124,7 @@ public class IndexActivity extends BaseActivity implements IndexAView{
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == INDEX_REQUEST_CODE) {
             if (resultCode == EDIT_SAVE && resultCode == SUCCESS) {
-                EventCenter<Boolean> eventCenter = new EventCenter<>(INDEX_EVENT_SUCCESS, true);
+                EventCenter eventCenter = new EventCenter(INDEX_EVENT_SUCCESS, true);
                 EventBus.getDefault().post(eventCenter);
             }
         }

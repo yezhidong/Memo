@@ -11,6 +11,7 @@
     app:cardCornerRadius="2dp"
     >
     <com.balysv.materialripple.MaterialRippleLayout
+        android:id="@+id/ripple"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:mrl_rippleOverlay="true"

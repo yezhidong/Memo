@@ -84,13 +84,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     @Override protected void onResume() {
-        super.onResume();
         MobclickAgent.onResume(this);
+        super.onResume();
     }
 
     @Override protected void onPause() {
-        super.onPause();
         MobclickAgent.onPause(this);
+        super.onPause();
     }
 
     @Override protected void onDestroy() {
@@ -99,11 +99,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-//    public void onEventMainThread(EventCenter eventCenter) {
-//        if (eventCenter != null) {
-//            onEventComing(eventCenter);
-//        }
-//    }
+    public void onEventMainThread(EventCenter eventCenter) {
+        if (eventCenter != null) {
+            onEventComing(eventCenter);
+        }
+    }
 
     protected abstract void onEventComing(EventCenter eventCenter);
 

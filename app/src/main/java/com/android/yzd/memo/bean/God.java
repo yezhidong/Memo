@@ -9,21 +9,20 @@ public class God extends RealmObject{
 
     private int godType;
 
-    private String company;
+    private String title;
 
     private String userName;
 
     private String passWord;
 
     private long time;
-    private String url;
-    private String imageUrl;
+
 
     public God() {}
 
-    public God(int godType, String company, String userName, String passWord, long time) {
+    public God(int godType, String title, String userName, String passWord, long time) {
         this.godType = godType;
-        this.company = company;
+        this.title = title;
         this.userName = userName;
         this.passWord = passWord;
         this.time = time;
@@ -61,27 +60,11 @@ public class God extends RealmObject{
         this.time = time;
     }
 
-    public String getUrl() {
-        return url;
+    public String getTitle() {
+        return title;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

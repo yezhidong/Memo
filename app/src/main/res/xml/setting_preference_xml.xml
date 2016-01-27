@@ -11,9 +11,6 @@
         <com.jenzz.materialpreference.Preference
             android:key="更换主题"
             android:title="更换主题"/>
-        <com.jenzz.materialpreference.Preference
-            android:key="检查更新"
-            android:title="检查更新"/>
     </com.jenzz.materialpreference.PreferenceCategory>
 
     <com.jenzz.materialpreference.PreferenceCategory android:title="其他">
@@ -21,13 +18,6 @@
             android:key="意见反馈"
             android:title="意见反馈"
             android:summary="如果你有问题或建议，欢迎您反馈给我！"/>
-        <com.jenzz.materialpreference.Preference
-            android:key="分享应用"
-            android:title="分享应用"
-            />
-        <com.jenzz.materialpreference.Preference
-            android:key="关于"
-            android:title="关于作者"/>
         <com.jenzz.materialpreference.Preference
             android:key="给应用点赞"
             android:title="给应用评分"/>

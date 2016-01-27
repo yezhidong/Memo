@@ -11,22 +11,22 @@
     android:orientation="vertical"
     android:gravity="bottom">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/sym_def_app_icon"
-        android:id="@+id/imageView" />
+    <!--<ImageView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:src="@android:drawable/sym_def_app_icon"-->
+        <!--android:id="@+id/imageView" />-->
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Android Studio"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Android Studio"-->
+        <!--android:textAppearance="@style/TextAppearance.AppCompat.Body1" />-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="android.studio@android.com"
-        android:id="@+id/textView" />
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="android.studio@android.com"-->
+        <!--android:id="@+id/textView" />-->
 
 </LinearLayout>

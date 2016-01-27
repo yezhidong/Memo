@@ -1,5 +1,6 @@
 package com.android.yzd.memo.ui.adapter;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -17,6 +18,9 @@ public class IndexContentAdapter extends FragmentPagerAdapter{
 
     @Override public Fragment getItem(int position) {
         Fragment fragment = new LoginTypeFragment();
+        Bundle argus = new Bundle();
+        argus.putInt("position", position);
+        fragment.setArguments(argus);
         return fragment;
     }
 

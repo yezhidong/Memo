@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context="com.android.yzd.memo.ui.activity.EditActivity">
 
     <include layout="@layout/common_toolbar"/>
@@ -14,31 +16,31 @@
         android:layout_height="5dp"
         android:background="@drawable/toolbar_shadow"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:text="选择密码类型:"/>
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="20dp"-->
+        <!--android:text="选择密码类型:"/>-->
 
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        app:cardElevation="4dp"
-        app:cardCornerRadius="2dp">
+    <!--<android.support.v7.widget.CardView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="20dp"-->
+        <!--android:layout_marginRight="20dp"-->
+        <!--app:cardElevation="4dp"-->
+        <!--app:cardCornerRadius="2dp">-->
 
 
-        <com.android.yzd.memo.ui.widget.spinner.NiceSpinner
-            android:id="@+id/spinner"
-            android:clickable="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        <!--<com.android.yzd.memo.ui.widget.spinner.NiceSpinner-->
+            <!--android:id="@+id/spinner"-->
+            <!--android:clickable="true"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"/>-->
 
 
 
-    </android.support.v7.widget.CardView>
+    <!--</android.support.v7.widget.CardView>-->
 
     <android.support.v7.widget.CardView
         android:layout_marginLeft="10dp"
@@ -53,64 +55,90 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.rengwuxian.materialedittext.MaterialEditText
-                style="@style/EditTextTheme"
-                android:id="@+id/title_edit_text"
-                android:lineSpacingExtra="4dp"
-                android:layout_margin="10dp"
-                android:hint="标题名称"
-                app:met_hideUnderline="true"
-                app:met_primaryColor="?attr/colorPrimary"
-                app:met_floatingLabel="highlight"
-                app:met_floatingLabelAlwaysShown="true"
-                app:met_floatingLabelTextColor="?attr/colorPrimary"
-                app:met_floatingLabelText="输入标题"
-                app:met_iconLeft="@mipmap/edit_title"/>
-
-            <View
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/light_grey"/>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
-
-            <com.rengwuxian.materialedittext.MaterialEditText
-                style="@style/EditTextTheme"
-                android:id="@+id/userName"
-                android:lineSpacingExtra="4dp"
-                android:layout_margin="10dp"
-                android:hint="用户名"
-                app:met_hideUnderline="true"
-                app:met_primaryColor="?attr/colorPrimary"
-                app:met_floatingLabel="highlight"
-                app:met_floatingLabelAlwaysShown="true"
-                app:met_floatingLabelTextColor="?attr/colorPrimary"
-                app:met_floatingLabelText="输入用户名"
-                app:met_iconLeft="@mipmap/edit_user"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="类别："/>
+                <com.android.yzd.memo.ui.widget.spinner.NiceSpinner
+                    android:id="@+id/spinner"
+                    android:clickable="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="标题："/>
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    style="@style/EditTextTheme"
+                    android:id="@+id/title_edit_text"
+                    android:lineSpacingExtra="4dp"
+                    android:hint="标题"
+                    app:met_primaryColor="?attr/colorPrimary"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="用户："/>
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    style="@style/EditTextTheme"
+                    android:id="@+id/userName"
+                    android:lineSpacingExtra="0dp"
+                    android:hint="用户名"
+                    app:met_primaryColor="?attr/colorPrimary"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="密码："/>
 
                 <com.rengwuxian.materialedittext.MaterialEditText
                     style="@style/EditTextTheme"
                     android:id="@+id/passWord"
                     android:lineSpacingExtra="4dp"
-                    android:layout_margin="10dp"
                     android:hint="密码"
-                    app:met_hideUnderline="true"
                     app:met_primaryColor="?attr/colorPrimary"
-                    app:met_floatingLabel="highlight"
-                    app:met_floatingLabelAlwaysShown="true"
-                    app:met_floatingLabelTextColor="?attr/colorPrimary"
-                    app:met_floatingLabelText="输入密码"
-                    app:met_iconLeft="@mipmap/edit_pass_word"
                     android:layout_weight="0.8"
                     android:inputType="textPassword"/>
 
                 <CheckBox
                     android:id="@+id/eye"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:button="@null"

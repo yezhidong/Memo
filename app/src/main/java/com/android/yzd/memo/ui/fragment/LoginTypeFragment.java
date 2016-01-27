@@ -28,6 +28,7 @@ public class LoginTypeFragment extends BaseFragment implements LoginTypeFView{
     @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mLoginTypeFImpl = new LoginTypeFImpl(mActivity, this);
+        mLoginTypeFImpl.getArgus(getArguments());
     }
 
 

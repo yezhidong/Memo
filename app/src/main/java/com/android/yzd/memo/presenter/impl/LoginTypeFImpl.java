@@ -1,6 +1,7 @@
 package com.android.yzd.memo.presenter.impl;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
@@ -24,6 +25,7 @@ public class LoginTypeFImpl implements FragmentPresenter, IndexViewAdapter.OnRec
     private final LoginTypeFView mLoginTypeFView;
     private IndexViewAdapter mAdapter;
     private ArrayList<God> selector;
+    private int position;
 
     public LoginTypeFImpl(Context context, LoginTypeFView view) {
         mContext = context;
@@ -38,7 +40,7 @@ public class LoginTypeFImpl implements FragmentPresenter, IndexViewAdapter.OnRec
     }
 
     private ArrayList<God> selector() {
-        return RealmHelper.getInstances(mContext).selector(mContext, 0);
+        return RealmHelper.getInstances(mContext).selector(mContext, position);
     }
 
     @Override
@@ -66,5 +68,9 @@ public class LoginTypeFImpl implements FragmentPresenter, IndexViewAdapter.OnRec
     @Override
     public void onRecyclerItemClick(View view, int position) {
         mLoginTypeFView.readGo(EditActivity.class, Constans.VIEW_MODE, position);
+    }
+
+    public void getArgus(Bundle arguments) {
+        position = arguments.getInt("position");
     }
 }

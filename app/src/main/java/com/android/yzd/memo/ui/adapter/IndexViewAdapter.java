@@ -37,7 +37,7 @@ public class IndexViewAdapter extends RecyclerView.Adapter<IndexViewHolder> {
 
     @Override
     public void onBindViewHolder(IndexViewHolder holder, int position) {
-        holder.setLabelText(mGodList.get(position).getCompany());
+        holder.setLabelText(mGodList.get(position).getTitle());
         holder.setContentText(mGodList.get(position).getUserName());
         holder.setPassWordTextView(mGodList.get(position).getPassWord());
         holder.setTimeText(TimeUtils.getConciseTime((mGodList.get(position).getTime()), mContext));

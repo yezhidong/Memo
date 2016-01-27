@@ -114,7 +114,7 @@ public class EditActivity extends BaseActivity implements EditAView {
     @Override
     public void initViewModel(God god) {
         hideKeyBoard();
-        mTitleEdt.setText(god.getCompany());
+        mTitleEdt.setText(god.getTitle());
         mUserNameEdt.setText(god.getUserName());
         mPassWordEdt.setText(god.getPassWord());
         mPassWordEdt.setTransformationMethod(HideReturnsTransformationMethod
@@ -122,6 +122,7 @@ public class EditActivity extends BaseActivity implements EditAView {
         mTitleEdt.setOnFocusChangeListener(mEditImpl);
         mUserNameEdt.setOnFocusChangeListener(mEditImpl);
         mPassWordEdt.setOnFocusChangeListener(mEditImpl);
+        mEyeChB.setChecked(false);
         addEdtChangeListener();
     }
 

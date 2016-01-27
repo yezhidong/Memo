@@ -10,34 +10,35 @@ import com.android.yzd.memo.R;
 import com.balysv.materialripple.MaterialRippleLayout;
 
 
-
 /**
  * Created by yezhidong on 2016/1/15.
  */
 public class IndexViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    private final TextView mNoteLabelTextView;
+    private final TextView mTitleTextView;
     private final TextView mNoteContentTextView;
-    private final TextView mNoteTimeTextView;
-    private final MaterialRippleLayout materialRippleLayout;
+    private final TextView mTimeTextView;
+    private final MaterialRippleLayout ripple;
+    private final TextView mPassWordTextView;
     private OnRippleClick onRippleClick;
 
     public IndexViewHolder(View parent) {
         super(parent);
-        materialRippleLayout = (MaterialRippleLayout) parent.findViewById(R.id.ripple);
-        mNoteLabelTextView = (TextView) parent.findViewById(R.id.note_label_text);
-        mNoteContentTextView = (TextView) parent.findViewById(R.id.note_content_text);
-        mNoteTimeTextView = (TextView) parent.findViewById(R.id.note_last_edit_text);
+        ripple = (MaterialRippleLayout) parent.findViewById(R.id.ripple);
+        mTitleTextView = (TextView) parent.findViewById(R.id.main_item_title);
+        mNoteContentTextView = (TextView) parent.findViewById(R.id.main_item_name);
+        mTimeTextView = (TextView) parent.findViewById(R.id.main_item_date);
+        mPassWordTextView = (TextView) parent.findViewById(R.id.main_item_password);
 
-        materialRippleLayout.setOnClickListener(this);
+        ripple.setOnClickListener(this);
     }
 
     public void setLabelText(CharSequence text){
-        setTextView(mNoteLabelTextView, text);
+        setTextView(mTitleTextView, text);
     }
 
     public void setLabelText(int text){
-        setTextView(mNoteLabelTextView, text);
+        setTextView(mTitleTextView, text);
     }
 
     public void setContentText(CharSequence text){
@@ -49,11 +50,19 @@ public class IndexViewHolder extends RecyclerView.ViewHolder implements View.OnC
     }
 
     public void setTimeText(CharSequence text){
-        setTextView(mNoteTimeTextView, text);
+        setTextView(mTimeTextView, text);
     }
 
     public void setTimeText(int text){
-        setTextView(mNoteTimeTextView, text);
+        setTextView(mTimeTextView, text);
+    }
+
+    public TextView getPassWordTextView() {
+        return mPassWordTextView;
+    }
+
+    public void setPassWordTextView(String passWord) {
+        setTextView(mPassWordTextView, passWord);
     }
 
     private void setTextView(TextView view, CharSequence text){

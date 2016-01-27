@@ -21,4 +21,5 @@ public interface EditAView {
     void finishActivity();
     void setPassWordVisible(boolean visible);
     void hideKeyBoard();
+    void setToolBarTitle(int resId);
 }

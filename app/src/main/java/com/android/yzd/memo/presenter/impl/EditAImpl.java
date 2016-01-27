@@ -25,7 +25,7 @@ import io.realm.Realm;
 /**
  * Created by Clearlove on 16/1/17.
  */
-public class EditAImpl implements ActivityPresenter, TextWatcher, AdapterView.OnItemSelectedListener, CompoundButton.OnCheckedChangeListener {
+public class EditAImpl implements ActivityPresenter, TextWatcher, AdapterView.OnItemSelectedListener, CompoundButton.OnCheckedChangeListener, View.OnFocusChangeListener {
 
     private final Context mContext;
     private final EditAView mEditAView;
@@ -52,6 +52,7 @@ public class EditAImpl implements ActivityPresenter, TextWatcher, AdapterView.On
                 int position = intent.getIntExtra("position", 0);
                 ArrayList<God> selector = selector();
                 mEditAView.initViewModel(selector.get(position));
+                mEditAView.setToolBarTitle(R.string.view_mode);
                 break;
             case 1:
                 mEditAView.initCreateModel();
@@ -147,4 +148,10 @@ public class EditAImpl implements ActivityPresenter, TextWatcher, AdapterView.On
         mEditAView.setPassWordVisible(isChecked);
     }
 
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus) {
+            mEditAView.setToolBarTitle(R.string.edit_mode);
+        }
+    }
 }

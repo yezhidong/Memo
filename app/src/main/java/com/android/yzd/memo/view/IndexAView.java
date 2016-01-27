@@ -10,4 +10,6 @@ public interface IndexAView {
     void initXViewPager();
 
     void readyGoForResult(Class clazz);
+
+    void go2Setting();
 }

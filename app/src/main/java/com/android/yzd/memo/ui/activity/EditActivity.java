@@ -74,7 +74,7 @@ public class EditActivity extends BaseActivity implements EditAView {
 
     @Override protected void initToolbar() {
         initToolBar(mToolBar);
-        mToolBar.setTitle("添加");
+        setToolBarTitle(R.string.create_mode);
     }
 
     @Override protected boolean isApplyTranslucency() {
@@ -119,7 +119,9 @@ public class EditActivity extends BaseActivity implements EditAView {
         mPassWordEdt.setText(god.getPassWord());
         mPassWordEdt.setTransformationMethod(HideReturnsTransformationMethod
                 .getInstance());
-
+        mTitleEdt.setOnFocusChangeListener(mEditImpl);
+        mUserNameEdt.setOnFocusChangeListener(mEditImpl);
+        mPassWordEdt.setOnFocusChangeListener(mEditImpl);
         addEdtChangeListener();
     }
 
@@ -170,5 +172,10 @@ public class EditActivity extends BaseActivity implements EditAView {
     @Override public void hideKeyBoard(){
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(mPassWordEdt.getWindowToken(), 0);
+    }
+
+    @Override
+    public void setToolBarTitle(int resId) {
+        mToolBar.setTitle(getResources().getString(resId));
     }
 }

@@ -89,6 +89,7 @@ public class IndexPreImpl implements ActivityPresenter, View.OnClickListener, Na
             case R.id.nav_share:
                 break;
             case R.id.nav_setting:
+                mIndexView.go2Setting();
                 break;
             default:break;
         }

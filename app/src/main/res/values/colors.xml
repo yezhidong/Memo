@@ -4,7 +4,43 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="text_color">#7C7F89</color>
+    <color name="title_color">#50B3FA</color>
+    <color name="line_color">#DDDADFE5</color>
+    <color name="name_color">#F65EA5</color>
 
+    <color name="red">#F44336</color>
+    <color name="dark_red">#F44336</color>
+    <color name="accent_red">#F44336</color>
+
+    <color name="brown">#795548</color>
+    <color name="dark_brown">#795548</color>
+    <color name="accent_brown">#795548</color>
+
+
+    <color name="blue">#2196F3</color>
+    <color name="dark_blue">#2196F3</color>
+    <color name="accent_blue">#448AFF</color>
+
+    <color name="blue_grey">#607D8B</color>
+    <color name="dark_blue_grey">#607D8B</color>
+    <color name="accent_blue_grey">#607D8B</color>
+
+    <color name="yellow">#FF9800</color>
+    <color name="dark_yellow">#FF9800</color>
+    <color name="accent_yellow">#FF9800</color>
+
+    <color name="deep_purple">#673AB7</color>
+    <color name="dark_deep_purple">#673AB7</color>
+    <color name="accent_deep_purple">#673AB7</color>
+
+    <color name="pink">#E91E63</color>
+    <color name="dark_pink">#E91E63</color>
+    <color name="accent_pink">#E91E63</color>
+
+    <color name="green">#4CAF50</color>
+    <color name="dark_green">#4CAF50</color>
+    <color name="accent_green">#4CAF50</color>
 
     <color name="actionbar_title_color">@android:color/white</color>
     <color name="text_red">#ffff4081</color>

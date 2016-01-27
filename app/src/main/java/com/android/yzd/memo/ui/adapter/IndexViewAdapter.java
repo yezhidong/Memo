@@ -31,14 +31,15 @@ public class IndexViewAdapter extends RecyclerView.Adapter<IndexViewHolder> {
     }
     @Override
     public IndexViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.recycler_item_layout, parent, false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.main_password_item, parent, false);
         return new IndexViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(IndexViewHolder holder, int position) {
-        holder.setContentText(mGodList.get(position).getCompany());
-        holder.setLabelText(mGodList.get(position).getUserName());
+        holder.setLabelText(mGodList.get(position).getCompany());
+        holder.setContentText(mGodList.get(position).getUserName());
+        holder.setPassWordTextView(mGodList.get(position).getPassWord());
         holder.setTimeText(TimeUtils.getConciseTime((mGodList.get(position).getTime()), mContext));
         holder.setOnRippleClickListener(new IndexViewHolder.OnRippleClick() {
             @Override

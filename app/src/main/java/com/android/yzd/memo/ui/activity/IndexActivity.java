@@ -107,13 +107,17 @@ public class IndexActivity extends BaseActivity implements IndexAView{
         switch (item.getItemId())
         {
             case R.id.setting:
-                Intent intent = new Intent(this, SettingActivity.class);
-                startActivity(intent);
+                go2Setting();
                 return true;
             case R.id.about:
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override public void go2Setting() {
+        Intent intent = new Intent(this, SettingActivity.class);
+        startActivity(intent);
     }
 
     @Override

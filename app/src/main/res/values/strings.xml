@@ -46,8 +46,12 @@
     </string-array>
 
     <string-array name="spinner_item">
-        <item>登录</item>
+        <item>默认</item>
         <item>邮箱</item>
-        <item>记事本</item>
+        <item>银行卡</item>
     </string-array>
+
+    <string name="edit_mode">编辑</string>
+    <string name="view_mode">查看</string>
+    <string name="create_mode">添加</string>
 </resources>

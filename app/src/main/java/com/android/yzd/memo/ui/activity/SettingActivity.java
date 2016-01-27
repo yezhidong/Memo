@@ -7,6 +7,7 @@ import com.android.yzd.memo.R;
 import com.android.yzd.memo.model.evenbus.EventCenter;
 import com.android.yzd.memo.ui.fragment.SettingFragment;
 
+
 import butterknife.Bind;
 
 public class SettingActivity extends BaseActivity {
@@ -55,4 +56,5 @@ public class SettingActivity extends BaseActivity {
     protected boolean isApplyEventBus() {
         return false;
     }
+
 }

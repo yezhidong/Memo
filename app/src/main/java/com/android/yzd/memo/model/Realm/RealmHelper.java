@@ -42,4 +42,18 @@ public class RealmHelper {
         }
         return null;
     }
+
+    public static void save(Context context, God god) {
+        Realm realm = Realm.getInstance(context);
+        realm.beginTransaction();
+        realm.copyToRealm(god);
+        realm.commitTransaction();
+    }
+
+    public static void update(Context context, God god) {
+        Realm realm = Realm.getInstance(context);
+        realm.beginTransaction();
+        realm.copyToRealmOrUpdate(god);
+        realm.commitTransaction();
+    }
 }

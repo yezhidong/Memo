@@ -30,6 +30,7 @@ public class EditAImpl implements ActivityPresenter, TextWatcher, AdapterView.On
     private final Context mContext;
     private final EditAView mEditAView;
     private int mPosition = 0;
+    private int createMode;
 
     public EditAImpl(Context context, EditAView view) {
         mContext = context;
@@ -46,8 +47,8 @@ public class EditAImpl implements ActivityPresenter, TextWatcher, AdapterView.On
     }
 
     @Override public void getIntent(Intent intent) {
-        int mode = intent.getIntExtra("CREATE_MODE", 1);
-        switch (mode) {
+        createMode = intent.getIntExtra("CREATE_MODE", 1);
+        switch (createMode) {
             case 0:
                 int position = intent.getIntExtra("position", 0);
                 ArrayList<God> selector = selector();
@@ -127,10 +128,15 @@ public class EditAImpl implements ActivityPresenter, TextWatcher, AdapterView.On
         String userName = mEditAView.getUserName();
         String passWord = mEditAView.getPassWord();
         God god = new God(mPosition, titleName, userName, passWord, TimeUtils.getCurrentTimeInLong());
-        Realm realm = Realm.getInstance(mContext);
-        realm.beginTransaction();
-        realm.copyToRealm(god);
-        realm.commitTransaction();
+        switch (createMode) {
+            case 0:
+                RealmHelper.update(mContext, god);
+                break;
+            case 1:
+                RealmHelper.save(mContext, god);
+                break;
+        }
+
         mEditAView.hideKeyBoard();
         mEditAView.finishActivity();
     }

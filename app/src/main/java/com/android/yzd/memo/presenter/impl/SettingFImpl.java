@@ -5,9 +5,14 @@ import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.text.TextUtils;
 
+import com.android.yzd.memo.Constans;
+import com.android.yzd.memo.R;
+import com.android.yzd.memo.model.evenbus.EventCenter;
 import com.android.yzd.memo.presenter.FragmentPresenter;
 import com.android.yzd.memo.utils.SPUtils;
 import com.android.yzd.memo.view.SettingAView;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by yezhidong on 2016/1/27.
@@ -34,6 +39,9 @@ public class SettingFImpl implements FragmentPresenter{
 
     @Override
     public void onUserInvisible() {
+    }
+
+    public void findPreference(CharSequence key) {
 
     }
 
@@ -51,5 +59,11 @@ public class SettingFImpl implements FragmentPresenter{
         } else if (TextUtils.equals(key, "给应用点赞")) {
 
         }
+    }
+
+    public void onThemeChoose(int position) {
+        SPUtils.put(mContext, mContext.getResources().getString(R.string.change_theme_key), position);
+        EventBus.getDefault().post(new EventCenter(Constans.EVEN_BUS.CHANGE_THEME));
+        settingAView.reCreate();
     }
 }

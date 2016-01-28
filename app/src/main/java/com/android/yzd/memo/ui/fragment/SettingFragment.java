@@ -12,7 +12,9 @@ import android.widget.GridView;
 
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.presenter.impl.SettingFImpl;
+import com.android.yzd.memo.ui.activity.SettingActivity;
 import com.android.yzd.memo.ui.adapter.ColorListAdapter;
+import com.android.yzd.memo.utils.SPUtils;
 import com.android.yzd.memo.view.SettingAView;
 
 import java.util.Arrays;
@@ -54,7 +56,8 @@ public class SettingFragment extends PreferenceFragment implements SettingAView{
                 R.drawable.pink_round, R.drawable.green_round};
         List<Integer> list = Arrays.asList(res);
         ColorListAdapter adapter = new ColorListAdapter(getActivity(), list);
-        adapter.setCheckItem(0);
+        int value = (int) SPUtils.get(getActivity(), getActivity().getResources().getString(R.string.change_theme_key), 1);
+        adapter.setCheckItem(value);
         GridView gridView = (GridView) LayoutInflater.from(getActivity()).inflate(R.layout.colors_panel_layout, null);
         gridView.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
         gridView.setCacheColorHint(0);
@@ -63,8 +66,15 @@ public class SettingFragment extends PreferenceFragment implements SettingAView{
         final AlertDialog dialog = builder.show();
         gridView.setOnItemClickListener((parent, view, position, id) -> {
             dialog.dismiss();
-//            settingPresenter.onThemeChoose(position);
+            settingFImpl.onThemeChoose(position);
         });
     }
+
+    @Override
+    public void reCreate() {
+        SettingActivity activity = (SettingActivity) getActivity();
+        activity.reload(false);
+    }
+
 
 }

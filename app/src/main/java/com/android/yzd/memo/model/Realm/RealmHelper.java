@@ -27,6 +27,16 @@ public class RealmHelper {
         }
         return instances;
     }
+    private static void closeConnect(Realm realm) {
+        if (null != realm) {
+            try {
+                realm.close();
+                realm = null;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
     public static ArrayList<God> selector(Context context, int godType){
         Realm realm = Realm.getInstance(context);
         RealmQuery<God> realmQuery = realm.where(God.class);

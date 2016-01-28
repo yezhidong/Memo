@@ -15,6 +15,7 @@ import com.android.yzd.memo.presenter.impl.LoginTypeFImpl;
 import com.android.yzd.memo.view.LoginTypeFView;
 
 import butterknife.Bind;
+import de.greenrobot.event.EventBus;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,6 +23,9 @@ import butterknife.Bind;
  */
 public class LoginTypeFragment extends BaseFragment implements LoginTypeFView{
 
+    private static final int INDEX_FRAGMENT_REQUEST_CODE = 2;
+    private static final int EDIT_SAVE = 1;
+    private static final int SUCCESS = 1;
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
     private LoginTypeFImpl mLoginTypeFImpl;
 
@@ -73,8 +77,17 @@ public class LoginTypeFragment extends BaseFragment implements LoginTypeFView{
         Intent intent = new Intent(mActivity, clazz);
         intent.putExtra("CREATE_MODE", type);
         intent.putExtra("position", position);
-        startActivity(intent);
+        startActivityForResult(intent, INDEX_FRAGMENT_REQUEST_CODE);
     }
 
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == INDEX_FRAGMENT_REQUEST_CODE) {
+            if (resultCode == EDIT_SAVE && resultCode == SUCCESS) {
+                EventCenter eventCenter = new EventCenter(EDIT_SAVE, true);
+                EventBus.getDefault().post(eventCenter);
+            }
+        }
+    }
 }

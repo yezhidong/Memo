@@ -10,6 +10,7 @@
     <string name="finger_up_second_success">绘制成功</string>
     <string name="check_default">请绘制手势密码，来解锁</string>
     <string name="check_error">手势密码错误，请重试</string>
+    <string name="change_theme_key">change_theme_key</string>
 
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>

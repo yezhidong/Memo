@@ -58,8 +58,10 @@ public class LoginTypeFImpl implements FragmentPresenter, IndexViewAdapter.OnRec
             boolean data = (boolean) eventCenter.getData();
             if (data) {
                 selector = selector();
-                mAdapter.addAll(selector);
-                mAdapter.notifyDataSetChanged();
+                if (null != selector && selector.size() > 0) {
+                    mAdapter.addAll(selector);
+                    mAdapter.notifyDataSetChanged();
+                }
             }
         }
     }

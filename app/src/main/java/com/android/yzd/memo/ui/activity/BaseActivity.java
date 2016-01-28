@@ -1,6 +1,7 @@
 package com.android.yzd.memo.ui.activity;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Build;
@@ -13,6 +14,7 @@ import android.view.WindowManager;
 
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.model.evenbus.EventCenter;
+import com.android.yzd.memo.utils.ThemeUtils;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.umeng.analytics.MobclickAgent;
 
@@ -27,6 +29,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected ViewDataBinding mDataBinding;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
+        initTheme();
         super.onCreate(savedInstanceState);
 
         if (isApplyTranslucency()) initWindow();
@@ -34,6 +37,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (isApplyButterKnife()) ButterKnife.bind(this);
         initToolbar();
         if (isApplyEventBus()) EventBus.getDefault().register(this);
+    }
+
+    private void initTheme() {
+        ThemeUtils.Theme currentTheme = ThemeUtils.getCurrentTheme(this);
+        ThemeUtils.changeTheme(this, currentTheme);
     }
 
     protected void initToolBar(Toolbar toolbar) {
@@ -47,6 +55,19 @@ public abstract class BaseActivity extends AppCompatActivity {
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    public void reload(boolean anim) {
+        Intent intent = getIntent();
+        if (!anim) {
+            overridePendingTransition(0, 0);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        }
+        finish();
+        if (!anim) {
+            overridePendingTransition(0, 0);
+        }
+        startActivity(intent);
     }
 
     /**

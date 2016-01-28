@@ -1,6 +1,7 @@
 package com.android.yzd.memo.bean;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by Clearlove on 16/1/17.
@@ -8,7 +9,7 @@ import io.realm.RealmObject;
 public class God extends RealmObject{
 
     private int godType;
-
+    @PrimaryKey
     private String title;
 
     private String userName;

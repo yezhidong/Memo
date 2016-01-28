@@ -7,4 +7,8 @@ public class Constans {
 
     public static int VIEW_MODE = 0;
     public static int CREATE_MODE = 1;
+
+    public final static class EVEN_BUS {
+        public static int CHANGE_THEME = 2;
+    }
 }

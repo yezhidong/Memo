@@ -34,6 +34,7 @@ public class IndexPreImpl implements ActivityPresenter, View.OnClickListener, Na
         mIndexView.initDrawerToggle();
         mIndexView.initXViewPager();
         mDataBinding.fab.setOnClickListener(this);
+        mDataBinding.navigationView.setCheckedItem(R.id.nav_login_type);
         mDataBinding.navigationView.setNavigationItemSelectedListener(this);
     }
 

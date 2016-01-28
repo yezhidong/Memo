@@ -51,12 +51,12 @@ public class IndexActivity extends BaseActivity implements IndexAView{
     }
 
     @Override protected boolean isApplyButterKnife() {
-        return false;
+        return true;
     }
 
     @Override
     protected boolean isApplyEventBus() {
-        return false;
+        return true;
     }
 
     @Override public void initDrawerToggle() {
@@ -122,6 +122,9 @@ public class IndexActivity extends BaseActivity implements IndexAView{
 
     @Override
     protected void onEventComing(EventCenter eventCenter) {
+        if (eventCenter.getEventCode() == Constans.EVEN_BUS.CHANGE_THEME) {
+            reload(false);
+        }
     }
 
     @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {

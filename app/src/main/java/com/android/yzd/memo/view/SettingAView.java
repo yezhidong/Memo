@@ -6,4 +6,6 @@ package com.android.yzd.memo.view;
 public interface SettingAView {
 
     void showChangeThemeDialog();
+
+    void reCreate();
 }

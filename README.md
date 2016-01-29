@@ -1,9 +1,9 @@
-### 怕死我的
+# 怕死我的
 
-#一款基于Google Material Design设计开发的Android密码管理客户端--怕死我的
+###一款基于Google Material Design设计开发的Android密码管理客户端--怕死我的（PassWord）
 
-#屏幕截图
+###屏幕截图
 
-#v1.0
+###v1.0
 
 

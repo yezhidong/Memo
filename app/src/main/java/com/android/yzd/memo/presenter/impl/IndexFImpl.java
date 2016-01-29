@@ -19,7 +19,7 @@ import java.util.ArrayList;
 /**
  * Created by Administrator on 2016/1/15.
  */
-public class LoginTypeFImpl implements FragmentPresenter, IndexViewAdapter.OnRecyclerItemClickListener {
+public class IndexFImpl implements FragmentPresenter, IndexViewAdapter.OnRecyclerItemClickListener {
 
     private final Context mContext;
     private final LoginTypeFView mLoginTypeFView;
@@ -27,7 +27,7 @@ public class LoginTypeFImpl implements FragmentPresenter, IndexViewAdapter.OnRec
     private ArrayList<God> selector;
     private int position;
 
-    public LoginTypeFImpl(Context context, LoginTypeFView view) {
+    public IndexFImpl(Context context, LoginTypeFView view) {
         mContext = context;
         mLoginTypeFView = view;
     }

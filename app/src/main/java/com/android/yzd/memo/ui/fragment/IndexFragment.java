@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.model.evenbus.EventCenter;
-import com.android.yzd.memo.presenter.impl.LoginTypeFImpl;
+import com.android.yzd.memo.presenter.impl.IndexFImpl;
 import com.android.yzd.memo.view.LoginTypeFView;
 
 import butterknife.Bind;
@@ -22,32 +22,32 @@ import de.greenrobot.event.EventBus;
  * A simple {@link Fragment} subclass.
  * @author yezhidong
  */
-public class LoginTypeFragment extends BaseFragment implements LoginTypeFView{
+public class IndexFragment extends BaseFragment implements LoginTypeFView{
 
     private static final int INDEX_FRAGMENT_REQUEST_CODE = 2;
     private static final int EDIT_SAVE = 1;
     private static final int SUCCESS = 1;
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
     @Bind(R.id.exception) LinearLayout mException;
-    private LoginTypeFImpl mLoginTypeFImpl;
+    private IndexFImpl mIndexFImpl;
 
     @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mLoginTypeFImpl = new LoginTypeFImpl(mActivity, this);
-        mLoginTypeFImpl.getArgus(getArguments());
+        mIndexFImpl = new IndexFImpl(mActivity, this);
+        mIndexFImpl.getArgus(getArguments());
     }
 
 
     @Override protected void onFirstUserVisible() {
-        mLoginTypeFImpl.onFirstUserVisible();
+        mIndexFImpl.onFirstUserVisible();
     }
 
     @Override protected void onUserVisible() {
-        mLoginTypeFImpl.onUserVisible();
+        mIndexFImpl.onUserVisible();
     }
 
     @Override protected void onUserInvisible() {
-        mLoginTypeFImpl.onUserInvisible();
+        mIndexFImpl.onUserInvisible();
     }
 
     @Override protected int getContentViewLayoutID() {
@@ -65,7 +65,7 @@ public class LoginTypeFragment extends BaseFragment implements LoginTypeFView{
 
     @Override
     protected void onEventComing(EventCenter eventCenter) {
-        mLoginTypeFImpl.onEventComing(eventCenter);
+        mIndexFImpl.onEventComing(eventCenter);
     }
 
     @Override public void initRecycler(LinearLayoutManager linearLayoutManager, RecyclerView.Adapter adapter) {

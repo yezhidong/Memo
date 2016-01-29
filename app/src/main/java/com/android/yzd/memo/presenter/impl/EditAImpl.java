@@ -1,6 +1,7 @@
 package com.android.yzd.memo.presenter.impl;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -25,12 +26,15 @@ import io.realm.Realm;
 /**
  * Created by Clearlove on 16/1/17.
  */
-public class EditAImpl implements ActivityPresenter, TextWatcher, AdapterView.OnItemSelectedListener, CompoundButton.OnCheckedChangeListener, View.OnFocusChangeListener {
+public class EditAImpl implements ActivityPresenter,
+        TextWatcher, AdapterView.OnItemSelectedListener,
+        CompoundButton.OnCheckedChangeListener, View.OnFocusChangeListener, DialogInterface.OnClickListener {
 
     private final Context mContext;
     private final EditAView mEditAView;
     private int mPosition = 0;
     private int createMode;
+    private boolean isEdit;
 
     public EditAImpl(Context context, EditAView view) {
         mContext = context;
@@ -54,8 +58,11 @@ public class EditAImpl implements ActivityPresenter, TextWatcher, AdapterView.On
                 ArrayList<God> selector = selector();
                 mEditAView.initViewModel(selector.get(position));
                 mEditAView.setToolBarTitle(R.string.view_mode);
+                mEditAView.setTime(TimeUtils.getTime(selector.get(position).getTime()));
+                isEdit = false;
                 break;
             case 1:
+                isEdit = true;
                 mEditAView.initCreateModel();
                 break;
         }
@@ -116,8 +123,20 @@ public class EditAImpl implements ActivityPresenter, TextWatcher, AdapterView.On
                 return true;
 
             case android.R.id.home:
-                mEditAView.hideKeyBoard();
-                mEditAView.finishActivity();
+                if (isEdit) {
+                    String titleName = mEditAView.getTitleName();
+                    String userName = mEditAView.getUserName();
+                    String passWord = mEditAView.getPassWord();
+                    mEditAView.hideKeyBoard();
+                    if (!TextUtils.isEmpty(titleName) && !TextUtils.isEmpty(userName) && !TextUtils.isEmpty(passWord)) {
+                        mEditAView.showSaveDialog();
+                    } else {
+                        mEditAView.finishActivity();
+                    }
+                } else {
+                    mEditAView.hideKeyBoard();
+                    mEditAView.finishActivity();
+                }
                 return true;
             default: return false;
         }
@@ -142,6 +161,7 @@ public class EditAImpl implements ActivityPresenter, TextWatcher, AdapterView.On
     }
 
     @Override public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        isEdit = true;
         mPosition = position;
     }
 
@@ -157,7 +177,19 @@ public class EditAImpl implements ActivityPresenter, TextWatcher, AdapterView.On
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus) {
+            isEdit = true;
             mEditAView.setToolBarTitle(R.string.edit_mode);
         }
+    }
+
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        if (which == dialog.BUTTON_POSITIVE) {
+            saveData();
+        } else if (which == dialog.BUTTON_NEGATIVE) {
+            mEditAView.hideKeyBoard();
+            mEditAView.finishActivity();
+        }
+
     }
 }

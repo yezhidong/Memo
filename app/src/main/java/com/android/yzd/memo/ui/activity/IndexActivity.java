@@ -3,6 +3,7 @@ package com.android.yzd.memo.ui.activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -110,6 +111,8 @@ public class IndexActivity extends BaseActivity implements IndexAView{
                 go2Setting();
                 return true;
             case R.id.about:
+                Intent intent = new Intent(this, AboutActivity.class);
+                startActivity(intent);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -118,6 +121,16 @@ public class IndexActivity extends BaseActivity implements IndexAView{
     @Override public void go2Setting() {
         Intent intent = new Intent(this, SettingActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void showSnackBar(String msg) {
+        Snackbar.make(mToolBar, msg, Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void kill() {
+        finish();
     }
 
     @Override
@@ -137,4 +150,10 @@ public class IndexActivity extends BaseActivity implements IndexAView{
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        if (mIndexPre.onBackPress()) {
+            super.onBackPressed();
+        }
+    }
 }

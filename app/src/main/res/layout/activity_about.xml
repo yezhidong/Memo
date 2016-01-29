@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.android.yzd.memo.ui.activity.AboutActivity">
+
+    <include
+        layout="@layout/common_toolbar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:background="?attr/colorPrimary">
+
+        <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@mipmap/app_icon"/>-->
+
+        <!--<com.hanks.htextview.HTextView-->
+            <!--android:id="@+id/htext"-->
+            <!--android:text="密码备忘"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:background="#000000"-->
+            <!--android:gravity="center"-->
+            <!--android:textColor="#FFFFFF"-->
+            <!--android:textSize="30sp"-->
+            <!--app:animateType="line"-->
+            <!--/>-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="密码备忘"
+            android:layout_marginTop="100dp"
+            android:textSize="30sp"
+            android:layout_gravity="center"
+            android:textColor="@color/umeng_fb_white"
+            />
+    </LinearLayout>
+</LinearLayout>

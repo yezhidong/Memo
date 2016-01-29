@@ -23,9 +23,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @author way
  * 
  */
-public class LockPatternUtils {
+public class ShortLockPatternUtils {
 	private static final String TAG = "LockPatternUtils";
-	private static final String LOCK_PATTERN_FILE = "gesture.key";
+	private static final String LOCK_PATTERN_FILE = "short_gesture.key";
 	/**
 	 * The minimum number of dots in a valid pattern.
 	 */
@@ -49,7 +49,6 @@ public class LockPatternUtils {
 	public static final long FAILED_ATTEMPT_TIMEOUT_MS = 30000L;
 
 	private static File sLockPatternFilename;
-	private static File updateFileName;
 	private static final AtomicBoolean sHaveNonZeroPatternFile = new AtomicBoolean(
 			false);
 	private static FileObserver sPasswordObserver;
@@ -69,18 +68,18 @@ public class LockPatternUtils {
 		}
 	}
 
-	private static LockPatternUtils instances;
+	private static ShortLockPatternUtils instances;
 
-	public static LockPatternUtils getInstances(Context context) {
-		synchronized (LockPatternUtils.class) {
+	public static ShortLockPatternUtils getInstances(Context context) {
+		synchronized (ShortLockPatternUtils.class) {
 			if (null == instances) {
-				instances = new LockPatternUtils(context);
+				instances = new ShortLockPatternUtils(context);
 			}
 		}
 		return instances;
 	}
 
-	private LockPatternUtils(Context context) {
+	private ShortLockPatternUtils(Context context) {
 		if (sLockPatternFilename == null) {
 			String dataSystemDirectory = context.getFilesDir()
 					.getAbsolutePath();
@@ -156,7 +155,7 @@ public class LockPatternUtils {
 	 */
 	public void saveLockPattern(List<LockPatternView.Cell> pattern) {
 		// Compute the hash
-		final byte[] hash = LockPatternUtils.patternToHash(pattern);
+		final byte[] hash = ShortLockPatternUtils.patternToHash(pattern);
 		try {
 			// Write the hash to file
 			RandomAccessFile raf = new RandomAccessFile(sLockPatternFilename,
@@ -229,7 +228,7 @@ public class LockPatternUtils {
 			}
 			// Compare the hash from the file with the entered pattern's hash
 			return Arrays.equals(stored,
-					LockPatternUtils.patternToHash(pattern));
+					ShortLockPatternUtils.patternToHash(pattern));
 		} catch (FileNotFoundException fnfe) {
 			return true;
 		} catch (IOException ioe) {

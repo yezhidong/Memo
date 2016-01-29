@@ -34,9 +34,14 @@ public class LoginTypeFImpl implements FragmentPresenter, IndexViewAdapter.OnRec
     @Override
     public void onFirstUserVisible() {
         selector = selector();
-        mAdapter = new IndexViewAdapter(mContext, selector);
-        mAdapter.setOnRecyclerItemClick(this);
-        mLoginTypeFView.initRecycler(new LinearLayoutManager(mContext), mAdapter);
+        if (null != selector && selector.size() > 0) {
+            mLoginTypeFView.hideException();
+            mAdapter = new IndexViewAdapter(mContext, selector);
+            mAdapter.setOnRecyclerItemClick(this);
+            mLoginTypeFView.initRecycler(new LinearLayoutManager(mContext), mAdapter);
+        } else {
+            mLoginTypeFView.showException();
+        }
     }
 
     private ArrayList<God> selector() {
@@ -59,8 +64,11 @@ public class LoginTypeFImpl implements FragmentPresenter, IndexViewAdapter.OnRec
             if (data) {
                 selector = selector();
                 if (null != selector && selector.size() > 0) {
+                    mLoginTypeFView.hideException();
                     mAdapter.addAll(selector);
                     mAdapter.notifyDataSetChanged();
+                } else {
+                    mLoginTypeFView.showException();
                 }
             }
         }

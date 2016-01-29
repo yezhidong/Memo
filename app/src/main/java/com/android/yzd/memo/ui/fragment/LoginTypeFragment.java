@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.model.evenbus.EventCenter;
@@ -27,6 +28,7 @@ public class LoginTypeFragment extends BaseFragment implements LoginTypeFView{
     private static final int EDIT_SAVE = 1;
     private static final int SUCCESS = 1;
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
+    @Bind(R.id.exception) LinearLayout mException;
     private LoginTypeFImpl mLoginTypeFImpl;
 
     @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -78,6 +80,16 @@ public class LoginTypeFragment extends BaseFragment implements LoginTypeFView{
         intent.putExtra("CREATE_MODE", type);
         intent.putExtra("position", position);
         startActivityForResult(intent, INDEX_FRAGMENT_REQUEST_CODE);
+    }
+
+    @Override
+    public void hideException() {
+        mException.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void showException() {
+        mException.setVisibility(View.VISIBLE);
     }
 
     @Override

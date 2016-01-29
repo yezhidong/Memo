@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
 
+import com.android.yzd.memo.Constans;
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.model.evenbus.EventCenter;
 import com.android.yzd.memo.utils.SPUtils;
@@ -30,8 +31,14 @@ public class SplashActivity extends BaseActivity {
         Intent intent = null;
         if (!isSuccess) {
             intent = new Intent(this, CreateLockActivity.class);
+            intent.putExtra("CREATE_MODE", Constans.CREATE_GESTURE);
         } else {
-            intent = new Intent(this, CheckLockActivity.class);
+            boolean isOpen = (boolean) SPUtils.get(this, Constans.SETTING.OPEN_GESTURE, true);
+            if (isOpen) {
+                intent = new Intent(this, CheckLockActivity.class);
+            } else {
+                intent = new Intent(this, IndexActivity.class);
+            }
         }
         startActivity(intent);
         this.finish();

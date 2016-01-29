@@ -1,10 +1,12 @@
 package com.android.yzd.memo.ui.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import com.android.yzd.memo.ui.activity.SettingActivity;
 import com.android.yzd.memo.ui.adapter.ColorListAdapter;
 import com.android.yzd.memo.utils.SPUtils;
 import com.android.yzd.memo.view.SettingAView;
+import com.jenzz.materialpreference.SwitchPreference;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,6 +31,7 @@ public class SettingFragment extends PreferenceFragment implements SettingAView{
 
     private static final String PREFERENCE_NAME = "Memo.setting";
     private SettingFImpl settingFImpl;
+    private SwitchPreference openGesture;
 
     public SettingFragment() {
         super();
@@ -39,6 +43,7 @@ public class SettingFragment extends PreferenceFragment implements SettingAView{
         addPreferencesFromResource(R.xml.setting_preference_xml);
         getPreferenceManager().setSharedPreferencesName(PREFERENCE_NAME);
         settingFImpl = new SettingFImpl(getActivity(), this);
+        settingFImpl.onFirstUserVisible();
     }
 
     @Override
@@ -71,10 +76,42 @@ public class SettingFragment extends PreferenceFragment implements SettingAView{
     }
 
     @Override
+    public void findView() {
+        openGesture = (SwitchPreference) findPreference("开启手势密码");
+    }
+
+    @Override
+    public void initState(boolean isOpen) {
+        openGesture.setChecked(isOpen);
+    }
+
+    @Override
     public void reCreate() {
         SettingActivity activity = (SettingActivity) getActivity();
         activity.reload(false);
     }
 
+    @Override
+    public void readyGo(Class clazz, Intent intent) {
+        startActivityForResult(intent, 0);
+    }
 
+    @Override
+    public void go2(Class clazz, Bundle bundle) {
+        Intent intent = new Intent(getActivity(), clazz);
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
+        startActivity(intent);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 1) {
+            Snackbar.make(getView(), "修改成功", Snackbar.LENGTH_SHORT).show();
+        } else if (resultCode == 0) {
+            Snackbar.make(getView(), "放弃修改", Snackbar.LENGTH_SHORT).show();
+        }
+    }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.android.yzd.memo.Constans;
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.databinding.ActivityCreateLockBinding;
 import com.android.yzd.memo.model.bean.LockBean;
@@ -12,6 +13,7 @@ import com.android.yzd.memo.ui.activity.IndexActivity;
 import com.android.yzd.memo.utils.LockPatternUtils;
 import com.android.yzd.memo.ui.widget.LockPatternView;
 import com.android.yzd.memo.utils.SPUtils;
+import com.android.yzd.memo.utils.ShortLockPatternUtils;
 import com.android.yzd.memo.view.CreateLockAView;
 
 import java.util.List;
@@ -27,6 +29,7 @@ public class CreateLockActivityImpl implements ActivityPresenter {
     private LockBean lockBeanText;
     private final CreateLockAView mCreateLockAView;
     private boolean isFinishOnce = false;
+    private int createMode;
 
     public CreateLockActivityImpl(Context context, CreateLockAView view,ActivityCreateLockBinding binding) {
         mContext = context;
@@ -44,7 +47,7 @@ public class CreateLockActivityImpl implements ActivityPresenter {
 
     @Override
     public void getIntent(Intent intent) {
-
+        createMode = intent.getIntExtra("CREATE_MODE", Constans.CREATE_MODE);
     }
 
     @Override
@@ -111,24 +114,50 @@ public class CreateLockActivityImpl implements ActivityPresenter {
 
         } else {
 
-
             if (!isFinishOnce) {
                 fingerFirstUpSuccess();
                 LockPatternUtils instances = LockPatternUtils.getInstances(mContext);
-                instances.saveLockPattern(pattern);
+                ShortLockPatternUtils shortLockPatternUtils = ShortLockPatternUtils.getInstances(mContext);
+                if (createMode == Constans.CREATE_GESTURE) {
+                    instances.saveLockPattern(pattern);
+                } else if (createMode == Constans.UPDATE_GESTURE) {
+                    shortLockPatternUtils.saveLockPattern(pattern);
+                }
                 isFinishOnce = true;
             } else {
                 LockPatternUtils instances = LockPatternUtils.getInstances(mContext);
-                if (instances.checkPattern(pattern)) {
-                    fingerSecondUpSucess();
-                    SPUtils.put(mContext, CREATE_LOCK_SUCCESS, true);
-                    mCreateLockAView.readyGoThenKill(IndexActivity.class);
-                } else {
-                    fingerSecondUpError();
-                    mCreateLockAView.lockDisplayError();
+                ShortLockPatternUtils shortLockPatternUtils = ShortLockPatternUtils.getInstances(mContext);
+                if (createMode == Constans.CREATE_GESTURE) {
+
+                    if (instances.checkPattern(pattern)) {
+                        fingerSecondUpSucess();
+                        SPUtils.put(mContext, CREATE_LOCK_SUCCESS, true);
+                        mCreateLockAView.readyGoThenKill(IndexActivity.class);
+                    } else {
+                        fingerSecondUpError();
+                        mCreateLockAView.lockDisplayError();
+                    }
+                    isFinishOnce = false;
+                } else if (createMode == Constans.UPDATE_GESTURE) {
+                    if (shortLockPatternUtils.checkPattern(pattern)) {
+                        instances.saveLockPattern(pattern);
+                        fingerSecondUpSucess();
+                        SPUtils.put(mContext, CREATE_LOCK_SUCCESS, true);
+                        mCreateLockAView.setResults(1);
+                        mCreateLockAView.kill();
+                    } else {
+                        fingerSecondUpError();
+                        mCreateLockAView.lockDisplayError();
+                    }
+                    isFinishOnce = false;
                 }
-                isFinishOnce = false;
             }
+        }
+    }
+
+    public void onBack() {
+        if (createMode == Constans.UPDATE_GESTURE) {
+            mCreateLockAView.setResults(0);
         }
     }
 }

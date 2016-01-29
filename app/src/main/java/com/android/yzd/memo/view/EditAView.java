@@ -16,10 +16,13 @@ public interface EditAView {
     String getTitleName();
     String getUserName();
     String getPassWord();
+    void setTime(String time);
     void showSnackToast(String msg);
     void setItemMenuVisible(boolean visible);
     void finishActivity();
     void setPassWordVisible(boolean visible);
     void hideKeyBoard();
     void setToolBarTitle(int resId);
+    void showSaveDialog();
+    void hideSaveDialog();
 }

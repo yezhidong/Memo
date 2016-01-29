@@ -70,6 +70,16 @@ public class CheckLockActivity extends BaseActivity implements CheckLockAView, L
     }
 
     @Override
+    public void kill() {
+
+    }
+
+    @Override
+    public void showSnackBar(String msg) {
+
+    }
+
+    @Override
     public void onPatternStart() {
     }
 

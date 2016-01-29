@@ -17,6 +17,7 @@ allprojects {
         jcenter()
         mavenCentral()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url "https://raw.githubusercontent.com/umeng/mvn-repo-umeng/master/repository" }
     }
 }
 

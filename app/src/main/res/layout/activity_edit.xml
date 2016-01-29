@@ -16,31 +16,6 @@
         android:layout_height="5dp"
         android:background="@drawable/toolbar_shadow"/>
 
-    <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginLeft="20dp"-->
-        <!--android:text="选择密码类型:"/>-->
-
-
-    <!--<android.support.v7.widget.CardView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginLeft="20dp"-->
-        <!--android:layout_marginRight="20dp"-->
-        <!--app:cardElevation="4dp"-->
-        <!--app:cardCornerRadius="2dp">-->
-
-
-        <!--<com.android.yzd.memo.ui.widget.spinner.NiceSpinner-->
-            <!--android:id="@+id/spinner"-->
-            <!--android:clickable="true"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"/>-->
-
-
-
-    <!--</android.support.v7.widget.CardView>-->
 
     <android.support.v7.widget.CardView
         android:layout_marginLeft="10dp"
@@ -59,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                style="@style/edit_padding">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -76,7 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                style="@style/edit_padding">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -98,7 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                style="@style/edit_padding">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -120,7 +95,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                style="@style/edit_padding"
+                android:layout_marginBottom="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -149,14 +125,16 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/timeTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:textColor="@color/light_grey"
                 android:visibility="gone"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
                 tools:text="创建于2016.01.01 00:00"/>
-
-
 
         </LinearLayout>
 

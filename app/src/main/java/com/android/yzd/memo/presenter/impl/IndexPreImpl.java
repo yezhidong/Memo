@@ -23,6 +23,7 @@ public class IndexPreImpl implements ActivityPresenter, View.OnClickListener, Na
     private final ActivityIndexBinding mDataBinding;
     private final IndexAView mIndexView;
     private int currentSelectedItem = 0;
+    private static long DOUBLE_CLICK_TIME = 0L;
 
     public IndexPreImpl(Context context, IndexAView view, ActivityIndexBinding dataBinding) {
         this.mContext = context;
@@ -95,5 +96,15 @@ public class IndexPreImpl implements ActivityPresenter, View.OnClickListener, Na
             default:break;
         }
         return true;
+    }
+
+    public boolean onBackPress() {
+        if (System.currentTimeMillis() - DOUBLE_CLICK_TIME > 2000) {
+            DOUBLE_CLICK_TIME = System.currentTimeMillis();
+            mIndexView.showSnackBar("再按一次退出~~");
+            return false;
+        } else {
+            return true;
+        }
     }
 }

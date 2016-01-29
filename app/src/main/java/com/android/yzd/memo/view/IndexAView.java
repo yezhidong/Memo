@@ -12,4 +12,8 @@ public interface IndexAView {
     void readyGoForResult(Class clazz);
 
     void go2Setting();
+
+    void showSnackBar(String msg);
+
+    void kill();
 }

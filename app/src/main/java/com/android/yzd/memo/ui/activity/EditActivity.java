@@ -3,13 +3,16 @@ package com.android.yzd.memo.ui.activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
+import android.widget.TextView;
 
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.bean.God;
@@ -33,8 +36,10 @@ public class EditActivity extends BaseActivity implements EditAView {
     @Bind(R.id.userName) MaterialEditText mUserNameEdt;
     @Bind(R.id.passWord) MaterialEditText mPassWordEdt;
     @Bind(R.id.eye) CheckBox mEyeChB;
+    @Bind(R.id.timeTextView) TextView mTimeTextView;
     private EditAImpl mEditImpl;
     private MenuItem menuItem;
+    private AlertDialog alertDialog;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -139,6 +144,12 @@ public class EditActivity extends BaseActivity implements EditAView {
         return mPassWordEdt.getText().toString().trim();
     }
 
+    @Override
+    public void setTime(String time) {
+        mTimeTextView.setVisibility(View.VISIBLE);
+        mTimeTextView.setText("创建于：" + time);
+    }
+
     @Override public void showSnackToast(String msg) {
         Snackbar.make(mToolBar, msg, Snackbar.LENGTH_SHORT).show();
     }
@@ -178,5 +189,22 @@ public class EditActivity extends BaseActivity implements EditAView {
     @Override
     public void setToolBarTitle(int resId) {
         mToolBar.setTitle(getResources().getString(resId));
+    }
+
+    @Override
+    public void showSaveDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("提示");
+        builder.setMessage("密码还未保存，是否先保存在退出");
+        builder.setPositiveButton("保存", mEditImpl);
+        builder.setNegativeButton("取消", mEditImpl);
+        alertDialog = builder.show();
+    }
+
+    @Override
+    public void hideSaveDialog() {
+        if (null != alertDialog) {
+            alertDialog.dismiss();
+        }
     }
 }

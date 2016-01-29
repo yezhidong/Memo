@@ -2,6 +2,7 @@ package com.android.yzd.memo.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.databinding.ActivityCreateLockBinding;
@@ -28,6 +29,7 @@ public class CreateLockActivity extends BaseActivity implements CreateLockAView,
 
         mLockActivity = new CreateLockActivityImpl(this, this, binding);
         mLockActivity.onCreate(savedInstanceState);
+        mLockActivity.getIntent(getIntent());
     }
 
     @Override
@@ -66,10 +68,25 @@ public class CreateLockActivity extends BaseActivity implements CreateLockAView,
     }
 
     @Override
+    public void setResults(int isSuccess) {
+        setResult(isSuccess);
+    }
+
+    @Override
     public void readyGoThenKill(Class clazz) {
         Intent intent = new Intent(this, clazz);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void kill() {
+        finish();
+    }
+
+    @Override
+    public void showSnackBar(String msg) {
+        Snackbar.make(mLockPatternView, msg, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override public void onPatternStart() {
@@ -88,4 +105,9 @@ public class CreateLockActivity extends BaseActivity implements CreateLockAView,
         mLockActivity.check(pattern);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mLockActivity.onBack();
+    }
 }

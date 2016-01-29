@@ -8,4 +8,6 @@ public interface CreateLockAView extends BaseView{
     void initLockPatternView();
 
     void lockDisplayError();
+
+    void setResults(int isSuccess);
 }

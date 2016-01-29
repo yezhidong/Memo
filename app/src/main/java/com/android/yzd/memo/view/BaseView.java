@@ -6,4 +6,6 @@ package com.android.yzd.memo.view;
 public interface BaseView {
 
     void readyGoThenKill(Class clazz);
+    void kill();
+    void showSnackBar(String msg);
 }

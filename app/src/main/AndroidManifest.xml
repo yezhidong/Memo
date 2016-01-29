@@ -9,10 +9,17 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/app_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/DeepPurpleTheme">
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="56aae26ce0f55a85ca0022ed" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${CHANNEL_VALUE}" />
+
         <activity
             android:name=".ui.activity.SplashActivity"
             android:launchMode="singleTop"
@@ -29,8 +36,12 @@
             android:screenOrientation="portrait" />
         <activity android:name=".ui.activity.CreateLockActivity" />
         <activity android:name=".ui.activity.CheckLockActivity" />
-        <activity android:name=".ui.activity.SettingActivity" />
-        <activity android:name=".ui.activity.EditActivity"></activity>
+        <activity
+            android:name=".ui.activity.SettingActivity"
+            android:launchMode="singleTop" />
+        <activity android:name=".ui.activity.EditActivity" />
+        <activity android:name=".ui.activity.FeedBackActivity" />
+        <activity android:name=".ui.activity.AboutActivity"></activity>
     </application>
 
 </manifest>

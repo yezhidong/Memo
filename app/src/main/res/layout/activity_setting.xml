@@ -8,7 +8,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingTop="20dp"
-        tools:context="com.android.yzd.memo.ui.activity.SettingActivity">
+        tools:context=".mvp.ui.activity.SettingActivity">
 
 
         <android.support.v7.widget.Toolbar

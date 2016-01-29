@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/drawerLayout"
-            tools:context="com.android.yzd.memo.ui.activity.IndexActivity">
+            tools:context=".mvp.ui.activity.IndexActivity">
 
             <android.support.design.widget.CoordinatorLayout
                 android:id="@+id/coordinator_layout"
@@ -40,7 +40,7 @@
                     android:layout_marginTop="?attr/actionBarSize"
                     android:background="@drawable/toolbar_shadow"
                     />
-                <com.android.yzd.memo.ui.widget.XViewPager
+                <com.android.yzd.memo.mvp.ui.widget.XViewPager
                     android:id="@+id/content"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

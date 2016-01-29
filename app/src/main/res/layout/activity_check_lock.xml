@@ -6,14 +6,14 @@
     <data>
         <variable
             name="lockWarn"
-            type="com.android.yzd.memo.model.bean.LockBean"/>
+            type="com.android.yzd.memo.mvp.model.bean.LockBean"/>
     </data>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="?attr/colorPrimary"
-        tools:context="com.android.yzd.memo.ui.activity.CreateLockActivity">
+        tools:context=".mvp.ui.activity.CreateLockActivity">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,7 +40,7 @@
             android:layout_weight="1"
             android:gravity="center">
 
-            <com.android.yzd.memo.ui.widget.LockPatternView
+            <com.android.yzd.memo.mvp.ui.widget.LockPatternView
                 android:id="@+id/lockPatternView"
                 android:layout_width="280dp"
                 android:layout_height="280dp"

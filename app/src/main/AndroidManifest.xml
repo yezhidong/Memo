@@ -21,7 +21,7 @@
             android:value="${CHANNEL_VALUE}" />
 
         <activity
-            android:name=".ui.activity.SplashActivity"
+            android:name=".mvp.ui.activity.SplashActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -31,17 +31,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.IndexActivity"
+            android:name=".mvp.ui.activity.IndexActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.activity.CreateLockActivity" />
-        <activity android:name=".ui.activity.CheckLockActivity" />
+        <activity android:name=".mvp.ui.activity.CreateLockActivity" />
+        <activity android:name=".mvp.ui.activity.CheckLockActivity" />
         <activity
-            android:name=".ui.activity.SettingActivity"
+            android:name=".mvp.ui.activity.SettingActivity"
             android:launchMode="singleTop" />
-        <activity android:name=".ui.activity.EditActivity" />
-        <activity android:name=".ui.activity.FeedBackActivity" />
-        <activity android:name=".ui.activity.AboutActivity"></activity>
+        <activity android:name=".mvp.ui.activity.EditActivity" />
+        <activity android:name=".mvp.ui.activity.FeedBackActivity" />
+        <activity android:name=".mvp.ui.activity.AboutActivity"></activity>
     </application>
 
 </manifest>

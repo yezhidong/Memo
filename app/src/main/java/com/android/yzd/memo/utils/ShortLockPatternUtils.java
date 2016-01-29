@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.FileObserver;
 import android.util.Log;
 
-import com.android.yzd.memo.ui.widget.LockPatternView;
+import com.android.yzd.memo.mvp.ui.widget.LockPatternView;
 
 import java.io.File;
 import java.io.FileNotFoundException;

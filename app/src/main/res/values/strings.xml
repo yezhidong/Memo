@@ -49,7 +49,7 @@
     <string-array name="spinner_item">
         <item>默认</item>
         <item>邮箱</item>
-        <item>银行卡</item>
+        <item>博客</item>
     </string-array>
 
     <string name="edit_mode">编辑</string>

@@ -5,6 +5,10 @@
             android:key="开启手势密码"
             android:title="开启手势密码"
             android:summary="打开手势密码，将会在启动应用的时候输入设定好的手势密码"/>
+        <com.jenzz.materialpreference.SwitchPreference
+            android:key="首页密码可见"
+            android:title="列表密码可见"
+            android:summary="打开状态下，首页密码可见～"/>
         <com.jenzz.materialpreference.Preference
             android:key="修改手势密码"
             android:title="修改手势密码"/>

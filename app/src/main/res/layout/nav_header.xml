@@ -18,7 +18,7 @@
         android:layout_height="96dp"
         android:src="@mipmap/profile"
         app:civ_border_width="2dp"
-        app:civ_border_color="#FF000000"/>
+        app:civ_border_color="#cdcdcd"/>
     <!--<ImageView-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->

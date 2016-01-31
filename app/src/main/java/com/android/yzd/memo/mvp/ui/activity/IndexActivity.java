@@ -10,9 +10,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.android.yzd.memo.mvp.model.Constans;
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.databinding.ActivityIndexBinding;
+import com.android.yzd.memo.mvp.model.Constans;
 import com.android.yzd.memo.mvp.model.evenbus.EventCenter;
 import com.android.yzd.memo.mvp.presenter.impl.IndexPreImpl;
 import com.android.yzd.memo.mvp.ui.adapter.IndexContentAdapter;

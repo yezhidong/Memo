@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.android.yzd.memo.R;
-
+/**
+ * Created by lgp on 2015/6/7.
+ */
 public class ThemeUtils {
 
     public static void changeTheme(Activity activity, Theme theme){

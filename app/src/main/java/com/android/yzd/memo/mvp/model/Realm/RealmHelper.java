@@ -4,10 +4,12 @@ import android.content.Context;
 
 import com.android.yzd.memo.bean.God;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
@@ -36,6 +38,18 @@ public class RealmHelper {
                 e.printStackTrace();
             }
         }
+    }
+
+    private static RealmConfiguration secure(Context context) {
+        byte[] key = new byte[64];
+        new SecureRandom().nextBytes(key);
+        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(context)
+                .encryptionKey(key)
+                .build();
+
+        // Start with a clean slate every time
+        Realm.deleteRealm(realmConfiguration);
+        return realmConfiguration;
     }
     public static ArrayList<God> selector(Context context, int godType){
         Realm realm = Realm.getInstance(context);

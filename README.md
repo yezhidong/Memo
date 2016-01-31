@@ -8,6 +8,7 @@
  * 遵循Material Design
  * 密码保存
  * 密码查看
+ * 密码分类
  * 主题切换
  * 手势解锁
 
@@ -19,7 +20,12 @@
 <img src="/screenshots/theme.png" alt="screenshot" title="screenshot" width="270" height="486" />
 <img src="/screenshots/fb.png" alt="screenshot" title="screenshot" width="270" height="486" />
 <img src="/screenshots/gesture.png" alt="screenshot" title="screenshot" width="270" height="486" />
-## License
+
+##鸣谢
+2015年五月份看了Obsessive1990的SimplifyReader，对mvp有了初步的认识，之后看了了lguipeng的极简笔记，然后受益匪浅，乘着最近一段时间不是很忙，花了几个晚上练手完成了这个项目。
+[Obsessive1990](https://github.com/SkillCollege/SimplifyReader)
+[lguipeng](https://github.com/lguipeng)
+
 ```
 Copyright (c) 2016 yezhidong
 ```

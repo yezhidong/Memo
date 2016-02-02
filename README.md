@@ -25,7 +25,7 @@
 [Obsessive1990](https://github.com/SkillCollege/SimplifyReader)
 [lguipeng](https://github.com/lguipeng)
 ##打赏我
-<img src="/screenshots/pay.JPG" alt="screenshot" title="screenshot" width="150" height="150" />
+<img src="/screenshots/pay.JPG" alt="screenshot" title="screenshot" width="150" height="200" />
 ```
 Copyright (c) 2016 yezhidong
 ```

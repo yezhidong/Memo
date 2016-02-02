@@ -40,7 +40,7 @@
                     android:layout_marginTop="?attr/actionBarSize"
                     android:background="@drawable/toolbar_shadow"
                     />
-                <com.android.yzd.memo.mvp.ui.widget.XViewPager
+                <com.android.yzd.memo.widget.XViewPager
                     android:id="@+id/content"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

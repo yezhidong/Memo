@@ -40,7 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="类别："/>
-                <com.android.yzd.memo.mvp.ui.widget.spinner.NiceSpinner
+                <com.android.yzd.memo.widget.spinner.NiceSpinner
                     android:id="@+id/spinner"
                     android:clickable="true"
                     android:layout_width="match_parent"

@@ -40,7 +40,7 @@
             android:layout_weight="1"
             android:gravity="center">
 
-            <com.android.yzd.memo.mvp.ui.widget.LockPatternView
+            <com.android.yzd.memo.widget.LockPatternView
                 android:id="@+id/lockPatternView"
                 android:layout_width="280dp"
                 android:layout_height="280dp"

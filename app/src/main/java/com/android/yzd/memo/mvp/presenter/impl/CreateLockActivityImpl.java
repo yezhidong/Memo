@@ -11,7 +11,7 @@ import com.android.yzd.memo.mvp.model.bean.LockBean;
 import com.android.yzd.memo.mvp.presenter.ActivityPresenter;
 import com.android.yzd.memo.mvp.ui.activity.IndexActivity;
 import com.android.yzd.memo.utils.LockPatternUtils;
-import com.android.yzd.memo.mvp.ui.widget.LockPatternView;
+import com.android.yzd.memo.widget.LockPatternView;
 import com.android.yzd.memo.utils.SPUtils;
 import com.android.yzd.memo.utils.ShortLockPatternUtils;
 import com.android.yzd.memo.mvp.ui.view.CreateLockAView;

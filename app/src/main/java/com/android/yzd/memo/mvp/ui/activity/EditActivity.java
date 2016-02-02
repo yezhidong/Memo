@@ -18,7 +18,7 @@ import com.android.yzd.memo.R;
 import com.android.yzd.memo.bean.God;
 import com.android.yzd.memo.mvp.model.evenbus.EventCenter;
 import com.android.yzd.memo.mvp.presenter.impl.EditAImpl;
-import com.android.yzd.memo.mvp.ui.widget.spinner.NiceSpinner;
+import com.android.yzd.memo.widget.spinner.NiceSpinner;
 import com.android.yzd.memo.mvp.ui.view.EditAView;
 import com.rengwuxian.materialedittext.MaterialEditText;
 

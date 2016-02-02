@@ -1,4 +1,4 @@
-package com.android.yzd.memo.mvp.ui.widget;
+package com.android.yzd.memo.widget;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

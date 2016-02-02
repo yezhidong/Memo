@@ -1,4 +1,4 @@
-package com.android.yzd.memo.mvp.ui.widget.spinner;
+package com.android.yzd.memo.widget.spinner;
 
 import android.content.Context;
 import android.os.Build;

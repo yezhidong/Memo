@@ -7,7 +7,7 @@ import com.android.yzd.memo.R;
 import com.android.yzd.memo.databinding.ActivityCheckLockBinding;
 import com.android.yzd.memo.mvp.model.evenbus.EventCenter;
 import com.android.yzd.memo.mvp.presenter.impl.CheckLockAImpl;
-import com.android.yzd.memo.mvp.ui.widget.LockPatternView;
+import com.android.yzd.memo.widget.LockPatternView;
 import com.android.yzd.memo.mvp.ui.view.CheckLockAView;
 
 import java.util.List;

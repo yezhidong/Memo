@@ -37,7 +37,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="密码备忘"
+            android:text="@string/app_name"
             android:layout_marginTop="100dp"
             android:textSize="30sp"
             android:layout_gravity="center"

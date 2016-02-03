@@ -5,11 +5,14 @@ import android.support.v7.widget.Toolbar;
 
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.mvp.model.evenbus.EventCenter;
+import com.android.yzd.memo.mvp.ui.activity.base.Base;
+import com.android.yzd.memo.mvp.ui.activity.base.BaseActivity;
+import com.android.yzd.memo.mvp.ui.activity.base.BaseSwipeBackActivity;
 import com.umeng.fb.fragment.FeedbackFragment;
 
 import butterknife.Bind;
 
-public class FeedBackActivity extends BaseActivity {
+public class FeedBackActivity extends BaseSwipeBackActivity {
 
     @Bind(R.id.common_toolbar) Toolbar mToolBar;
     private String mConversationId = null;
@@ -25,6 +28,16 @@ public class FeedBackActivity extends BaseActivity {
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.container, mFeedbackFragment)
                 .commit();
+    }
+
+    @Override
+    protected TransitionMode getOverridePendingTransitionMode() {
+        return TransitionMode.RIGHT;
+    }
+
+    @Override
+    protected boolean toggleOverridePendingTransition() {
+        return true;
     }
 
     @Override

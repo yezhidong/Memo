@@ -8,13 +8,14 @@ android {
         applicationId "com.android.yzd.memo"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 100
-        versionName "1.0.0"
+        versionCode 101
+        versionName "1.0.1"
         multiDexEnabled true
     }
     buildTypes {
         release {
             minifyEnabled false
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -42,6 +43,7 @@ android {
     productFlavors {
         _fir{}
 //        _mumayi{}
+//        _wandoujia{}
 //        _xiaomi{}
     }
     productFlavors.all {
@@ -52,7 +54,6 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile project(":swipebacklibrary")
     compile project(":prefrencelibrary")
     compile 'com.android.support:appcompat-v7:23.1.0'
     compile 'com.android.support:design:23.1.0'
@@ -67,5 +68,5 @@ dependencies {
     compile 'io.realm:realm-android:0.87.0'
     compile 'de.hdodenhof:circleimageview:2.0.0'
     compile 'com.rengwuxian.materialedittext:library:2.1.4'
-//    compile 'hanks.xyz:htextview-library:0.1.1'
+    compile 'me.imid.swipebacklayout.lib:library:1.0.0'
 }

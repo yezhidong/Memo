@@ -1,6 +1,7 @@
-package com.android.yzd.memo.mvp.ui.activity;
+package com.android.yzd.memo.mvp.ui.activity.base;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Build;
@@ -12,37 +13,61 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 
 import com.android.yzd.memo.R;
+import com.android.yzd.memo.mvp.model.evenbus.EventCenter;
+import com.android.yzd.memo.utils.ThemeUtils;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.umeng.analytics.MobclickAgent;
 
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 
 /**
- * Created by Clearlove on 16/1/15.
+ * create by yezhidong 2016/1/12
  */
-public abstract class BaseSwipeBackActivity extends AppCompatActivity {
+public abstract class BaseActivity extends Base {
 
     protected ViewDataBinding mDataBinding;
+
     @Override protected void onCreate(Bundle savedInstanceState) {
-        if (isApplyTranslucency()) initWindow();
+        initTheme();
         super.onCreate(savedInstanceState);
+
+        if (isApplyTranslucency()) initWindow();
         mDataBinding = DataBindingUtil.setContentView(this, getContentView());
         if (isApplyButterKnife()) ButterKnife.bind(this);
         initToolbar();
-//        getSwipeBackLayout().setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
+        if (isApplyEventBus()) EventBus.getDefault().register(this);
     }
+
+    private void initTheme() {
+        ThemeUtils.Theme currentTheme = ThemeUtils.getCurrentTheme(this);
+        ThemeUtils.changeTheme(this, currentTheme);
+    }
+
     protected void initToolBar(Toolbar toolbar) {
 
         if (toolbar == null) return;
 
         toolbar.setBackgroundColor(getColorPrimary());
         toolbar.setTitle(getString(com.android.yzd.memo.R.string.app_name));
-        toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    public void reload(boolean anim) {
+        Intent intent = getIntent();
+        if (!anim) {
+            overridePendingTransition(0, 0);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        }
+        finish();
+        if (!anim) {
+            overridePendingTransition(0, 0);
+        }
+        startActivity(intent);
     }
 
     /**
@@ -80,19 +105,28 @@ public abstract class BaseSwipeBackActivity extends AppCompatActivity {
     }
 
     @Override protected void onResume() {
-        super.onResume();
         MobclickAgent.onResume(this);
+        super.onResume();
     }
 
     @Override protected void onPause() {
-        super.onPause();
         MobclickAgent.onPause(this);
+        super.onPause();
     }
 
     @Override protected void onDestroy() {
         if (isApplyButterKnife()) ButterKnife.unbind(this);
+        if (isApplyEventBus()) EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
+
+    public void onEventMainThread(EventCenter eventCenter) {
+        if (eventCenter != null) {
+            onEventComing(eventCenter);
+        }
+    }
+
+    protected abstract void onEventComing(EventCenter eventCenter);
 
     protected abstract int getContentView();
 
@@ -101,4 +135,6 @@ public abstract class BaseSwipeBackActivity extends AppCompatActivity {
     protected abstract boolean isApplyTranslucency();
 
     protected abstract boolean isApplyButterKnife();
+
+    protected abstract boolean isApplyEventBus();
 }

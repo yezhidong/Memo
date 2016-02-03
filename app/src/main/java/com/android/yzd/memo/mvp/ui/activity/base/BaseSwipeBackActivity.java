@@ -1,4 +1,4 @@
-package com.android.yzd.memo.mvp.ui.activity;
+package com.android.yzd.memo.mvp.ui.activity.base;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 
 import com.android.yzd.memo.R;
@@ -20,23 +21,59 @@ import com.umeng.analytics.MobclickAgent;
 
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
+import me.imid.swipebacklayout.lib.SwipeBackLayout;
+import me.imid.swipebacklayout.lib.Utils;
+import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
+import me.imid.swipebacklayout.lib.app.SwipeBackActivityBase;
+import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper;
 
 /**
- * create by yezhidong 2016/1/12
+ * Created by Clearlove on 16/1/15.
  */
-public abstract class BaseActivity extends AppCompatActivity {
-
+public abstract class BaseSwipeBackActivity extends Base implements SwipeBackActivityBase {
+    private SwipeBackActivityHelper mHelper;
     protected ViewDataBinding mDataBinding;
-
-    @Override protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         initTheme();
         super.onCreate(savedInstanceState);
-
-        if (isApplyTranslucency()) initWindow();
         mDataBinding = DataBindingUtil.setContentView(this, getContentView());
+        mHelper = new SwipeBackActivityHelper(this);
+        mHelper.onActivityCreate();
         if (isApplyButterKnife()) ButterKnife.bind(this);
         initToolbar();
         if (isApplyEventBus()) EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mHelper.onPostCreate();
+        if (isApplyTranslucency()) initWindow();
+    }
+
+    @Override
+    public View findViewById(int id) {
+        View v = super.findViewById(id);
+        if (v == null && mHelper != null)
+            return mHelper.findViewById(id);
+        return v;
+    }
+
+    @Override
+    public SwipeBackLayout getSwipeBackLayout() {
+        return mHelper.getSwipeBackLayout();
+    }
+
+    @Override
+    public void setSwipeBackEnable(boolean enable) {
+        getSwipeBackLayout().setEnableGesture(enable);
+    }
+
+    @Override
+    public void scrollToFinishActivity() {
+        Utils.convertActivityToTranslucent(this);
+        getSwipeBackLayout().scrollToFinishActivity();
     }
 
     private void initTheme() {

@@ -15,6 +15,8 @@ import com.android.yzd.memo.databinding.ActivityIndexBinding;
 import com.android.yzd.memo.mvp.model.Constans;
 import com.android.yzd.memo.mvp.model.evenbus.EventCenter;
 import com.android.yzd.memo.mvp.presenter.impl.IndexPreImpl;
+import com.android.yzd.memo.mvp.ui.activity.base.Base;
+import com.android.yzd.memo.mvp.ui.activity.base.BaseActivity;
 import com.android.yzd.memo.mvp.ui.adapter.IndexContentAdapter;
 import com.android.yzd.memo.mvp.ui.view.IndexAView;
 
@@ -38,6 +40,16 @@ public class IndexActivity extends BaseActivity implements IndexAView{
         mDataBinding = (ActivityIndexBinding) super.mDataBinding;
         mIndexPre = new IndexPreImpl(this, this, mDataBinding);
         mIndexPre.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected TransitionMode getOverridePendingTransitionMode() {
+        return TransitionMode.RIGHT;
+    }
+
+    @Override
+    protected boolean toggleOverridePendingTransition() {
+        return true;
     }
 
     @Override protected int getContentView() {

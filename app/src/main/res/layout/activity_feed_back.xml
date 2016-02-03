@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:focusable="true"
     android:focusableInTouchMode="true"
+    android:fitsSystemWindows="true"
     tools:context=".mvp.ui.activity.FeedBackActivity">
 
     <include

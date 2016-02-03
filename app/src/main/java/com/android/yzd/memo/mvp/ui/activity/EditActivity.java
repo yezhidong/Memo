@@ -18,6 +18,9 @@ import com.android.yzd.memo.R;
 import com.android.yzd.memo.bean.God;
 import com.android.yzd.memo.mvp.model.evenbus.EventCenter;
 import com.android.yzd.memo.mvp.presenter.impl.EditAImpl;
+import com.android.yzd.memo.mvp.ui.activity.base.Base;
+import com.android.yzd.memo.mvp.ui.activity.base.BaseActivity;
+import com.android.yzd.memo.mvp.ui.activity.base.BaseSwipeBackActivity;
 import com.android.yzd.memo.widget.spinner.NiceSpinner;
 import com.android.yzd.memo.mvp.ui.view.EditAView;
 import com.rengwuxian.materialedittext.MaterialEditText;
@@ -26,7 +29,7 @@ import java.util.List;
 
 import butterknife.Bind;
 
-public class EditActivity extends BaseActivity implements EditAView {
+public class EditActivity extends BaseSwipeBackActivity implements EditAView {
 
     private static final int SUCCESS = 1;
     private static final int ERROR = 0;
@@ -47,6 +50,16 @@ public class EditActivity extends BaseActivity implements EditAView {
         mEditImpl.onCreate(savedInstanceState);
         mEditImpl.getIntent(getIntent());
         mEyeChB.setOnCheckedChangeListener(mEditImpl);
+    }
+
+    @Override
+    protected TransitionMode getOverridePendingTransitionMode() {
+        return TransitionMode.RIGHT;
+    }
+
+    @Override
+    protected boolean toggleOverridePendingTransition() {
+        return true;
     }
 
     @Override public boolean onCreateOptionsMenu(Menu menu) {

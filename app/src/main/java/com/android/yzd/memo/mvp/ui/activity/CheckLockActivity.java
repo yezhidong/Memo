@@ -7,6 +7,8 @@ import com.android.yzd.memo.R;
 import com.android.yzd.memo.databinding.ActivityCheckLockBinding;
 import com.android.yzd.memo.mvp.model.evenbus.EventCenter;
 import com.android.yzd.memo.mvp.presenter.impl.CheckLockAImpl;
+import com.android.yzd.memo.mvp.ui.activity.base.Base;
+import com.android.yzd.memo.mvp.ui.activity.base.BaseActivity;
 import com.android.yzd.memo.widget.LockPatternView;
 import com.android.yzd.memo.mvp.ui.view.CheckLockAView;
 
@@ -24,6 +26,16 @@ public class CheckLockActivity extends BaseActivity implements CheckLockAView, L
         super.onCreate(savedInstanceState);
         mCheckLockA = new CheckLockAImpl(this, this, (ActivityCheckLockBinding) mDataBinding);
         mCheckLockA.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected TransitionMode getOverridePendingTransitionMode() {
+        return TransitionMode.RIGHT;
+    }
+
+    @Override
+    protected boolean toggleOverridePendingTransition() {
+        return true;
     }
 
     @Override

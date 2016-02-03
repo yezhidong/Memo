@@ -1,13 +1,18 @@
 package com.android.yzd.memo.mvp.ui.activity;
 
+import android.support.v7.widget.Toolbar;
+
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.mvp.model.evenbus.EventCenter;
+import com.android.yzd.memo.mvp.ui.activity.base.Base;
+import com.android.yzd.memo.mvp.ui.activity.base.BaseSwipeBackActivity;
 
-public class AboutActivity extends BaseActivity {
+import butterknife.Bind;
 
+public class AboutActivity extends BaseSwipeBackActivity {
 
-    @Override
-    protected void onEventComing(EventCenter eventCenter) {
+    @Bind(R.id.common_toolbar) Toolbar mToolBar;
+    @Override protected void onEventComing(EventCenter eventCenter) {
 
     }
 
@@ -18,7 +23,8 @@ public class AboutActivity extends BaseActivity {
 
     @Override
     protected void initToolbar() {
-
+        initToolBar(mToolBar);
+        setTitle("关于");
     }
 
     @Override
@@ -28,11 +34,20 @@ public class AboutActivity extends BaseActivity {
 
     @Override
     protected boolean isApplyButterKnife() {
+        return true;
+    }
+
+    @Override protected boolean isApplyEventBus() {
         return false;
     }
 
     @Override
-    protected boolean isApplyEventBus() {
-        return false;
+    protected TransitionMode getOverridePendingTransitionMode() {
+        return TransitionMode.RIGHT;
+    }
+
+    @Override
+    protected boolean toggleOverridePendingTransition() {
+        return true;
     }
 }

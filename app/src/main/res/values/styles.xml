@@ -1,10 +1,13 @@
 <resources>
 
     <style name="AppTheme.base" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:fitsSystemWindows">true</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <!--<item name="android:windowIsTranslucent">true</item>-->
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="ActivityNoTranslucent">
+        <item name="android:windowIsTranslucent">false</item>
     </style>
 
     <style name="AppTheme.blue" parent="AppTheme.base">

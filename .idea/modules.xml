@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/Memo.iml" filepath="$PROJECT_DIR$/Memo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/prefrencelibrary/prefrencelibrary.iml" filepath="$PROJECT_DIR$/prefrencelibrary/prefrencelibrary.iml" />
-      <module fileurl="file://$PROJECT_DIR$/swipebacklibrary/swipebacklibrary.iml" filepath="$PROJECT_DIR$/swipebacklibrary/swipebacklibrary.iml" />
     </modules>
   </component>
 </project>

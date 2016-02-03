@@ -11,12 +11,13 @@
 <img src="/screenshots/gesture.png" alt="screenshot" title="screenshot" width="270" height="486" />
 
 ###用到的技术点：
+ * MVP模式
  * 数据库采用了Realm
  * DataBinding,主要是在手势密码界面
  * 沉浸式状态栏
  * evenbus界面通信更新
- * MVP模式
  * 水波纹效果
+ * 多聚道打包
  * 写了一句java 8 的lambda--(SplashActivity.java)
  
 ###基本功能
@@ -33,6 +34,8 @@
  * swipeBack加入
  * 密码的删除
  * 加入一个webview，在应用内实现网站登录
+ * 尝试RxAndroid
+ * Kotlin
 
 
 ##鸣谢

@@ -1,7 +1,24 @@
 # 怕死我的
 [apk下载体验](http://fir.im/bxr8?release_id=56b029adf2fc42739a000007)
-####一款基于Google Material Design设计开发的Android密码管理客户端--怕死我的（PassWord）如果对你有帮助，欢迎多多的star
+#####一款基于Google Material Design设计开发的Android密码管理客户端--怕死我的（PassWord）如果对你有帮助，欢迎多多的star
 
+##屏幕截图
+<img src="/screenshots/index.png" alt="screenshot" title="screenshot" width="270" height="486" />
+<img src="/screenshots/nav.png" alt="screenshot" title="screenshot" width="270" height="486" />
+<img src="/screenshots/add.png" alt="screenshot" title="screenshot" width="270" height="486" />
+<img src="/screenshots/setting.png" alt="screenshot" title="screenshot" width="270" height="486" />
+<img src="/screenshots/theme.png" alt="screenshot" title="screenshot" width="270" height="486" />
+<img src="/screenshots/gesture.png" alt="screenshot" title="screenshot" width="270" height="486" />
+
+###用到的技术点：
+ * 数据库采用了Realm
+ * DataBinding,主要是在手势密码界面
+ * 沉浸式状态栏
+ * evenbus界面通信更新
+ * MVP模式
+ * 水波纹效果
+ * 写了一句java 8 的lambda--(SplashActivity.java)
+ 
 ###基本功能
 ###v1.0.0
  * 遵循Material Design
@@ -12,13 +29,11 @@
  * 手势解锁
  * 用户反馈
 
-##屏幕截图
-<img src="/screenshots/index.png" alt="screenshot" title="screenshot" width="270" height="486" />
-<img src="/screenshots/nav.png" alt="screenshot" title="screenshot" width="270" height="486" />
-<img src="/screenshots/add.png" alt="screenshot" title="screenshot" width="270" height="486" />
-<img src="/screenshots/setting.png" alt="screenshot" title="screenshot" width="270" height="486" />
-<img src="/screenshots/theme.png" alt="screenshot" title="screenshot" width="270" height="486" />
-<img src="/screenshots/gesture.png" alt="screenshot" title="screenshot" width="270" height="486" />
+###后续更新：
+ * swipeBack加入
+ * 密码的删除
+ * 加入一个webview，在应用内实现网站登录
+
 
 ##鸣谢
 2015年五月份看了Obsessive1990的SimplifyReader，对mvp有了初步的认识，之后看了了lguipeng的极简笔记，然后受益匪浅，乘着最近一段时间不是很忙，花了几个晚上练手完成了这个项目。

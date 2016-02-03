@@ -1,5 +1,5 @@
 # 怕死我的
-###[apk下载体验](http://fir.im/bxr8?release_id=56b1cd7d00fc741c30000004)
+###[apk下载体验](http://fir.im/bxr8?release_id=56b1f7e2e75e2d24ef000019)
 #####一款基于Google Material Design设计开发的Android密码管理客户端--怕死我的（PassWord）如果对你有帮助，欢迎多多的star
 
 ##屏幕截图

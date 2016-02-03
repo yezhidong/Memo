@@ -21,6 +21,10 @@
  * 写了一句java 8 的lambda--(SplashActivity.java)
  
 ###基本功能
+
+###v1.0.1
+ * 直接手势滑动退出
+
 ###v1.0.0
  * 遵循Material Design
  * 密码保存
@@ -31,7 +35,6 @@
  * 用户反馈
 
 ###后续更新：
- * swipeBack加入
  * 密码的删除
  * 加入一个webview，在应用内实现网站登录
  * 尝试RxAndroid

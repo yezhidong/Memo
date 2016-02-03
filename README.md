@@ -36,7 +36,7 @@
 
 ###后续更新：
  * 密码的删除
- * 加入一个webview，在应用内实现网站登录
+ * 数据库（Realm）加密
  * 尝试RxAndroid
  * Kotlin
 

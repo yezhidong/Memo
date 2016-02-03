@@ -97,6 +97,11 @@ public class IndexPreImpl implements ActivityPresenter, View.OnClickListener, Na
     }
 
     public boolean onBackPress() {
+        if (mDataBinding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            mDataBinding.drawerLayout.closeDrawer(GravityCompat.START);
+            return false;
+        }
+
         if (System.currentTimeMillis() - DOUBLE_CLICK_TIME > 2000) {
             DOUBLE_CLICK_TIME = System.currentTimeMillis();
             mIndexView.showSnackBar("再按一次退出~~");

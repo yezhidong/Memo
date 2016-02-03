@@ -1,5 +1,6 @@
 package com.android.yzd.memo.mvp.ui.activity.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,8 @@ import com.android.yzd.memo.R;
  * Created by yezhidong on 2016/2/3.
  */
 public abstract class Base extends AppCompatActivity {
+
+    private boolean isAnim;
 
     /**
      * overridePendingTransition mode
@@ -24,14 +27,19 @@ public abstract class Base extends AppCompatActivity {
     }
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        startAnime();
+        Intent intent = getIntent();
+        if (null != intent) {
+            isAnim = intent.getBooleanExtra("anim", false);
+        }
+        if (isAnim) {
+            startAnime();
+        }
         super.onCreate(savedInstanceState);
     }
 
     @Override
     public void finish() {
         super.finish();
-        startAnime();
     }
 
     private void startAnime() {

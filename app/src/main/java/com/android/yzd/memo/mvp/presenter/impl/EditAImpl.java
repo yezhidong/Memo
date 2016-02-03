@@ -21,12 +21,14 @@ import com.android.yzd.memo.mvp.ui.view.EditAView;
 
 import java.util.ArrayList;
 
+import me.imid.swipebacklayout.lib.SwipeBackLayout;
+
 /**
  * Created by Clearlove on 16/1/17.
  */
 public class EditAImpl implements ActivityPresenter,
         TextWatcher, AdapterView.OnItemSelectedListener,
-        CompoundButton.OnCheckedChangeListener, View.OnFocusChangeListener, DialogInterface.OnClickListener {
+        CompoundButton.OnCheckedChangeListener, View.OnFocusChangeListener, DialogInterface.OnClickListener, SwipeBackLayout.SwipeListener {
 
     private final Context mContext;
     private final EditAView mEditAView;
@@ -45,6 +47,7 @@ public class EditAImpl implements ActivityPresenter,
             arrayList.add(str);
         }
         mEditAView.initSpinner(arrayList);
+        mEditAView.getSwipeBack().addSwipeListener(this);
 
     }
 
@@ -189,6 +192,21 @@ public class EditAImpl implements ActivityPresenter,
             mEditAView.hideKeyBoard();
             mEditAView.finishActivity();
         }
+
+    }
+
+    @Override
+    public void onScrollStateChange(int state, float scrollPercent) {
+        mEditAView.hideKeyBoard();
+    }
+
+    @Override
+    public void onEdgeTouch(int edgeFlag) {
+
+    }
+
+    @Override
+    public void onScrollOverThreshold() {
 
     }
 }

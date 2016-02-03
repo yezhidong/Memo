@@ -18,16 +18,15 @@ import com.android.yzd.memo.R;
 import com.android.yzd.memo.bean.God;
 import com.android.yzd.memo.mvp.model.evenbus.EventCenter;
 import com.android.yzd.memo.mvp.presenter.impl.EditAImpl;
-import com.android.yzd.memo.mvp.ui.activity.base.Base;
-import com.android.yzd.memo.mvp.ui.activity.base.BaseActivity;
 import com.android.yzd.memo.mvp.ui.activity.base.BaseSwipeBackActivity;
-import com.android.yzd.memo.widget.spinner.NiceSpinner;
 import com.android.yzd.memo.mvp.ui.view.EditAView;
+import com.android.yzd.memo.widget.spinner.NiceSpinner;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.util.List;
 
 import butterknife.Bind;
+import me.imid.swipebacklayout.lib.SwipeBackLayout;
 
 public class EditActivity extends BaseSwipeBackActivity implements EditAView {
 
@@ -220,5 +219,10 @@ public class EditActivity extends BaseSwipeBackActivity implements EditAView {
         if (null != alertDialog) {
             alertDialog.dismiss();
         }
+    }
+
+    @Override
+    public SwipeBackLayout getSwipeBack() {
+        return getSwipeBackLayout();
     }
 }

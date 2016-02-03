@@ -4,6 +4,8 @@ import com.android.yzd.memo.bean.God;
 
 import java.util.List;
 
+import me.imid.swipebacklayout.lib.SwipeBackLayout;
+
 /**
  * Created by Clearlove on 16/1/17.
  */
@@ -25,4 +27,5 @@ public interface EditAView {
     void setToolBarTitle(int resId);
     void showSaveDialog();
     void hideSaveDialog();
+    SwipeBackLayout getSwipeBack();
 }

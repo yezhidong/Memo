@@ -7,10 +7,9 @@ import com.android.yzd.memo.R;
 import com.android.yzd.memo.databinding.ActivityCheckLockBinding;
 import com.android.yzd.memo.mvp.model.evenbus.EventCenter;
 import com.android.yzd.memo.mvp.presenter.impl.CheckLockAImpl;
-import com.android.yzd.memo.mvp.ui.activity.base.Base;
 import com.android.yzd.memo.mvp.ui.activity.base.BaseActivity;
-import com.android.yzd.memo.widget.LockPatternView;
 import com.android.yzd.memo.mvp.ui.view.CheckLockAView;
+import com.android.yzd.memo.widget.LockPatternView;
 
 import java.util.List;
 
@@ -35,7 +34,7 @@ public class CheckLockActivity extends BaseActivity implements CheckLockAView, L
 
     @Override
     protected boolean toggleOverridePendingTransition() {
-        return true;
+        return false;
     }
 
     @Override
@@ -108,5 +107,11 @@ public class CheckLockActivity extends BaseActivity implements CheckLockAView, L
     @Override
     public void onPatternDetected(List<LockPatternView.Cell> pattern) {
         mCheckLockA.check(pattern);
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+//        overridePendingTransition(0, 0);
     }
 }

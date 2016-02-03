@@ -6,7 +6,6 @@ import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.MenuItem;
@@ -23,7 +22,6 @@ import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.Utils;
-import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityBase;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper;
 
@@ -33,8 +31,7 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper;
 public abstract class BaseSwipeBackActivity extends Base implements SwipeBackActivityBase {
     private SwipeBackActivityHelper mHelper;
     protected ViewDataBinding mDataBinding;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(Bundle savedInstanceState) {
         initTheme();
         super.onCreate(savedInstanceState);
         mDataBinding = DataBindingUtil.setContentView(this, getContentView());
@@ -45,33 +42,28 @@ public abstract class BaseSwipeBackActivity extends Base implements SwipeBackAct
         if (isApplyEventBus()) EventBus.getDefault().register(this);
     }
 
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
+    @Override protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         mHelper.onPostCreate();
         if (isApplyTranslucency()) initWindow();
     }
 
-    @Override
-    public View findViewById(int id) {
+    @Override public View findViewById(int id) {
         View v = super.findViewById(id);
         if (v == null && mHelper != null)
             return mHelper.findViewById(id);
         return v;
     }
 
-    @Override
-    public SwipeBackLayout getSwipeBackLayout() {
+    @Override public SwipeBackLayout getSwipeBackLayout() {
         return mHelper.getSwipeBackLayout();
     }
 
-    @Override
-    public void setSwipeBackEnable(boolean enable) {
+    @Override public void setSwipeBackEnable(boolean enable) {
         getSwipeBackLayout().setEnableGesture(enable);
     }
 
-    @Override
-    public void scrollToFinishActivity() {
+    @Override public void scrollToFinishActivity() {
         Utils.convertActivityToTranslucent(this);
         getSwipeBackLayout().scrollToFinishActivity();
     }
@@ -96,7 +88,9 @@ public abstract class BaseSwipeBackActivity extends Base implements SwipeBackAct
 
     public void reload(boolean anim) {
         Intent intent = getIntent();
+        intent.putExtra("anim", anim);
         if (!anim) {
+            mHelper.getSwipeBackLayout();
             overridePendingTransition(0, 0);
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         }

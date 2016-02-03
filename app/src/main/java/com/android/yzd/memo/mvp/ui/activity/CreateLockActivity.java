@@ -8,10 +8,9 @@ import com.android.yzd.memo.R;
 import com.android.yzd.memo.databinding.ActivityCreateLockBinding;
 import com.android.yzd.memo.mvp.model.evenbus.EventCenter;
 import com.android.yzd.memo.mvp.presenter.impl.CreateLockActivityImpl;
-import com.android.yzd.memo.mvp.ui.activity.base.Base;
 import com.android.yzd.memo.mvp.ui.activity.base.BaseActivity;
-import com.android.yzd.memo.widget.LockPatternView;
 import com.android.yzd.memo.mvp.ui.view.CreateLockAView;
+import com.android.yzd.memo.widget.LockPatternView;
 
 import java.util.List;
 
@@ -82,6 +81,11 @@ public class CreateLockActivity extends BaseActivity implements CreateLockAView,
     @Override
     public void setResults(int isSuccess) {
         setResult(isSuccess);
+    }
+
+    @Override
+    public void clearPattern() {
+        mLockPatternView.clearPattern();
     }
 
     @Override

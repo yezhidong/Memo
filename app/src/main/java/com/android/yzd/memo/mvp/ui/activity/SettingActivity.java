@@ -35,7 +35,7 @@ public class SettingActivity extends BaseSwipeBackActivity {
     }
 
     @Override protected void initToolBar(Toolbar toolbar) {
-        super.initToolBar(toolbar);
+        initToolBar(toolbar);
         mToolBar.setTitle("设置");
     }
 

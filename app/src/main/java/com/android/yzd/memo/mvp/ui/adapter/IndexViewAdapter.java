@@ -77,6 +77,10 @@ public class IndexViewAdapter extends RecyclerView.Adapter<IndexViewHolder> {
         mGodList.addAll(godArrayList);
     }
 
+    public void clearData() {
+        mGodList.clear();
+    }
+
 
     public void setOnRecyclerItemClick(OnRecyclerItemClickListener onItemClickListener){
         listener = onItemClickListener;

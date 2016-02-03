@@ -67,10 +67,11 @@ public class IndexFImpl implements FragmentPresenter, IndexViewAdapter.OnRecycle
                     if (null != selector && selector.size() > 0) {
                         mLoginTypeFView.hideException();
                         mAdapter.addAll(selector);
-                        mAdapter.notifyDataSetChanged();
                     } else {
                         mLoginTypeFView.showException();
+                        mAdapter.clearData();
                     }
+                    mAdapter.notifyDataSetChanged();
                 }
             } else if (eventCenter.getEventCode() == Constans.EVEN_BUS.CHANGE_PASS_WORD_SHOW) {
                 mAdapter.notifyDataSetChanged();

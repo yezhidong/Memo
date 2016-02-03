@@ -123,6 +123,7 @@ public class CreateLockActivityImpl implements ActivityPresenter {
                 } else if (createMode == Constans.UPDATE_GESTURE) {
                     shortLockPatternUtils.saveLockPattern(pattern);
                 }
+                mCreateLockAView.clearPattern();
                 isFinishOnce = true;
             } else {
                 LockPatternUtils instances = LockPatternUtils.getInstances(mContext);

@@ -18,18 +18,15 @@
         android:layout_gravity="center"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/ic_exception"
-             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
+            android:drawablePadding="10dp"
+            android:drawableTop="@mipmap/ic_exception"
             android:textColor="@color/text_color"
-            android:text="空空如也！"/>
+            android:text="主人，您还没添加任何密码备忘记录哦～～"/>
     </LinearLayout>
 </FrameLayout>

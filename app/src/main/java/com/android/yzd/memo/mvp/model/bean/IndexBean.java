@@ -1,4 +1,4 @@
-package com.android.yzd.memo.bean;
+package com.android.yzd.memo.mvp.model.bean;
 
 
 /**

@@ -6,7 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.android.yzd.memo.mvp.model.Constans;
-import com.android.yzd.memo.bean.God;
+import com.android.yzd.memo.mvp.model.bean.God;
 import com.android.yzd.memo.mvp.model.Realm.RealmHelper;
 import com.android.yzd.memo.mvp.model.evenbus.EventCenter;
 import com.android.yzd.memo.mvp.presenter.FragmentPresenter;

@@ -34,11 +34,6 @@ public class SettingActivity extends BaseSwipeBackActivity {
                 .commit();
     }
 
-    @Override protected void initToolBar(Toolbar toolbar) {
-        initToolBar(toolbar);
-        mToolBar.setTitle("设置");
-    }
-
     @Override protected void onEventComing(EventCenter eventCenter) {
 
     }
@@ -48,7 +43,8 @@ public class SettingActivity extends BaseSwipeBackActivity {
     }
 
     @Override protected void initToolbar() {
-        super.initToolBar(mToolBar);
+        initToolBar(mToolBar);
+        mToolBar.setTitle("设置");
     }
 
     @Override protected boolean isApplyTranslucency() {

@@ -13,7 +13,7 @@ import android.widget.AdapterView;
 import android.widget.CompoundButton;
 
 import com.android.yzd.memo.R;
-import com.android.yzd.memo.bean.God;
+import com.android.yzd.memo.mvp.model.bean.God;
 import com.android.yzd.memo.mvp.model.Realm.RealmHelper;
 import com.android.yzd.memo.mvp.presenter.ActivityPresenter;
 import com.android.yzd.memo.utils.TimeUtils;

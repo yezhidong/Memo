@@ -23,7 +23,7 @@ import rx.functions.Action1;
 /**
  * Created by Clearlove on 16/1/13.
  */
-public class IndexPreImpl implements ActivityPresenter, View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
+public class IndexPreImpl implements ActivityPresenter, NavigationView.OnNavigationItemSelectedListener {
 
     private final Context mContext;
     private final ActivityIndexBinding mDataBinding;
@@ -40,14 +40,8 @@ public class IndexPreImpl implements ActivityPresenter, View.OnClickListener, Na
     @Override public void onCreate(Bundle savedInstanceState) {
         mIndexView.initDrawerToggle();
         mIndexView.initXViewPager();
-//        mDataBinding.fab.setOnClickListener(this);
         FloatingActionButton fab = mDataBinding.fab;
-        RxView.clicks(fab).throttleFirst(500, TimeUnit.MILLISECONDS).subscribe(new Action1<Void>() {
-            @Override
-            public void call(Void aVoid) {
-                mIndexView.readyGoForResult(EditActivity.class);
-            }
-        });
+        RxView.clicks(fab).throttleFirst(500, TimeUnit.MILLISECONDS).subscribe((aVoid) ->mIndexView.readyGoForResult(EditActivity.class));
         mDataBinding.navigationView.setCheckedItem(R.id.nav_login_type);
         mDataBinding.navigationView.setNavigationItemSelectedListener(this);
     }
@@ -74,11 +68,6 @@ public class IndexPreImpl implements ActivityPresenter, View.OnClickListener, Na
     }
 
     @Override public void onDestroy() {
-
-    }
-
-    @Override
-    public void onClick(View v) {
 
     }
 

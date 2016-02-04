@@ -17,13 +17,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.yzd.memo.R;
-import com.android.yzd.memo.bean.God;
+import com.android.yzd.memo.mvp.model.bean.God;
 import com.android.yzd.memo.mvp.model.evenbus.EventCenter;
 import com.android.yzd.memo.mvp.presenter.impl.EditAImpl;
 import com.android.yzd.memo.mvp.ui.activity.base.BaseSwipeBackActivity;
 import com.android.yzd.memo.mvp.ui.view.EditAView;
 import com.android.yzd.memo.widget.spinner.NiceSpinner;
-import com.balysv.materialripple.MaterialRippleLayout;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.util.List;

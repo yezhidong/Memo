@@ -2,7 +2,7 @@ package com.android.yzd.memo.mvp.model.Realm;
 
 import android.content.Context;
 
-import com.android.yzd.memo.bean.God;
+import com.android.yzd.memo.mvp.model.bean.God;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;

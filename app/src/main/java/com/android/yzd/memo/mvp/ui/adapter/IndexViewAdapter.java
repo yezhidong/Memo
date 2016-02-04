@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 
 import com.android.yzd.memo.R;
-import com.android.yzd.memo.bean.God;
+import com.android.yzd.memo.mvp.model.bean.God;
 import com.android.yzd.memo.mvp.model.Constans;
 import com.android.yzd.memo.mvp.ui.adapter.viewholder.IndexViewHolder;
 import com.android.yzd.memo.utils.SPUtils;

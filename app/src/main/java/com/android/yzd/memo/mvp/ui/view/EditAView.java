@@ -1,6 +1,6 @@
 package com.android.yzd.memo.mvp.ui.view;
 
-import com.android.yzd.memo.bean.God;
+import com.android.yzd.memo.mvp.model.bean.God;
 
 import java.util.List;
 

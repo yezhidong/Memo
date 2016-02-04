@@ -19,11 +19,12 @@
  * evenbus界面通信更新
  * 水波纹效果
  * 多聚道打包
- * 写了一句java 8 的lambda--(SplashActivity.java)
+ * java 8 的lambda
+ * RxBinding
  
 ###基本功能
 
-###v1.0.3
+###v1.0.5
  * 直接手势滑动退出
  * 密码的删除
 

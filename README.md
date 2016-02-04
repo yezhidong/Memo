@@ -10,6 +10,7 @@
 <img src="/screenshots/theme.png" alt="screenshot" title="screenshot" width="270" height="486" />
 <img src="/screenshots/gesture.png" alt="screenshot" title="screenshot" width="270" height="486" />
 <img src="/screenshots/view.png" alt="screenshot" title="screenshot" width="270" height="486" />
+<img src="/screenshots/about.png" alt="screenshot" title="screenshot" width="270" height="486" />
 
 ###用到的技术点：
  * MVP模式
@@ -24,9 +25,10 @@
  
 ###基本功能
 
-###v1.0.5
+###v1.0.7
  * 直接手势滑动退出
  * 密码的删除
+ * 自带网页（WEBVIEW）
 
 ###v1.0.0
  * 遵循Material Design

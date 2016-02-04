@@ -9,6 +9,7 @@
 <img src="/screenshots/setting.png" alt="screenshot" title="screenshot" width="270" height="486" />
 <img src="/screenshots/theme.png" alt="screenshot" title="screenshot" width="270" height="486" />
 <img src="/screenshots/gesture.png" alt="screenshot" title="screenshot" width="270" height="486" />
+<img src="/screenshots/view.png" alt="screenshot" title="screenshot" width="270" height="486" />
 
 ###用到的技术点：
  * MVP模式

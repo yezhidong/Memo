@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
+
+def packTime() {
+    return new Date().format("yyyyMMddHHmm", TimeZone.getTimeZone("UTC"))
+}
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
@@ -11,9 +15,12 @@ android {
         versionCode 107
         versionName "1.0.7"
         multiDexEnabled true
+        resConfigs "zh"
     }
+
     buildTypes {
         release {
+            zipAlignEnabled true
             minifyEnabled false
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -28,6 +35,7 @@ android {
     dataBinding {
         enabled true
     }
+
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES'
         exclude 'META-INF/NOTICE'
@@ -36,6 +44,7 @@ android {
         exclude 'META-INF/NOTICE.txt'
         exclude 'META-INF/services/javax.annotation.processing.Processor'
     }
+
     lintOptions {
         abortOnError false
     }
@@ -46,8 +55,26 @@ android {
 //        _wandoujia{}
 //        _xiaomi{}
     }
+
     productFlavors.all {
         flavor -> flavor.manifestPlaceholders = [ CHANNEL_VALUE:name ]
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                File outputDirectory = new File(outputFile.parent);
+                def fileName
+                if (variant.buildType.name == "release") {
+                    fileName = "memo_v${defaultConfig.versionName}_${packTime()}.apk"
+                }else{
+                    fileName = "memo_beta.apk"
+                }
+                output.outputFile = new File(outputDirectory, fileName)
+            }
+        }
+
     }
 }
 

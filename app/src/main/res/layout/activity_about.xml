@@ -64,6 +64,7 @@
             app:mrl_rippleColor="?attr/colorPrimary"
             >
             <Button
+                android:id="@+id/codeButton"
                 android:background="@drawable/about_button_background"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

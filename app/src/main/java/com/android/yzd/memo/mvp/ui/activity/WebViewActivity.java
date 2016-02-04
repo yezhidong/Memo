@@ -1,33 +1,29 @@
 package com.android.yzd.memo.mvp.ui.activity;
 
 import android.content.Intent;
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.Button;
 
 import com.android.yzd.memo.R;
-import com.android.yzd.memo.databinding.ActivityAboutBinding;
 import com.android.yzd.memo.mvp.model.evenbus.EventCenter;
-import com.android.yzd.memo.mvp.presenter.impl.AboutAImpl;
 import com.android.yzd.memo.mvp.ui.activity.base.BaseSwipeBackActivity;
-import com.android.yzd.memo.mvp.ui.view.AboutAView;
+import com.android.yzd.memo.widget.BrowserLayout;
 
 import butterknife.Bind;
-import butterknife.OnClick;
 
-public class AboutActivity extends BaseSwipeBackActivity implements AboutAView {
+public class WebViewActivity extends BaseSwipeBackActivity {
 
     @Bind(R.id.common_toolbar) Toolbar mToolBar;
-    private AboutAImpl mAboutImpl;
-
+    @Bind(R.id.brower) BrowserLayout mBrowser;
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityAboutBinding mDataBinding = (ActivityAboutBinding) super.mDataBinding;
-        mAboutImpl = new AboutAImpl(this, this, mDataBinding);
-        mAboutImpl.onCreate(savedInstanceState);
-        mAboutImpl.getIntent(getIntent());
+        Intent intent = getIntent();
+        if (intent != null) {
+            Bundle bundle = intent.getExtras();
+            String url = bundle.getString("URL");
+            mBrowser.loadUrl(url);
+        }
+
     }
 
     @Override protected void onEventComing(EventCenter eventCenter) {
@@ -35,12 +31,21 @@ public class AboutActivity extends BaseSwipeBackActivity implements AboutAView {
     }
 
     @Override protected int getContentView() {
-        return R.layout.activity_about;
+        return R.layout.activity_web_view;
     }
 
     @Override protected void initToolbar() {
         initToolBar(mToolBar);
-        mToolBar.setTitle("关于");
+        mToolBar.setTitle("网页");
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mBrowser.canGoBack()) {
+            mBrowser.getWebView().goBack();
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override protected boolean isApplyTranslucency() {
@@ -56,20 +61,10 @@ public class AboutActivity extends BaseSwipeBackActivity implements AboutAView {
     }
 
     @Override protected TransitionMode getOverridePendingTransitionMode() {
-        return TransitionMode.RIGHT;
+        return null;
     }
 
-    @OnClick(R.id.codeButton) public void onClick(View view) {
-        mAboutImpl.codeClick(view);
-    }
     @Override protected boolean toggleOverridePendingTransition() {
-        return true;
-    }
-
-    @Override
-    public void go2Activity(Class clazz, Bundle bundle) {
-        Intent intent = new Intent(this, clazz);
-        intent.putExtras(bundle);
-        startActivity(intent);
+        return false;
     }
 }

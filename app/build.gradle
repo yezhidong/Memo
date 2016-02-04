@@ -8,8 +8,8 @@ android {
         applicationId "com.android.yzd.memo"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 103
-        versionName "1.0.3"
+        versionCode 105
+        versionName "1.0.5"
         multiDexEnabled true
     }
     buildTypes {
@@ -69,4 +69,7 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.0.0'
     compile 'com.rengwuxian.materialedittext:library:2.1.4'
     compile 'me.imid.swipebacklayout.lib:library:1.0.0'
+    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'io.reactivex:rxjava:1.1.0'
+    compile 'com.jakewharton.rxbinding:rxbinding:0.3.0'
 }

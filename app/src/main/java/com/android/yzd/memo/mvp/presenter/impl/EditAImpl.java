@@ -35,6 +35,7 @@ public class EditAImpl implements ActivityPresenter,
     private int mPosition = 0;
     private int createMode;
     private boolean isEdit;
+    private boolean isCreate;
     private God mGodInfo;
     private int positionType;
     private String mPositiveButtonMsg;
@@ -70,7 +71,7 @@ public class EditAImpl implements ActivityPresenter,
                 isEdit = false;
                 break;
             case 1:
-                isEdit = true;
+                isCreate = true;
                 mEditAView.initCreateModel();
                 break;
         }

@@ -28,13 +28,17 @@ import me.imid.swipebacklayout.lib.SwipeBackLayout;
  */
 public class EditAImpl implements ActivityPresenter,
         TextWatcher, AdapterView.OnItemSelectedListener,
-        CompoundButton.OnCheckedChangeListener, View.OnFocusChangeListener, DialogInterface.OnClickListener, SwipeBackLayout.SwipeListener {
+        CompoundButton.OnCheckedChangeListener, View.OnFocusChangeListener, DialogInterface.OnClickListener, SwipeBackLayout.SwipeListener, View.OnClickListener {
 
     private final Context mContext;
     private final EditAView mEditAView;
     private int mPosition = 0;
     private int createMode;
     private boolean isEdit;
+    private God mGodInfo;
+    private int positionType;
+    private String mPositiveButtonMsg;
+    private int p;
 
     public EditAImpl(Context context, EditAView view) {
         mContext = context;
@@ -55,12 +59,14 @@ public class EditAImpl implements ActivityPresenter,
         createMode = intent.getIntExtra("CREATE_MODE", 1);
         switch (createMode) {
             case 0:
-                int position = intent.getIntExtra("position", 0);
-                int positionType = intent.getIntExtra("positionType", 0);
+                p = intent.getIntExtra("position", 0);
+                // 密码类型
+                mPosition = positionType = intent.getIntExtra("positionType", 0);
                 ArrayList<God> selector = selector(positionType);
-                mEditAView.initViewModel(selector.get(position), positionType);
+                mGodInfo = selector.get(p);
+                mEditAView.initViewModel(mGodInfo, positionType);
                 mEditAView.setToolBarTitle(R.string.view_mode);
-                mEditAView.setTime(TimeUtils.getTime(selector.get(position).getTime()));
+                mEditAView.setTime(TimeUtils.getTime(mGodInfo.getTime()));
                 isEdit = false;
                 break;
             case 1:
@@ -125,23 +131,27 @@ public class EditAImpl implements ActivityPresenter,
                 return true;
 
             case android.R.id.home:
-                if (isEdit) {
-                    String titleName = mEditAView.getTitleName();
-                    String userName = mEditAView.getUserName();
-                    String passWord = mEditAView.getPassWord();
-                    mEditAView.hideKeyBoard();
-                    if (!TextUtils.isEmpty(titleName) && !TextUtils.isEmpty(userName) && !TextUtils.isEmpty(passWord)) {
-                        mEditAView.showSaveDialog();
-                    } else {
-                        mEditAView.finishActivity();
-                    }
-                } else {
-                    mEditAView.hideKeyBoard();
-                    mEditAView.finishActivity();
-                }
-                return true;
+                return comeBack();
             default: return false;
         }
+    }
+
+    public boolean comeBack() {
+        if (isEdit) {
+            String userName = mEditAView.getUserName();
+            String passWord = mEditAView.getPassWord();
+            mEditAView.hideKeyBoard();
+            if (positionType != mPosition || !TextUtils.equals(userName, mGodInfo.getUserName()) || !TextUtils.equals(passWord, mGodInfo.getPassWord())) {
+                mPositiveButtonMsg = "保存";
+                mEditAView.showDialog("密码还未保存，是否先保存在退出", mPositiveButtonMsg);
+            } else {
+                mEditAView.finishActivity();
+            }
+        } else {
+            mEditAView.hideKeyBoard();
+            mEditAView.finishActivity();
+        }
+        return true;
     }
 
     private void saveData() {
@@ -161,7 +171,6 @@ public class EditAImpl implements ActivityPresenter,
         mEditAView.hideKeyBoard();
         mEditAView.finishActivity();
     }
-
     @Override public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         isEdit = true;
         mPosition = position;
@@ -187,10 +196,17 @@ public class EditAImpl implements ActivityPresenter,
     @Override
     public void onClick(DialogInterface dialog, int which) {
         if (which == dialog.BUTTON_POSITIVE) {
-            saveData();
+            if (TextUtils.equals(mPositiveButtonMsg, "确定")) {
+                RealmHelper.delete(mContext, mGodInfo, p);
+                mEditAView.finishActivity();
+            } else {
+                saveData();
+            }
         } else if (which == dialog.BUTTON_NEGATIVE) {
-            mEditAView.hideKeyBoard();
-            mEditAView.finishActivity();
+            if (!TextUtils.equals(mPositiveButtonMsg, "确定")) {
+                mEditAView.hideKeyBoard();
+                mEditAView.finishActivity();
+            }
         }
 
     }
@@ -208,5 +224,14 @@ public class EditAImpl implements ActivityPresenter,
     @Override
     public void onScrollOverThreshold() {
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        if (id == R.id.deleteButton) {
+            mPositiveButtonMsg = "确定";
+            mEditAView.showDialog("将永久删除该密码备忘记录~~", mPositiveButtonMsg);
+        }
     }
 }

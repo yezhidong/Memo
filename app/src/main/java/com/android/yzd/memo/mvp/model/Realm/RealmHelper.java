@@ -80,4 +80,18 @@ public class RealmHelper {
         realm.copyToRealmOrUpdate(god);
         realm.commitTransaction();
     }
+
+    public static void delete(Context context, God god, int position) {
+        Realm realm = Realm.getInstance(context);
+        RealmQuery<God> realmQuery = realm.where(God.class);
+        RealmQuery<God> godRealmQuery = realmQuery.equalTo("godType", god.getGodType());
+        RealmResults<God> realmResults = godRealmQuery.findAll();
+        if (realmResults != null ) {
+            int size = realmResults.size() - 1;
+            int i = size - position;
+            realm.beginTransaction();
+            realmResults.remove(i);
+            realm.commitTransaction();
+        }
+    }
 }

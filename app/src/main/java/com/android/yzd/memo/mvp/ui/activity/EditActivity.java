@@ -11,7 +11,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.yzd.memo.R;
@@ -21,6 +23,7 @@ import com.android.yzd.memo.mvp.presenter.impl.EditAImpl;
 import com.android.yzd.memo.mvp.ui.activity.base.BaseSwipeBackActivity;
 import com.android.yzd.memo.mvp.ui.view.EditAView;
 import com.android.yzd.memo.widget.spinner.NiceSpinner;
+import com.balysv.materialripple.MaterialRippleLayout;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.util.List;
@@ -39,6 +42,8 @@ public class EditActivity extends BaseSwipeBackActivity implements EditAView {
     @Bind(R.id.passWord) MaterialEditText mPassWordEdt;
     @Bind(R.id.eye) CheckBox mEyeChB;
     @Bind(R.id.timeTextView) TextView mTimeTextView;
+    @Bind(R.id.view) LinearLayout mView;
+    @Bind(R.id.deleteButton) Button mDeleteButton;
     private EditAImpl mEditImpl;
     private MenuItem menuItem;
     private AlertDialog alertDialog;
@@ -130,18 +135,22 @@ public class EditActivity extends BaseSwipeBackActivity implements EditAView {
 
     @Override
     public void initViewModel(God god, int positionType) {
+        mView.setFocusable(true);
+        mView.setFocusableInTouchMode(true);
         hideKeyBoard();
         mTitleEdt.setText(god.getTitle());
+        mTitleEdt.setEnabled(false);
         mUserNameEdt.setText(god.getUserName());
         mPassWordEdt.setText(god.getPassWord());
         mPassWordEdt.setTransformationMethod(HideReturnsTransformationMethod
                 .getInstance());
-        mTitleEdt.setOnFocusChangeListener(mEditImpl);
         mUserNameEdt.setOnFocusChangeListener(mEditImpl);
         mPassWordEdt.setOnFocusChangeListener(mEditImpl);
         mEyeChB.setChecked(false);
         mSpinner.setSelectedIndex(positionType);
         addEdtChangeListener();
+        mDeleteButton.setVisibility(View.VISIBLE);
+        mDeleteButton.setOnClickListener(mEditImpl);
     }
 
 
@@ -205,11 +214,11 @@ public class EditActivity extends BaseSwipeBackActivity implements EditAView {
     }
 
     @Override
-    public void showSaveDialog() {
+    public void showDialog(String msg, String positiveMsg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("提示");
-        builder.setMessage("密码还未保存，是否先保存在退出");
-        builder.setPositiveButton("保存", mEditImpl);
+        builder.setMessage(msg);//
+        builder.setPositiveButton(positiveMsg, mEditImpl);
         builder.setNegativeButton("取消", mEditImpl);
         alertDialog = builder.show();
     }
@@ -219,6 +228,11 @@ public class EditActivity extends BaseSwipeBackActivity implements EditAView {
         if (null != alertDialog) {
             alertDialog.dismiss();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        mEditImpl.comeBack();
     }
 
     @Override

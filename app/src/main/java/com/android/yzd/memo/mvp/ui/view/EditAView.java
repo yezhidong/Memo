@@ -25,7 +25,7 @@ public interface EditAView {
     void setPassWordVisible(boolean visible);
     void hideKeyBoard();
     void setToolBarTitle(int resId);
-    void showSaveDialog();
+    void showDialog(String msg, String positiveMsg);
     void hideSaveDialog();
     SwipeBackLayout getSwipeBack();
 }

@@ -76,11 +76,11 @@ public class SettingFImpl implements FragmentPresenter{
             mFeedbackAgent.sync();
             mFeedbackAgent.closeFeedbackPush();
             mFeedbackAgent.closeAudioFeedback();
-            mFeedbackAgent.setWelcomeInfo("感谢反馈意见,我会尽快回复");
+            mFeedbackAgent.setWelcomeInfo("感谢反馈意见,我会尽快回复~~");
             Bundle bundle = new Bundle();
             bundle.putString(FeedbackFragment.BUNDLE_KEY_CONVERSATION_ID, mFeedbackAgent.getDefaultConversation().getId());
             settingAView.go2(FeedBackActivity.class, bundle);
-        } else if (TextUtils.equals(key, "给应用点赞")) {
+        } else if (TextUtils.equals(key, "给应用点赞~")) {
             giveFavor();
         }
     }

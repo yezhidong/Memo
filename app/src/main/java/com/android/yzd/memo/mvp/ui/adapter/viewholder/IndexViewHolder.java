@@ -8,12 +8,15 @@ import android.widget.TextView;
 
 import com.android.yzd.memo.R;
 import com.balysv.materialripple.MaterialRippleLayout;
+import com.jakewharton.rxbinding.view.RxView;
+
+import java.util.concurrent.TimeUnit;
 
 
 /**
  * Created by yezhidong on 2016/1/15.
  */
-public class IndexViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class IndexViewHolder extends RecyclerView.ViewHolder {
 
     private final TextView mTitleTextView;
     private final TextView mNoteContentTextView;
@@ -29,8 +32,7 @@ public class IndexViewHolder extends RecyclerView.ViewHolder implements View.OnC
         mNoteContentTextView = (TextView) parent.findViewById(R.id.main_item_name);
         mTimeTextView = (TextView) parent.findViewById(R.id.main_item_date);
         mPassWordTextView = (TextView) parent.findViewById(R.id.main_item_password);
-
-        ripple.setOnClickListener(this);
+        RxView.clicks(ripple).throttleFirst(1000, TimeUnit.MILLISECONDS).subscribe(aVoid -> onRippleClick.onRippleClick(ripple));
     }
 
     public void setLabelText(CharSequence text){
@@ -77,11 +79,6 @@ public class IndexViewHolder extends RecyclerView.ViewHolder implements View.OnC
         if (view == null || text <= 0)
             return;
         view.setText(text);
-    }
-
-    @Override
-    public void onClick(View v) {
-        onRippleClick.onRippleClick(v);
     }
 
     public void setOnRippleClickListener(OnRippleClick onRippleClick){

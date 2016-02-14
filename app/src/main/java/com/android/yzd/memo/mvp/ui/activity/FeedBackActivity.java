@@ -58,7 +58,7 @@ public class FeedBackActivity extends BaseSwipeBackActivity {
     @Override
     protected void initToolbar() {
         initToolBar(mToolBar);
-        setTitle("用户反馈");
+        mToolBar.setTitle("用户反馈");
     }
 
     @Override

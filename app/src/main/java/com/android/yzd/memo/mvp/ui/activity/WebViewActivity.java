@@ -36,7 +36,7 @@ public class WebViewActivity extends BaseSwipeBackActivity {
 
     @Override protected void initToolbar() {
         initToolBar(mToolBar);
-        mToolBar.setTitle("网页");
+        mToolBar.setTitle("项目源码");
     }
 
     @Override

@@ -50,9 +50,9 @@ android {
     }
 
     productFlavors {
-        _fir{}
+//        _fir{}
 //        _mumayi{}
-//        _wandoujia{}
+        _wandoujia{}
 //        _xiaomi{}
     }
 

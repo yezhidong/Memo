@@ -7,7 +7,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
+import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import com.android.yzd.memo.mvp.model.Constans;
 import com.android.yzd.memo.R;
@@ -19,6 +21,10 @@ import com.android.yzd.memo.utils.SPUtils;
 import com.android.yzd.memo.mvp.ui.view.SettingAView;
 import com.umeng.fb.FeedbackAgent;
 import com.umeng.fb.fragment.FeedbackFragment;
+import com.umeng.update.UmengUpdateAgent;
+import com.umeng.update.UmengUpdateListener;
+import com.umeng.update.UpdateResponse;
+import com.umeng.update.UpdateStatus;
 
 import de.greenrobot.event.EventBus;
 
@@ -82,6 +88,27 @@ public class SettingFImpl implements FragmentPresenter{
             settingAView.go2(FeedBackActivity.class, bundle);
         } else if (TextUtils.equals(key, "给应用点赞~")) {
             giveFavor();
+        } else if (TextUtils.equals(key, "检测更新")) {
+            UmengUpdateAgent.forceUpdate(mContext);
+            UmengUpdateAgent.setUpdateListener(new UmengUpdateListener() {
+                @Override
+                public void onUpdateReturned(int updateStatus, UpdateResponse updateResponse) {
+                    switch (updateStatus) {
+                        case UpdateStatus.Yes: // has update
+                            UmengUpdateAgent.showUpdateDialog(mContext, updateResponse);
+                            break;
+                        case UpdateStatus.No: // has no update
+                            settingAView.showSnackBar("当前为最新版本~~");
+                            break;
+                        case UpdateStatus.NoneWifi: // none wifi
+                            settingAView.showSnackBar("没有wifi连接， 只在wifi下更新");
+                            break;
+                        case UpdateStatus.Timeout: // time out
+                            settingAView.showSnackBar("连接超时");
+                            break;
+                    }
+                }
+            });
         }
     }
 

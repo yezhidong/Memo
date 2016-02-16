@@ -23,7 +23,10 @@
             android:title="意见反馈"
             android:summary="如果你有问题或建议，欢迎您反馈给我！"/>
         <com.jenzz.materialpreference.Preference
-            android:key="给应用点赞"
-            android:title="给应用评分"/>
+        android:key="给应用点赞"
+        android:title="给应用评分"/>
+        <com.jenzz.materialpreference.Preference
+            android:key="检测更新"
+            android:title="检测更新"/>
     </com.jenzz.materialpreference.PreferenceCategory>
 </PreferenceScreen>

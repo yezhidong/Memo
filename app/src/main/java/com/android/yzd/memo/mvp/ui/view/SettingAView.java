@@ -15,4 +15,5 @@ public interface SettingAView {
     void reCreate();
     void readyGo(Class clazz, Intent intent);
     void go2(Class clazz, Bundle bundle);
+    void showSnackBar(String msg);
 }

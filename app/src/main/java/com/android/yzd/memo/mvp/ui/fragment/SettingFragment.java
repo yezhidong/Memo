@@ -113,12 +113,17 @@ public class SettingFragment extends PreferenceFragment implements SettingAView{
     }
 
     @Override
+    public void showSnackBar(String msg) {
+        Snackbar.make(getView(), msg, Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == 1) {
-            Snackbar.make(getView(), "修改成功", Snackbar.LENGTH_SHORT).show();
+            showSnackBar("修改成功");
         } else if (resultCode == 0) {
-            Snackbar.make(getView(), "放弃修改", Snackbar.LENGTH_SHORT).show();
+            showSnackBar("放弃修改");
         }
     }
 }

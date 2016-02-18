@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">passWord</string>
+    <string name="app_name">怕死我的</string>
     <string name="create_activity_welcome">欢迎使用 怕死我的</string>
     <string name="create_activity_first">第一次使用，请先设置密码</string>
     <string name="create_activity_warn">绘制解锁图案</string>

@@ -162,10 +162,18 @@ public class EditAImpl implements ActivityPresenter,
         God god = new God(mPosition, titleName, userName, passWord, TimeUtils.getCurrentTimeInLong(), memoInfo);
         switch (createMode) {
             case 0:
-                RealmHelper.update(mContext, god);
+                if (RealmHelper.update(mContext, god)) {
+                    mEditAView.showSnackToast("修改失败，已经存在-"+god.getTitle()+"-的标题");
+                    mEditAView.hideKeyBoard();
+                    return;
+                }
                 break;
             case 1:
-                RealmHelper.save(mContext, god);
+                if (RealmHelper.save(mContext, god)) {
+                    mEditAView.showSnackToast("保存失败，已经存在-"+god.getTitle()+"-的标题");
+                    mEditAView.hideKeyBoard();
+                    return;
+                }
                 break;
         }
 

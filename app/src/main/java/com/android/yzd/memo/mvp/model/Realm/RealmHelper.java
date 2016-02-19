@@ -67,18 +67,38 @@ public class RealmHelper {
         return null;
     }
 
-    public static void save(Context context, God god) {
+    public static boolean save(Context context, God god) {
+        if (check(context, god)) {
+            return true;
+        }
         Realm realm = Realm.getInstance(context);
         realm.beginTransaction();
         realm.copyToRealm(god);
         realm.commitTransaction();
+        return false;
     }
 
-    public static void update(Context context, God god) {
+    private static boolean check(Context context, God god) {
+        int godType = god.getGodType();
+        Realm realm = Realm.getInstance(context);
+        RealmQuery<God> realmQuery = realm.where(God.class);
+        RealmQuery<God> godRealmQuery = realmQuery.equalTo("godType", godType);
+        RealmResults<God> title = godRealmQuery.contains("title", god.getTitle()).findAll();
+        if (title!=null&&title.size()>0) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean update(Context context, God god) {
+        if (check(context, god)) {
+            return true;
+        }
         Realm realm = Realm.getInstance(context);
         realm.beginTransaction();
         realm.copyToRealmOrUpdate(god);
         realm.commitTransaction();
+        return false;
     }
 
     public static void delete(Context context, God god, int position) {

@@ -3,7 +3,9 @@ package com.android.yzd.memo.mvp.model;
 /**
  * Created by yezhidong on 2016/1/26.
  */
-public class Constans {
+public class Constants {
+
+    public static int REALM_VERSION = 1;
 
     public static int VIEW_MODE = 0;
     public static int CREATE_MODE = 1;

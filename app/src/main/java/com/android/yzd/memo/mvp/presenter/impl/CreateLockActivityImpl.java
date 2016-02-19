@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.android.yzd.memo.mvp.model.Constans;
+import com.android.yzd.memo.mvp.model.Constants;
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.databinding.ActivityCreateLockBinding;
 import com.android.yzd.memo.mvp.model.bean.LockBean;
@@ -47,7 +47,7 @@ public class CreateLockActivityImpl implements ActivityPresenter {
 
     @Override
     public void getIntent(Intent intent) {
-        createMode = intent.getIntExtra("CREATE_MODE", Constans.CREATE_MODE);
+        createMode = intent.getIntExtra("CREATE_MODE", Constants.CREATE_MODE);
     }
 
     @Override
@@ -118,9 +118,9 @@ public class CreateLockActivityImpl implements ActivityPresenter {
                 fingerFirstUpSuccess();
                 LockPatternUtils instances = LockPatternUtils.getInstances(mContext);
                 ShortLockPatternUtils shortLockPatternUtils = ShortLockPatternUtils.getInstances(mContext);
-                if (createMode == Constans.CREATE_GESTURE) {
+                if (createMode == Constants.CREATE_GESTURE) {
                     instances.saveLockPattern(pattern);
-                } else if (createMode == Constans.UPDATE_GESTURE) {
+                } else if (createMode == Constants.UPDATE_GESTURE) {
                     shortLockPatternUtils.saveLockPattern(pattern);
                 }
                 mCreateLockAView.clearPattern();
@@ -128,7 +128,7 @@ public class CreateLockActivityImpl implements ActivityPresenter {
             } else {
                 LockPatternUtils instances = LockPatternUtils.getInstances(mContext);
                 ShortLockPatternUtils shortLockPatternUtils = ShortLockPatternUtils.getInstances(mContext);
-                if (createMode == Constans.CREATE_GESTURE) {
+                if (createMode == Constants.CREATE_GESTURE) {
 
                     if (instances.checkPattern(pattern)) {
                         fingerSecondUpSucess();
@@ -139,7 +139,7 @@ public class CreateLockActivityImpl implements ActivityPresenter {
                         mCreateLockAView.lockDisplayError();
                     }
                     isFinishOnce = false;
-                } else if (createMode == Constans.UPDATE_GESTURE) {
+                } else if (createMode == Constants.UPDATE_GESTURE) {
                     if (shortLockPatternUtils.checkPattern(pattern)) {
                         instances.saveLockPattern(pattern);
                         fingerSecondUpSucess();
@@ -157,7 +157,7 @@ public class CreateLockActivityImpl implements ActivityPresenter {
     }
 
     public void onBack() {
-        if (createMode == Constans.UPDATE_GESTURE) {
+        if (createMode == Constants.UPDATE_GESTURE) {
             mCreateLockAView.setResults(0);
         }
     }

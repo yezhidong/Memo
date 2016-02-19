@@ -7,11 +7,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
-import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
-import android.widget.Toast;
 
-import com.android.yzd.memo.mvp.model.Constans;
+import com.android.yzd.memo.mvp.model.Constants;
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.mvp.model.evenbus.EventCenter;
 import com.android.yzd.memo.mvp.presenter.FragmentPresenter;
@@ -46,8 +44,8 @@ public class SettingFImpl implements FragmentPresenter{
     @Override
     public void onFirstUserVisible() {
         settingAView.findView();
-        isOpen = (Boolean) SPUtils.get(mContext, Constans.SETTING.OPEN_GESTURE, true);
-        isOpenShow = (Boolean) SPUtils.get(mContext, Constans.SETTING.OPEN_PASS_WORD_SHOW, true);
+        isOpen = (Boolean) SPUtils.get(mContext, Constants.SETTING.OPEN_GESTURE, true);
+        isOpenShow = (Boolean) SPUtils.get(mContext, Constants.SETTING.OPEN_PASS_WORD_SHOW, true);
         settingAView.initState(isOpen);
         settingAView.initOpenShow(isOpenShow);
     }
@@ -66,14 +64,14 @@ public class SettingFImpl implements FragmentPresenter{
 
         if (TextUtils.equals(key, "开启手势密码")) {
             isOpen = !isOpen;
-            SPUtils.put(mContext, Constans.SETTING.OPEN_GESTURE, isOpen);
+            SPUtils.put(mContext, Constants.SETTING.OPEN_GESTURE, isOpen);
         } else if (TextUtils.equals(key, "首页密码可见")) {
             isOpenShow = !isOpenShow;
-            SPUtils.put(mContext, Constans.SETTING.OPEN_PASS_WORD_SHOW, isOpenShow);
-            EventBus.getDefault().post(new EventCenter(Constans.EVEN_BUS.CHANGE_PASS_WORD_SHOW));
+            SPUtils.put(mContext, Constants.SETTING.OPEN_PASS_WORD_SHOW, isOpenShow);
+            EventBus.getDefault().post(new EventCenter(Constants.EVEN_BUS.CHANGE_PASS_WORD_SHOW));
         }else if (TextUtils.equals(key, "修改手势密码")) {
             Intent intent = new Intent(mContext, CreateLockActivity.class);
-            intent.putExtra("CREATE_MODE", Constans.UPDATE_GESTURE);
+            intent.putExtra("CREATE_MODE", Constants.UPDATE_GESTURE);
             settingAView.readyGo(CreateLockActivity.class,intent);
         } else if (TextUtils.equals(key, "更换主题")) {
             settingAView.showChangeThemeDialog();
@@ -114,7 +112,7 @@ public class SettingFImpl implements FragmentPresenter{
 
     public void onThemeChoose(int position) {
         SPUtils.put(mContext, mContext.getResources().getString(R.string.change_theme_key), position);
-        EventBus.getDefault().post(new EventCenter(Constans.EVEN_BUS.CHANGE_THEME));
+        EventBus.getDefault().post(new EventCenter(Constants.EVEN_BUS.CHANGE_THEME));
         settingAView.reCreate();
     }
 

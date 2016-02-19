@@ -18,6 +18,7 @@ public interface EditAView {
     String getTitleName();
     String getUserName();
     String getPassWord();
+    String getMemoInfo();
     void setTime(String time);
     void showSnackToast(String msg);
     void setItemMenuVisible(boolean visible);

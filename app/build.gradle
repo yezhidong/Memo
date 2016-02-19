@@ -12,8 +12,8 @@ android {
         applicationId "com.android.yzd.memo"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 108
-        versionName "1.0.8"
+        versionCode 109
+        versionName "1.0.9"
         multiDexEnabled true
         resConfigs "zh"
     }
@@ -52,10 +52,10 @@ android {
     productFlavors {
 //        _fir{}
 //        _mumayi{}
-//        _wandoujia{}
+        _wandoujia{}
 //        _xiaomi{}
-        _yingyongbao{}
-        _360{}
+//        _yingyongbao{}
+//        _360{}
     }
 
     productFlavors.all {

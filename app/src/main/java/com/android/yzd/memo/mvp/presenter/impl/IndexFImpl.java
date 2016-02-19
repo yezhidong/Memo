@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
-import com.android.yzd.memo.mvp.model.Constans;
+import com.android.yzd.memo.mvp.model.Constants;
 import com.android.yzd.memo.mvp.model.bean.God;
 import com.android.yzd.memo.mvp.model.Realm.RealmHelper;
 import com.android.yzd.memo.mvp.model.evenbus.EventCenter;
@@ -73,7 +73,7 @@ public class IndexFImpl implements FragmentPresenter, IndexViewAdapter.OnRecycle
                     }
                     mAdapter.notifyDataSetChanged();
                 }
-            } else if (eventCenter.getEventCode() == Constans.EVEN_BUS.CHANGE_PASS_WORD_SHOW) {
+            } else if (eventCenter.getEventCode() == Constants.EVEN_BUS.CHANGE_PASS_WORD_SHOW) {
                 mAdapter.notifyDataSetChanged();
             }
         }
@@ -82,7 +82,7 @@ public class IndexFImpl implements FragmentPresenter, IndexViewAdapter.OnRecycle
 
     @Override
     public void onRecyclerItemClick(View view, int position) {
-        mLoginTypeFView.readGo(EditActivity.class, Constans.VIEW_MODE, position, this.position);
+        mLoginTypeFView.readGo(EditActivity.class, Constants.VIEW_MODE, position, this.position);
     }
 
     public void getArgus(Bundle arguments) {

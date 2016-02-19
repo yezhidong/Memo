@@ -18,15 +18,17 @@ public class God extends RealmObject{
 
     private long time;
 
+    private String memoInfo;
 
     public God() {}
 
-    public God(int godType, String title, String userName, String passWord, long time) {
+    public God(int godType, String title, String userName, String passWord, long time, String memoInfo) {
         this.godType = godType;
         this.title = title;
         this.userName = userName;
         this.passWord = passWord;
         this.time = time;
+        this.memoInfo = memoInfo;
     }
 
     public int getGodType() {
@@ -67,5 +69,12 @@ public class God extends RealmObject{
 
     public void setTitle(String title) {
         this.title = title;
+    }
+    public String getMemoInfo() {
+        return memoInfo;
+    }
+
+    public void setMemoInfo(String memoInfo) {
+        this.memoInfo = memoInfo;
     }
 }

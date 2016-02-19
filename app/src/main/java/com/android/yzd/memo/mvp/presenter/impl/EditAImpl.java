@@ -59,7 +59,7 @@ public class EditAImpl implements ActivityPresenter,
     @Override public void getIntent(Intent intent) {
         createMode = intent.getIntExtra("CREATE_MODE", 1);
         switch (createMode) {
-            case 0:
+            case 0:// 查看
                 p = intent.getIntExtra("position", 0);
                 // 密码类型
                 mPosition = positionType = intent.getIntExtra("positionType", 0);
@@ -70,7 +70,7 @@ public class EditAImpl implements ActivityPresenter,
                 mEditAView.setTime(TimeUtils.getTime(mGodInfo.getTime()));
                 isEdit = false;
                 break;
-            case 1:
+            case 1:// 添加
                 isCreate = true;
                 mEditAView.initCreateModel();
                 break;
@@ -109,7 +109,6 @@ public class EditAImpl implements ActivityPresenter,
         String titleName = mEditAView.getTitleName();
         String userName = mEditAView.getUserName();
         String passWord = mEditAView.getPassWord();
-
         if (!TextUtils.isEmpty(passWord)) {
             if (!TextUtils.isEmpty(titleName) && !TextUtils.isEmpty(userName)) {
                 mEditAView.setItemMenuVisible(true);
@@ -159,7 +158,8 @@ public class EditAImpl implements ActivityPresenter,
         String titleName = mEditAView.getTitleName();
         String userName = mEditAView.getUserName();
         String passWord = mEditAView.getPassWord();
-        God god = new God(mPosition, titleName, userName, passWord, TimeUtils.getCurrentTimeInLong());
+        String memoInfo = mEditAView.getMemoInfo();
+        God god = new God(mPosition, titleName, userName, passWord, TimeUtils.getCurrentTimeInLong(), memoInfo);
         switch (createMode) {
             case 0:
                 RealmHelper.update(mContext, god);

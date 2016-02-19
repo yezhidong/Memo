@@ -12,7 +12,7 @@ import android.view.View;
 
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.databinding.ActivityIndexBinding;
-import com.android.yzd.memo.mvp.model.Constans;
+import com.android.yzd.memo.mvp.model.Constants;
 import com.android.yzd.memo.mvp.model.evenbus.EventCenter;
 import com.android.yzd.memo.mvp.presenter.impl.IndexPreImpl;
 import com.android.yzd.memo.mvp.ui.activity.base.BaseActivity;
@@ -93,7 +93,7 @@ public class IndexActivity extends BaseActivity implements IndexAView{
 
     @Override public void readyGoForResult(Class clazz) {
         Intent intent = new Intent(this, clazz);
-        intent.putExtra("CREATE_MODE", Constans.CREATE_MODE);
+        intent.putExtra("CREATE_MODE", Constants.CREATE_MODE);
         startActivityForResult(intent, INDEX_REQUEST_CODE);
     }
 
@@ -147,7 +147,7 @@ public class IndexActivity extends BaseActivity implements IndexAView{
 
     @Override
     protected void onEventComing(EventCenter eventCenter) {
-        if (eventCenter.getEventCode() == Constans.EVEN_BUS.CHANGE_THEME) {
+        if (eventCenter.getEventCode() == Constants.EVEN_BUS.CHANGE_THEME) {
             reload(false);
         }
     }

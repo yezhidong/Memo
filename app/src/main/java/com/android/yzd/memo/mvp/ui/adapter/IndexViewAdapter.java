@@ -9,7 +9,7 @@ import android.view.animation.DecelerateInterpolator;
 
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.mvp.model.bean.God;
-import com.android.yzd.memo.mvp.model.Constans;
+import com.android.yzd.memo.mvp.model.Constants;
 import com.android.yzd.memo.mvp.ui.adapter.viewholder.IndexViewHolder;
 import com.android.yzd.memo.utils.SPUtils;
 import com.android.yzd.memo.utils.TimeUtils;
@@ -51,6 +51,25 @@ public class IndexViewAdapter extends RecyclerView.Adapter<IndexViewHolder> {
         } else {
             holder.setPassWordTextView("*********");
         }
+        String memoInfo = mGodList.get(position).getMemoInfo();
+        if (!memoInfo.equals("")) {
+            holder.setMemoInfoContentVisibility(true);
+            holder.setMemoInfo(mGodList.get(position).getMemoInfo());
+        } else {
+            holder.setMemoInfoContentVisibility(false);
+        }
+        int godType = mGodList.get(position).getGodType();
+        switch (godType) {
+            case 0:
+                holder.setMoRen(mContext);
+                break;
+            case 1:
+                holder.setYouXiang(mContext);
+                break;
+            case 2:
+                holder.setCard(mContext);
+                break;
+        }
         holder.setTimeText(TimeUtils.getConciseTime((mGodList.get(position).getTime()), mContext));
         holder.setOnRippleClickListener(new IndexViewHolder.OnRippleClick() {
             @Override
@@ -64,7 +83,7 @@ public class IndexViewAdapter extends RecyclerView.Adapter<IndexViewHolder> {
 
     @Override
     public int getItemCount() {
-        isOpen = (boolean) SPUtils.get(mContext, Constans.SETTING.OPEN_PASS_WORD_SHOW, true);
+        isOpen = (boolean) SPUtils.get(mContext, Constants.SETTING.OPEN_PASS_WORD_SHOW, true);
         return mGodList == null ? 0 : mGodList.size();
     }
 

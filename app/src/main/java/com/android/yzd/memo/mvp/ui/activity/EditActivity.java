@@ -43,6 +43,7 @@ public class EditActivity extends BaseSwipeBackActivity implements EditAView {
     @Bind(R.id.timeTextView) TextView mTimeTextView;
     @Bind(R.id.view) LinearLayout mView;
     @Bind(R.id.deleteButton) Button mDeleteButton;
+    @Bind(R.id.memo) MaterialEditText mMemoInfo;
     private EditAImpl mEditImpl;
     private MenuItem menuItem;
     private AlertDialog alertDialog;
@@ -126,6 +127,7 @@ public class EditActivity extends BaseSwipeBackActivity implements EditAView {
         mTitleEdt.addTextChangedListener(mEditImpl);
         mUserNameEdt.addTextChangedListener(mEditImpl);
         mPassWordEdt.addTextChangedListener(mEditImpl);
+        mMemoInfo.addTextChangedListener(mEditImpl);
     }
 
     @Override public void initEditModel() {
@@ -141,10 +143,12 @@ public class EditActivity extends BaseSwipeBackActivity implements EditAView {
         mTitleEdt.setEnabled(false);
         mUserNameEdt.setText(god.getUserName());
         mPassWordEdt.setText(god.getPassWord());
+        mMemoInfo.setText(god.getMemoInfo());
         mPassWordEdt.setTransformationMethod(HideReturnsTransformationMethod
                 .getInstance());
         mUserNameEdt.setOnFocusChangeListener(mEditImpl);
         mPassWordEdt.setOnFocusChangeListener(mEditImpl);
+        mMemoInfo.setOnFocusChangeListener(mEditImpl);
         mEyeChB.setChecked(false);
         mSpinner.setSelectedIndex(positionType);
         addEdtChangeListener();
@@ -163,6 +167,10 @@ public class EditActivity extends BaseSwipeBackActivity implements EditAView {
 
     @Override public String getPassWord() {
         return mPassWordEdt.getText().toString().trim();
+    }
+
+    @Override public String getMemoInfo() {
+        return mMemoInfo.getText().toString().trim();
     }
 
     @Override

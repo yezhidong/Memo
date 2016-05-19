@@ -15,8 +15,9 @@ import com.android.yzd.memo.mvp.model.evenbus.EventCenter;
 import com.android.yzd.memo.mvp.presenter.impl.IndexFImpl;
 import com.android.yzd.memo.mvp.ui.view.LoginTypeFView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.Bind;
-import de.greenrobot.event.EventBus;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,8 +59,7 @@ public class IndexFragment extends BaseFragment implements LoginTypeFView{
         return true;
     }
 
-    @Override
-    protected boolean isApplyEventBus() {
+    @Override protected boolean isApplyEventBus() {
         return true;
     }
 

@@ -10,10 +10,13 @@ import android.view.ViewGroup;
 
 import com.android.yzd.memo.mvp.model.evenbus.EventCenter;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.lang.reflect.Field;
 
 import butterknife.ButterKnife;
-import de.greenrobot.event.EventBus;
 
 /**
  * Created by Administrator on 2016/1/15.
@@ -123,9 +126,11 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
-    public void onEventMainThread(EventCenter eventCenter) {
-        if (eventCenter != null) {
-            onEventComing(eventCenter);
+
+    @Subscribe
+    public void onMessageEvent(EventCenter event) {
+        if (event != null) {
+            onEventComing(event);
         }
     }
 

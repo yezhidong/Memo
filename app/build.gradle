@@ -93,12 +93,10 @@ dependencies {
     compile 'com.umeng.analytics:analytics:latest.integration'
     compile 'com.umeng:fb:5.4.0'
     compile 'com.jakewharton:butterknife:7.0.1'
-    compile 'de.greenrobot:eventbus:2.4.0'
+    compile 'org.greenrobot:eventbus:3.0.0'
     compile 'io.realm:realm-android:0.87.0'
     compile 'de.hdodenhof:circleimageview:2.0.0'
     compile 'com.rengwuxian.materialedittext:library:2.1.4'
     compile 'me.imid.swipebacklayout.lib:library:1.0.0'
-    compile 'io.reactivex:rxandroid:1.1.0'
-    compile 'io.reactivex:rxjava:1.1.0'
     compile 'com.jakewharton.rxbinding:rxbinding:0.3.0'
 }

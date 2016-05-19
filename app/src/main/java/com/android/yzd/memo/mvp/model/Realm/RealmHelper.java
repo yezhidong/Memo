@@ -14,9 +14,10 @@ import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
 /**
- * Created by Administrator on 2016/1/26.
+ * Created by yezhidong on 2016/1/26.
  */
 public class RealmHelper {
+
     private static RealmHelper instances;
     private Context mContext;
 
@@ -24,11 +25,14 @@ public class RealmHelper {
         mContext = context;
     }
     public static RealmHelper getInstances(Context context){
-        if (instances == null) {
-            instances = new RealmHelper(context);
+        synchronized (RealmHelper.class) {
+            if (instances == null) {
+                instances = new RealmHelper(context);
+            }
         }
         return instances;
     }
+
     private static void closeConnect(Realm realm) {
         if (null != realm) {
             try {
@@ -90,15 +94,18 @@ public class RealmHelper {
         return false;
     }
 
+    /**
+     * 更新数据库
+     * @param context 上下文
+     * @param god bean
+     * @return 成功返回true
+     */
     public static boolean update(Context context, God god) {
-        if (check(context, god)) {
-            return true;
-        }
         Realm realm = Realm.getInstance(context);
         realm.beginTransaction();
         realm.copyToRealmOrUpdate(god);
         realm.commitTransaction();
-        return false;
+        return true;
     }
 
     public static void delete(Context context, God god, int position) {

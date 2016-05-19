@@ -162,8 +162,8 @@ public class EditAImpl implements ActivityPresenter,
         God god = new God(mPosition, titleName, userName, passWord, TimeUtils.getCurrentTimeInLong(), memoInfo);
         switch (createMode) {
             case 0:
-                if (RealmHelper.update(mContext, god)) {
-                    mEditAView.showSnackToast("修改失败，已经存在-"+god.getTitle()+"-的标题");
+                if (!RealmHelper.update(mContext, god)) {
+                    mEditAView.showSnackToast("修改失败");
                     mEditAView.hideKeyBoard();
                     return;
                 }

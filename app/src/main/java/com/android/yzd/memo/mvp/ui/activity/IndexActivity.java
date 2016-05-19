@@ -19,8 +19,9 @@ import com.android.yzd.memo.mvp.ui.activity.base.BaseActivity;
 import com.android.yzd.memo.mvp.ui.adapter.IndexContentAdapter;
 import com.android.yzd.memo.mvp.ui.view.IndexAView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.Bind;
-import de.greenrobot.event.EventBus;
 
 public class IndexActivity extends BaseActivity implements IndexAView{
 

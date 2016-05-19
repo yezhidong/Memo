@@ -18,8 +18,10 @@ import com.android.yzd.memo.utils.ThemeUtils;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.umeng.analytics.MobclickAgent;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import butterknife.ButterKnife;
-import de.greenrobot.event.EventBus;
 
 /**
  * create by yezhidong 2016/1/12
@@ -120,9 +122,10 @@ public abstract class BaseActivity extends Base {
         super.onDestroy();
     }
 
-    public void onEventMainThread(EventCenter eventCenter) {
-        if (eventCenter != null) {
-            onEventComing(eventCenter);
+    @Subscribe
+    public void onMessageEvent(EventCenter event) {
+        if (event != null) {
+            onEventComing(event);
         }
     }
 

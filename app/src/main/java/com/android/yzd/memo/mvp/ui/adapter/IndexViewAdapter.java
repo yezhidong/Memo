@@ -38,7 +38,7 @@ public class IndexViewAdapter extends RecyclerView.Adapter<IndexViewHolder> {
     @Override
     public IndexViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.main_password_item, parent, false);
-        return new IndexViewHolder(view);
+        return new IndexViewHolder(view, mContext);
     }
 
     @Override

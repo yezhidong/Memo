@@ -56,7 +56,7 @@
     <string name="view_mode">查看</string>
     <string name="create_mode">添加</string>
 
-    <string-array name="item_background_color">
+    <integer-array name="item_background_color">
         <item>@color/purple_100</item>
         <item>@color/cyan_600</item>
         <item>@color/teal_600</item>
@@ -65,5 +65,5 @@
         <item>@color/brown_600</item>
         <item>@color/gray_600</item>
         <item>@color/blue_gray_600</item>
-    </string-array>
+    </integer-array>
 </resources>

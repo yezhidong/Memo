@@ -58,6 +58,7 @@ public class IndexActivity extends BaseActivity implements IndexAView{
 
     @Override protected void initToolbar() {
         super.initToolBar(mToolBar);
+        mToolBar.setTitle("");
     }
 
     @Override protected boolean isApplyTranslucency() {

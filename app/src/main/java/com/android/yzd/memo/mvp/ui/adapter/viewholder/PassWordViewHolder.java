@@ -22,7 +22,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 /**
  * Created by yezhidong on 2016/1/15.
  */
-public class IndexViewHolder extends RecyclerView.ViewHolder {
+public class PassWordViewHolder extends RecyclerView.ViewHolder {
 
     private final TextView mTitleTextView;
     private final TextView mNoteContentTextView;
@@ -35,7 +35,7 @@ public class IndexViewHolder extends RecyclerView.ViewHolder {
     private OnRippleClick onRippleClick;
     private final CardView mCardView;
 
-    public IndexViewHolder(View parent, Context context) {
+    public PassWordViewHolder(View parent, Context context) {
         super(parent);
         ripple = (MaterialRippleLayout) parent.findViewById(R.id.ripple);
         mTitleTextView = (TextView) parent.findViewById(R.id.main_item_title);

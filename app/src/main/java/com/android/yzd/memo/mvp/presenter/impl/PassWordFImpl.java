@@ -11,7 +11,7 @@ import com.android.yzd.memo.mvp.model.Realm.RealmHelper;
 import com.android.yzd.memo.mvp.model.evenbus.EventCenter;
 import com.android.yzd.memo.mvp.presenter.FragmentPresenter;
 import com.android.yzd.memo.mvp.ui.activity.EditActivity;
-import com.android.yzd.memo.mvp.ui.adapter.IndexViewAdapter;
+import com.android.yzd.memo.mvp.ui.adapter.PassWordViewAdapter;
 import com.android.yzd.memo.mvp.ui.view.LoginTypeFView;
 
 import java.util.ArrayList;
@@ -19,16 +19,16 @@ import java.util.ArrayList;
 /**
  * Created by Administrator on 2016/1/15.
  */
-public class IndexFImpl implements FragmentPresenter, IndexViewAdapter.OnRecyclerItemClickListener {
+public class PassWordFImpl implements FragmentPresenter, PassWordViewAdapter.OnRecyclerItemClickListener {
 
     private final Context mContext;
     private final LoginTypeFView mLoginTypeFView;
-    private IndexViewAdapter mAdapter;
+    private PassWordViewAdapter mAdapter;
     private ArrayList<God> selector;
     private int position;
     private boolean isCreate;
 
-    public IndexFImpl(Context context, LoginTypeFView view) {
+    public PassWordFImpl(Context context, LoginTypeFView view) {
         mContext = context;
         mLoginTypeFView = view;
     }
@@ -36,7 +36,7 @@ public class IndexFImpl implements FragmentPresenter, IndexViewAdapter.OnRecycle
     public void onFirstUserVisible() {
         isCreate = true;
         selector = selector();
-        mAdapter = new IndexViewAdapter(mContext, selector);
+        mAdapter = new PassWordViewAdapter(mContext, selector);
         mAdapter.setOnRecyclerItemClick(this);
         mLoginTypeFView.initRecycler(new LinearLayoutManager(mContext), mAdapter);
         if (null != selector && selector.size() > 0) {

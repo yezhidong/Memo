@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.mvp.model.evenbus.EventCenter;
-import com.android.yzd.memo.mvp.presenter.impl.IndexFImpl;
+import com.android.yzd.memo.mvp.presenter.impl.PassWordFImpl;
 import com.android.yzd.memo.mvp.ui.view.LoginTypeFView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -23,18 +23,18 @@ import butterknife.Bind;
  * A simple {@link Fragment} subclass.
  * @author yezhidong
  */
-public class IndexFragment extends BaseFragment implements LoginTypeFView{
+public class PassWordFragment extends BaseFragment implements LoginTypeFView{
 
     private static final int INDEX_FRAGMENT_REQUEST_CODE = 2;
     private static final int EDIT_SAVE = 1;
     private static final int SUCCESS = 1;
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
     @Bind(R.id.exception) LinearLayout mException;
-    private IndexFImpl mIndexFImpl;
+    private PassWordFImpl mIndexFImpl;
 
     @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mIndexFImpl = new IndexFImpl(mActivity, this);
+        mIndexFImpl = new PassWordFImpl(mActivity, this);
         mIndexFImpl.getArgus(getArguments());
     }
 

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mvp.ui.fragment.PassWordFragment">
+    tools:context="com.android.yzd.memo.mvp.ui.fragment.DiaryFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -27,6 +27,6 @@
             android:drawablePadding="10dp"
             android:drawableTop="@mipmap/ic_exception"
             android:textColor="@color/text_color"
-            android:text="主人，您还没添加任何密码备忘记录哦～～"/>
+            android:text="主人，您还没写日记哦～～"/>
     </LinearLayout>
 </FrameLayout>

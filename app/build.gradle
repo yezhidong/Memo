@@ -4,6 +4,7 @@ apply plugin: 'me.tatarka.retrolambda'
 def packTime() {
     return new Date().format("yyyyMMddHHmm", TimeZone.getTimeZone("UTC"))
 }
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
@@ -52,14 +53,14 @@ android {
     productFlavors {
 //        _fir{}
 //        _mumayi{}
-        _wandoujia{}
+        _wandoujia {}
 //        _xiaomi{}
 //        _yingyongbao{}
 //        _360{}
     }
 
     productFlavors.all {
-        flavor -> flavor.manifestPlaceholders = [ CHANNEL_VALUE:name ]
+        flavor -> flavor.manifestPlaceholders = [CHANNEL_VALUE: name]
     }
 
     applicationVariants.all { variant ->
@@ -70,7 +71,7 @@ android {
                 def fileName
                 if (variant.buildType.name == "release") {
                     fileName = "memo_v${defaultConfig.versionName}_${packTime()}_${variant.productFlavors[0].name}.apk"
-                }else{
+                } else {
                     fileName = "memo_beta.apk"
                 }
                 output.outputFile = new File(outputDirectory, fileName)
@@ -84,10 +85,10 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile project(":prefrencelibrary")
-    compile 'com.android.support:appcompat-v7:23.1.0'
-    compile 'com.android.support:design:23.1.0'
-    compile 'com.android.support:support-v4:23.1.0'
-    compile 'com.android.support:cardview-v7:23.1.0'
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:design:23.3.0'
+    compile 'com.android.support:support-v4:23.3.0'
+    compile 'com.android.support:cardview-v7:23.3.0'
     compile 'com.balysv:material-ripple:1.0.2'
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
     compile 'com.umeng.analytics:analytics:latest.integration'

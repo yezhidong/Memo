@@ -10,7 +10,7 @@ import android.view.animation.DecelerateInterpolator;
 import com.android.yzd.memo.R;
 import com.android.yzd.memo.mvp.model.bean.God;
 import com.android.yzd.memo.mvp.model.Constants;
-import com.android.yzd.memo.mvp.ui.adapter.viewholder.IndexViewHolder;
+import com.android.yzd.memo.mvp.ui.adapter.viewholder.PassWordViewHolder;
 import com.android.yzd.memo.utils.SPUtils;
 import com.android.yzd.memo.utils.TimeUtils;
 import com.android.yzd.memo.utils.Utils;
@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * Created by yezhidong on 2016/1/15.
  */
-public class IndexViewAdapter extends RecyclerView.Adapter<IndexViewHolder> {
+public class PassWordViewAdapter extends RecyclerView.Adapter<PassWordViewHolder> {
 
     private final Context mContext;
     private List<God> mGodList = new ArrayList<>();
@@ -29,20 +29,20 @@ public class IndexViewAdapter extends RecyclerView.Adapter<IndexViewHolder> {
     private boolean isOpen;
     private int lastAnimatedPosition = -1;
 
-    public IndexViewAdapter(Context context, ArrayList<God> godArrayList) {
+    public PassWordViewAdapter(Context context, ArrayList<God> godArrayList) {
         mContext = context;
         if (godArrayList != null) {
             mGodList.addAll(godArrayList);
         }
     }
     @Override
-    public IndexViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PassWordViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.main_password_item, parent, false);
-        return new IndexViewHolder(view, mContext);
+        return new PassWordViewHolder(view, mContext);
     }
 
     @Override
-    public void onBindViewHolder(IndexViewHolder holder, int position) {
+    public void onBindViewHolder(PassWordViewHolder holder, int position) {
         runEnterAnimation(holder.itemView, position);
         holder.setLabelText(mGodList.get(position).getTitle());
         holder.setContentText(mGodList.get(position).getUserName());
@@ -71,7 +71,7 @@ public class IndexViewAdapter extends RecyclerView.Adapter<IndexViewHolder> {
                 break;
         }
         holder.setTimeText(TimeUtils.getConciseTime((mGodList.get(position).getTime()), mContext));
-        holder.setOnRippleClickListener(new IndexViewHolder.OnRippleClick() {
+        holder.setOnRippleClickListener(new PassWordViewHolder.OnRippleClick() {
             @Override
             public void onRippleClick(View view) {
                 if (listener != null) {

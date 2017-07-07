@@ -3,7 +3,7 @@
     <data>
         <variable
             name="index"
-            type="com.android.yzd.memo.mvp.model.bean.IndexBean"/>
+            type="com.android.yzd.mima.mvp.model.bean.IndexBean"/>
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -40,7 +40,7 @@
                     android:layout_marginTop="?attr/actionBarSize"
                     android:background="@drawable/toolbar_shadow"
                     />
-                <com.android.yzd.memo.widget.XViewPager
+                <com.android.yzd.mima.widget.XViewPager
                     android:id="@+id/content"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

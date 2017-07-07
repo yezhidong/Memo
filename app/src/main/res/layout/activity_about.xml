@@ -3,7 +3,7 @@
     <data>
         <variable
             name="aboutInfo"
-            type="com.android.yzd.memo.mvp.model.bean.AboutDB"/>
+            type="com.android.yzd.mima.mvp.model.bean.AboutDB"/>
     </data>
 
     <LinearLayout
@@ -53,30 +53,31 @@
 
         </LinearLayout>
 
-        <com.balysv.materialripple.MaterialRippleLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="80dp"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            app:mrl_rippleOverlay="true"
-            app:mrl_rippleColor="?attr/colorPrimary"
-            >
-            <Button
-                android:id="@+id/codeButton"
-                android:background="@drawable/about_button_background"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="?attr/colorPrimaryDark"
-                android:text="项目源码"/>
-        </com.balysv.materialripple.MaterialRippleLayout>
+        <!--<com.balysv.materialripple.MaterialRippleLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:layout_marginBottom="80dp"-->
+            <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+            <!--app:mrl_rippleOverlay="true"-->
+            <!--app:mrl_rippleColor="?attr/colorPrimary"-->
+            <!--&gt;-->
+            <!--<Button-->
+                <!--android:id="@+id/codeButton"-->
+                <!--android:background="@drawable/about_button_background"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textColor="?attr/colorPrimaryDark"-->
+                <!--android:text="项目源码"/>-->
+        <!--</com.balysv.materialripple.MaterialRippleLayout>-->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             android:gravity="center"
             android:layout_margin="20dp"
-            android:text="Copyright © 2016 Yezhidong."/>
+            android:textSize="13sp"
+            android:text="Copyright © 2014-2017 xinbaobao."/>
     </LinearLayout>
 </layout>

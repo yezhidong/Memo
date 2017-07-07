@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">passWord</string>
-    <string name="create_activity_welcome">欢迎使用 怕死我的</string>
+    <string name="app_name">私人密码本</string>
+    <string name="create_activity_welcome">欢迎使用 私人密码本</string>
     <string name="create_activity_first">第一次使用，请先设置密码</string>
     <string name="create_activity_warn">绘制解锁图案</string>
     <string name="finger_press">完成后松开手指</string>
@@ -47,23 +48,18 @@
     </string-array>
 
     <string-array name="spinner_item">
-        <item>默认</item>
-        <item>邮箱</item>
-        <item>博客</item>
+        <item>社交</item>
+        <item>游戏</item>
+        <item>购物</item>
     </string-array>
 
     <string name="edit_mode">编辑</string>
     <string name="view_mode">查看</string>
     <string name="create_mode">添加</string>
 
-    <integer-array name="item_background_color">
-        <item>@color/purple_100</item>
-        <item>@color/cyan_600</item>
-        <item>@color/teal_600</item>
-        <item>@color/lime_600</item>
-        <item>@color/amber_600</item>
-        <item>@color/brown_600</item>
-        <item>@color/gray_600</item>
-        <item>@color/blue_gray_600</item>
-    </integer-array>
+    <string name="no_data_string">发现新大陆，快来占领这片土地！ヾ(′▽｀*)ゝ</string>
+    <string name="click_to_skip">点击跳过</string>
+    <string name="dialog_positive_string">准奏</string>
+    <string name="dialog_negative_string">滚开</string>
+
 </resources>

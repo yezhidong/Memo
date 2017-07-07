@@ -4,14 +4,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context=".mvp.ui.activity.SplashActivity">
 
-    <!--<ImageView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:background="@mipmap/splash"-->
-        <!--android:scaleType="fitXY"-->
-        <!--/>-->
+    <!-- 广点通开屏广告支持“半屏/全屏”展示，开发者可以把Logo区域放在屏幕底部，然后在Logo上方提供一个容器来放置半开屏广告，请注意此容器高度不得小于400dp -->
+
+    <!-- 1.Logo区域：展示半开屏广告时使用，如果想展示全开屏广告，可以不需要这个Logo区域 -->
+    <ImageView
+        android:id="@+id/app_logo"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="35dp"
+        android:layout_marginRight="15dp"
+        android:layout_alignParentBottom="true"
+        android:background="@mipmap/app_icon2"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_5a5a5a"
+        android:textSize="16sp"
+        android:text="@string/app_name"
+        android:layout_alignTop="@+id/app_logo"
+        android:layout_toRightOf="@+id/app_logo"
+        android:layout_toEndOf="@+id/app_logo"
+        android:layout_marginTop="10dp"/>
+
+    <!-- 2.开屏广告容器区域：-->
+    <!-- 注意：该区域高度不得小于400dp。在本示例中没有写死splash_container的高度值，是因为第1部分的app_logo区域是一个高度很小的图片。 -->
+    <FrameLayout
+        android:id="@+id/splash_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/app_logo"/>
+
+    <!-- 3.自定义跳过按钮区域：开发者可以根据需要自己实现不同样式的跳过按钮 -->
+    <!-- 注意1：根据广告法规定，跳过按钮必须在屏幕当中出现。因此广告展示的时候，必须让将SkipView显示出来，即visible，否则将SDK将不展示广告，返回错误码608。。 -->
+    <!-- 注意2：SDK除了会检查跳过按钮的可见性，还将检测它的尺寸，其尺寸不得小于3dp*3dp，否则将SDK将不展示广告，返回错误码608。 -->
+    <TextView
+        android:id="@+id/skip_view"
+        android:layout_width="96dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="16dp"
+        android:background="@drawable/background_circle"
+        android:gravity="center"
+        android:text="@string/click_to_skip"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"/>
+    <!-- 本示例省略了自定义的倒计时，和跳过按钮放在一起实现了。开发者也可以实现自己的倒计时View，方法是在onADTick回调中获得广告剩余的展示时间，并自由决定倒计时View的样式，SDK对倒计时的View没有要求。 -->
+
+
+    <!-- 4.预设开屏图片区域： -->
+    <!-- 开发者可以把自家App设计开屏图片摆放在这里，本示例中放置了一张静态图片。然后在onADPresent回调中再把这个图片隐藏起来。 !-->
+    <!-- 注意：直接将此图盖在广告容器的上面即可，始终不要将广告容器splash_container的设为invisible，否则将不会展示广告无法计费，返回错误码600。-->
+    <ImageView
+        android:id="@+id/splash_holder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/app_logo"
+        android:scaleType="fitXY"
+        android:src="@android:color/white" />
 
 
 

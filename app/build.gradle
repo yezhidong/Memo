@@ -7,14 +7,14 @@ def packTime() {
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
-        applicationId "com.android.yzd.memo"
+        applicationId "com.android.yzd.mima"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 109
-        versionName "1.0.9"
+        versionCode 200
+        versionName "2.0.0"
         multiDexEnabled true
         resConfigs "zh"
     }
@@ -23,7 +23,7 @@ android {
         release {
             zipAlignEnabled true
             minifyEnabled false
-            shrinkResources true
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -92,7 +92,6 @@ dependencies {
     compile 'com.balysv:material-ripple:1.0.2'
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
     compile 'com.umeng.analytics:analytics:latest.integration'
-    compile 'com.umeng:fb:5.4.0'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'io.realm:realm-android:0.87.0'
@@ -100,4 +99,6 @@ dependencies {
     compile 'com.rengwuxian.materialedittext:library:2.1.4'
     compile 'me.imid.swipebacklayout.lib:library:1.0.0'
     compile 'com.jakewharton.rxbinding:rxbinding:0.3.0'
+    compile 'com.taobao.android:alisdk-hotfix:2.0.9'
+    compile 'com.alibaba:fastjson:1.2.7'
 }

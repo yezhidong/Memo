@@ -1,33 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <group android:checkableBehavior="single"
         android:id="@+id/menu_id">
         <item
             android:id="@+id/nav_login_type"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="默认" />
+            android:icon="@mipmap/find_book"
+            app:itemBackground="?attr/colorPrimary"
+            app:itemTextColor="?attr/colorPrimary"
+            android:title="社交" />
         <item
             android:id="@+id/nav_mail_type"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="邮箱" />
+            android:icon="@mipmap/find_game"
+            app:itemBackground="?attr/colorPrimary"
+            app:itemTextColor="?attr/colorPrimary"
+            android:title="游戏" />
         <item
             android:id="@+id/nav_note_type"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="博客" />
+            android:icon="@mipmap/find_cartoon"
+            app:itemBackground="?attr/colorPrimary"
+            app:itemTextColor="?attr/colorPrimary"
+            android:title="购物" />
     </group>
 
-    <item android:title="系统功能">
-        <menu>
+    <!--<item android:title="系统功能">-->
+        <!--<menu>-->
+            <!--&lt;!&ndash;<item&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/nav_share"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:icon="@drawable/ic_menu_share"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:title="分享" />&ndash;&gt;-->
             <!--<item-->
-                <!--android:id="@+id/nav_share"-->
-                <!--android:icon="@drawable/ic_menu_share"-->
-                <!--android:title="分享" />-->
-            <item
-                android:id="@+id/nav_setting"
-                android:icon="@drawable/ic_menu_manage"
-                android:title="设置" />
-        </menu>
-    </item>
+                <!--android:id="@+id/nav_setting"-->
+                <!--android:icon="@mipmap/ic_comic_setting_sel"-->
+                <!--android:title="设置" />-->
+        <!--</menu>-->
+    <!--</item>-->
 
 </menu>

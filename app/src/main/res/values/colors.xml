@@ -46,12 +46,15 @@
     <color name="text_red">#ffff4081</color>
     <color name="light_grey">#ffbebebe</color>
 
-    <color name="purple_100">#d1c4e9</color>
-    <color name="cyan_600">#00acc1</color>
-    <color name="teal_600">#00897b</color>
-    <color name="lime_600">#c0ca33</color>
-    <color name="amber_600">#ffb300</color>
-    <color name="brown_600">#6d4c41</color>
-    <color name="gray_600">#757575</color>
-    <color name="blue_gray_600">#546e7a</color>
+    <color name="purple_100">#f0d1c4e9</color>
+    <color name="cyan_600">#f000acc1</color>
+    <color name="teal_600">#f000897b</color>
+    <color name="lime_600">#f0c0ca33</color>
+    <color name="amber_600">#f0ffb300</color>
+    <color name="brown_600">#f06d4c41</color>
+    <color name="gray_600">#f0757575</color>
+    <color name="blue_gray_600">#f0546e7a</color>
+
+    <color name="color_5a5a5a">#5a5a5a</color>
+    <color name="color_9a9a9a">#9a9a9a</color>
 </resources>

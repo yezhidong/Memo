@@ -71,13 +71,7 @@
             android:launchMode="singleTop" />
         <activity android:name="com.android.yzd.mima.mvp.ui.activity.EditActivity" />
         <activity android:name="com.android.yzd.mima.mvp.ui.activity.AboutActivity" />
-        <activity android:name="com.android.yzd.mima.mvp.ui.activity.WebViewActivity"></activity>
-        <service
-            android:name="com.umeng.update.net.DownloadingService"
-            android:process=":DownloadingService" />
-        <activity
-            android:name="com.umeng.update.UpdateDialogActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name="com.android.yzd.mima.mvp.ui.activity.WebViewActivity"/>
 
         <!--小米推送-->
         <service

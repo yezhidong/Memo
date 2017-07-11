@@ -6,7 +6,7 @@ package com.android.yzd.mima.mvp.model;
 public class Constants {
 
     public static final String AD_AppId = "1106256606";
-    public static final String SplashPosID = "4090222359914397";
+    public static final String SplashPosID = "6030226460238558";
 
 
     public static int REALM_VERSION = 1;

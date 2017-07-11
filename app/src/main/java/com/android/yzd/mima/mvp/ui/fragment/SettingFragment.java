@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.widget.GridView;
 
 import com.android.yzd.mima.R;
-import com.android.yzd.mima.mvp.model.Constants;
 import com.android.yzd.mima.mvp.presenter.impl.SettingFImpl;
 import com.android.yzd.mima.mvp.ui.activity.SettingActivity;
 import com.android.yzd.mima.mvp.ui.adapter.ColorListAdapter;
@@ -43,12 +42,7 @@ public class SettingFragment extends PreferenceFragment implements SettingAView{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        int count = (int) SPUtils.get(getActivity(), Constants.COUNT, 1);
-        if (count > 8) {
-            addPreferencesFromResource(R.xml.setting_preference_xml);
-        } else {
-            addPreferencesFromResource(R.xml.setting_preference_xml1);
-        }
+        addPreferencesFromResource(R.xml.setting_preference_xml);
         getPreferenceManager().setSharedPreferencesName(PREFERENCE_NAME);
         settingFImpl = new SettingFImpl(getActivity(), this);
         settingFImpl.onFirstUserVisible();

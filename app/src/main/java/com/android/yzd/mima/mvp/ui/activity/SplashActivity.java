@@ -48,15 +48,14 @@ public class SplashActivity extends BaseActivity implements SplashADListener {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);// 设置全屏
         int count = (int) SPUtils.get(this, Constants.COUNT, 1);
-        if (count >= 5) {
-            Log.d("yzd", " count = " + count);
-            boolean isOpenAd = (boolean) SPUtils.get(this, Constants.SETTING.OPEN_AD, true);
-            Log.d("yzd", " isOpenAd = " + isOpenAd);
-            if (isOpenAd) {
-                container = (ViewGroup) this.findViewById(R.id.splash_container);
-                skipView = (TextView) findViewById(R.id.skip_view);
-                splashHolder = (ImageView) findViewById(R.id.splash_holder);
-                // 如果targetSDKVersion >= 23，就要申请好权限。如果您的App没有适配到Android6.0（即targetSDKVersion < 23），那么只需要在这里直接调用fetchSplashAD接口。
+        Log.d("yzd", " count = " + count);
+        boolean isOpenAd = (boolean) SPUtils.get(this, Constants.SETTING.OPEN_AD, true);
+        Log.d("yzd", " isOpenAd = " + isOpenAd);
+        if (isOpenAd) {
+            container = (ViewGroup) this.findViewById(R.id.splash_container);
+            skipView = (TextView) findViewById(R.id.skip_view);
+            splashHolder = (ImageView) findViewById(R.id.splash_holder);
+            // 如果targetSDKVersion >= 23，就要申请好权限。如果您的App没有适配到Android6.0（即targetSDKVersion < 23），那么只需要在这里直接调用fetchSplashAD接口。
 //        if (Build.VERSION.SDK_INT >= 23) {
 //            checkAndRequestPermission();
 //        } else {
@@ -64,10 +63,7 @@ public class SplashActivity extends BaseActivity implements SplashADListener {
 //        }
                 /*仅限于和DownloadService的不在同一进程的Activity*/
 //                MultiProcessFlag.setMultiProcess(true);
-                fetchSplashAD(this, container, skipView, Constants.AD_AppId, Constants.SplashPosID, this, 0);
-            } else {
-                go2Next();
-            }
+            fetchSplashAD(this, container, skipView, Constants.AD_AppId, Constants.SplashPosID, this, 0);
         } else {
             go2Next();
         }

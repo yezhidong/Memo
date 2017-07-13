@@ -38,7 +38,7 @@ public class SplashActivity extends BaseActivity implements SplashADListener {
     private ViewGroup container;
     private TextView skipView;
     private ImageView splashHolder;
-    private static final String SKIP_TEXT = "点击跳过 %d";
+    private static final String SKIP_TEXT = "跳过%d";
     private boolean canJump;
 
 

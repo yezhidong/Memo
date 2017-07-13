@@ -45,16 +45,15 @@
     <!-- 注意2：SDK除了会检查跳过按钮的可见性，还将检测它的尺寸，其尺寸不得小于3dp*3dp，否则将SDK将不展示广告，返回错误码608。 -->
     <TextView
         android:id="@+id/skip_view"
-        android:layout_width="96dp"
-        android:layout_height="wrap_content"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_margin="16dp"
         android:background="@drawable/background_circle"
         android:gravity="center"
-        android:text="@string/click_to_skip"
         android:textColor="@android:color/white"
-        android:textSize="14sp"/>
+        android:textSize="9sp"/>
     <!-- 本示例省略了自定义的倒计时，和跳过按钮放在一起实现了。开发者也可以实现自己的倒计时View，方法是在onADTick回调中获得广告剩余的展示时间，并自由决定倒计时View的样式，SDK对倒计时的View没有要求。 -->
 
 

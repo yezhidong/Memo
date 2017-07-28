@@ -44,17 +44,9 @@
  * 尝试RxAndroid
  * Kotlin
 
-###项目讨论群:178416797
-
 ##鸣谢
 2015年五月份看了Obsessive1990的SimplifyReader，对mvp有了初步的认识，之后看了了lguipeng的极简笔记，然后受益匪浅，乘着最近一段时间不是很忙，花了几个晚上练手完成了这个项目。
 
-[Obsessive1990](https://github.com/SkillCollege)
-[lguipeng](https://github.com/lguipeng)
-
-
-##觉得不错，打赏我
-<img src="/screenshots/pay.JPG" alt="screenshot" title="screenshot" width="150" height="200" />
 ```
 Copyright (c) 2016 yezhidong
 ```

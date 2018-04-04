@@ -13,8 +13,8 @@ android {
         applicationId "com.android.yzd.mima"
         minSdkVersion 15
         targetSdkVersion 22
-        versionCode 201
-        versionName "2.0.1"
+        versionCode 202
+        versionName "2.0.2"
         multiDexEnabled true
         resConfigs "zh"
     }

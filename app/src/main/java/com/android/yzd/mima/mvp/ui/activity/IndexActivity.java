@@ -51,6 +51,12 @@ public class IndexActivity extends BaseActivity implements IndexAView{
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        mIndexPre.onResume();
+    }
+
+    @Override
     protected TransitionMode getOverridePendingTransitionMode() {
         return TransitionMode.RIGHT;
     }

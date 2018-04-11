@@ -60,7 +60,9 @@
     <string name="no_data_string">发现新大陆，快来占领这片土地！ヾ(′▽｀*)ゝ</string>
     <string name="click_to_skip">跳过</string>
     <string name="dialog_positive_string">准奏</string>
+    <string name="dialog_comment_positive_string">去评论</string>
     <string name="dialog_negative_string">滚开</string>
+    <string name="dialog_comment_negative_string">不需要</string>
     <string name="tab_chat">社交</string>
     <string name="tab_game">游戏</string>
     <string name="tab_shop">购物</string>

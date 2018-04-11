@@ -71,6 +71,20 @@ public class RealmHelper {
         return null;
     }
 
+    public static ArrayList<God> query(Context context) {
+        Realm realm = Realm.getInstance(context);
+        RealmQuery<God> realmQuery = realm.where(God.class);
+        RealmResults<God> realmResults = realmQuery.findAll();
+        if (realmResults != null && realmResults.size() > 0) {
+            ArrayList<God> godList = new ArrayList<>();
+            for (God god : realmResults) {
+                godList.add(god);
+            }
+            return godList;
+        }
+        return null;
+    }
+
     public static boolean save(Context context, God god) {
         if (check(context, god)) {
             return true;

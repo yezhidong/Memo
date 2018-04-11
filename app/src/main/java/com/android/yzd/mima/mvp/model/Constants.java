@@ -18,6 +18,7 @@ public class Constants {
     public static int UPDATE_GESTURE = 2;
 
     public static String COUNT = "COUNT";
+    public static String IS_COMMENT = "IS_COMMENT";
 
     public final static class EVEN_BUS {
         public static int CHANGE_THEME = 2;

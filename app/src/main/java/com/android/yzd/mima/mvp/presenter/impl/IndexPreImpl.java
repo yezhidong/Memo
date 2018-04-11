@@ -14,6 +14,8 @@ import android.view.MenuItem;
 import com.android.yzd.mima.R;
 import com.android.yzd.mima.databinding.ActivityIndexBinding;
 import com.android.yzd.mima.mvp.model.Constants;
+import com.android.yzd.mima.mvp.model.Realm.RealmHelper;
+import com.android.yzd.mima.mvp.model.bean.God;
 import com.android.yzd.mima.mvp.presenter.ActivityPresenter;
 import com.android.yzd.mima.mvp.ui.activity.EditActivity;
 import com.android.yzd.mima.mvp.ui.view.IndexAView;
@@ -21,7 +23,10 @@ import com.android.yzd.mima.utils.GetUri;
 import com.android.yzd.mima.utils.SPUtils;
 import com.jakewharton.rxbinding.view.RxView;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
+
+import rx.functions.Action1;
 
 /**
  * Created by Clearlove on 16/1/13.
@@ -34,19 +39,35 @@ public class IndexPreImpl implements ActivityPresenter, NavigationView.OnNavigat
     private int currentSelectedItem = 0;
     private static long DOUBLE_CLICK_TIME = 0L;
     private AlertDialog mAlertDialog;
+    private final ArrayList<God> mQuery;
+    private boolean goComment;
+    private long mCommentCurrentTimeMillis;
 
     public IndexPreImpl(Context context, IndexAView view, ActivityIndexBinding dataBinding) {
         this.mContext = context;
         mIndexView = view;
         mDataBinding = dataBinding;
         giveMeFive();
+        RealmHelper.getInstances(mContext);
+        mQuery = RealmHelper.query(mContext);
     }
 
-    @Override public void onCreate(Bundle savedInstanceState) {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         mIndexView.initDrawerToggle();
         mIndexView.initXViewPager();
         FloatingActionButton fab = mDataBinding.fab;
-        RxView.clicks(fab).throttleFirst(500, TimeUnit.MILLISECONDS).subscribe((aVoid) ->mIndexView.readyGoForResult(EditActivity.class));
+        RxView.clicks(fab).throttleFirst(500, TimeUnit.MILLISECONDS).subscribe((new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                boolean isComment = (boolean) SPUtils.get(mContext, Constants.IS_COMMENT, false);
+                if (isComment || mQuery != null && mQuery.size() < 3) {
+                    mIndexView.readyGoForResult(EditActivity.class);
+                } else {
+                    showDialogToComment();
+                }
+            }
+        }));
         mDataBinding.navigationView.setCheckedItem(R.id.nav_login_type);
         mDataBinding.navigationView.setNavigationItemSelectedListener(this);
     }
@@ -58,30 +79,37 @@ public class IndexPreImpl implements ActivityPresenter, NavigationView.OnNavigat
         }
     }
 
-    @Override public void onResume() {
+    @Override
+    public void onResume() {
+        if (goComment && System.currentTimeMillis() - mCommentCurrentTimeMillis > 10000) {
+            SPUtils.put(mContext, Constants.IS_COMMENT, true);
+        }
+        goComment = false;
+    }
+
+    @Override
+    public void onStart() {
 
     }
 
-    @Override public void onStart() {
+    @Override
+    public void onPause() {
 
     }
 
-    @Override public void onPause() {
+    @Override
+    public void onStop() {
 
     }
 
-    @Override public void onStop() {
-
-    }
-
-    @Override public void onDestroy() {
+    @Override
+    public void onDestroy() {
 
     }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case R.id.nav_login_type:
                 currentSelectedItem = 0;
                 mDataBinding.drawerLayout.closeDrawer(GravityCompat.START);
@@ -97,7 +125,8 @@ public class IndexPreImpl implements ActivityPresenter, NavigationView.OnNavigat
                 mDataBinding.drawerLayout.closeDrawer(GravityCompat.START);
                 mDataBinding.content.setCurrentItem(currentSelectedItem, false);
                 break;
-            default:break;
+            default:
+                break;
         }
         return true;
     }
@@ -123,11 +152,7 @@ public class IndexPreImpl implements ActivityPresenter, NavigationView.OnNavigat
                 || count == 25
                 || count == 50
                 || count == 85
-                || count == 120
-                || count == 200
-                || count == 310
-                || count == 500
-                || count == 1000) {
+                || count == 120) {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -135,6 +160,32 @@ public class IndexPreImpl implements ActivityPresenter, NavigationView.OnNavigat
                 }
             }, 3000);
         }
+    }
+
+    private void showDialogToComment() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle("主人");
+        builder.setMessage("给应用一个五星好评，就可以无限添加啦！");//
+        builder.setPositiveButton(mContext.getString(R.string.dialog_comment_positive_string), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                giveFavor();
+                goComment = true;
+                mCommentCurrentTimeMillis = System.currentTimeMillis();
+                if (mAlertDialog != null) {
+                    mAlertDialog.dismiss();
+                }
+            }
+        });
+        builder.setNegativeButton(mContext.getString(R.string.dialog_comment_negative_string), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (mAlertDialog != null) {
+                    mAlertDialog.dismiss();
+                }
+            }
+        });
+        mAlertDialog = builder.show();
     }
 
     private void showDialog() {
@@ -161,7 +212,7 @@ public class IndexPreImpl implements ActivityPresenter, NavigationView.OnNavigat
         mAlertDialog = builder.show();
     }
 
-    private void giveFavor(){
+    private void giveFavor() {
         Intent intent = GetUri.getIntent(mContext, mContext.getPackageName());
         boolean b = GetUri.judge(mContext, intent);
         if (b == false) {

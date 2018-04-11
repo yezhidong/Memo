@@ -79,7 +79,7 @@ public class IndexPreImpl implements ActivityPresenter, NavigationView.OnNavigat
 
     @Override
     public void onResume() {
-        if (goComment && System.currentTimeMillis() - mCommentCurrentTimeMillis > 10000) {
+        if (goComment && System.currentTimeMillis() - mCommentCurrentTimeMillis > 8000) {
             SPUtils.put(mContext, Constants.IS_COMMENT, true);
         }
         goComment = false;

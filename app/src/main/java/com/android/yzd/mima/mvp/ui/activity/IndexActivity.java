@@ -83,36 +83,38 @@ public class IndexActivity extends BaseActivity implements IndexAView{
             mData.add(split[i]);
         }
         mData.add("+新增分组");
-        mRecyclerView.setAdapter(new RecyclerView.Adapter() {
-            @Override
-            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(IndexActivity.this).inflate(R.layout.item_typ, parent, false);
-                return new Holder(view);
-            }
-
-            @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-                Holder viewHolder = (Holder) holder;
-                viewHolder.mTypeName.setText(mData.get(position));
-                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (mData.size() - 1 == position) {
-                            showCreateTypeDialog();
-                        } else {
-                            mXViewPager.setCurrentItem(position, false);
-                            mDataBinding.drawerLayout.closeDrawer(GravityCompat.START);
-                        }
-                    }
-                });
-            }
-
-            @Override
-            public int getItemCount() {
-                return mData.size();
-            }
-        });
+        mRecyclerView.setAdapter(adapter);
     }
+
+    RecyclerView.Adapter adapter = new RecyclerView.Adapter() {
+        @Override
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(IndexActivity.this).inflate(R.layout.item_typ, parent, false);
+            return new Holder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+            Holder viewHolder = (Holder) holder;
+            viewHolder.mTypeName.setText(mData.get(position));
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mData.size() - 1 == position) {
+                        showCreateTypeDialog();
+                    } else {
+                        mXViewPager.setCurrentItem(position, false);
+                        mDataBinding.drawerLayout.closeDrawer(GravityCompat.START);
+                    }
+                }
+            });
+        }
+
+        @Override
+        public int getItemCount() {
+            return mData.size();
+        }
+    };
 
     private void showCreateTypeDialog() {
         final EditText editText = new EditText(this);
@@ -127,8 +129,10 @@ public class IndexActivity extends BaseActivity implements IndexAView{
                     return;
                 }
                 String typeString = (String) SPUtils.get(IndexActivity.this, Constants.TYPE, "默认");
+                mData.add(mData.size() - 1, text);
                 text = typeString + ";" + text;
                 SPUtils.put(IndexActivity.this, Constants.TYPE, text);
+                adapter.notifyDataSetChanged();
             }
         });
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {

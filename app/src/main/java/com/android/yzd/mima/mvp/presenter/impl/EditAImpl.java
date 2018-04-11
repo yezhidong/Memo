@@ -13,12 +13,14 @@ import android.widget.AdapterView;
 import android.widget.CompoundButton;
 
 import com.android.yzd.mima.R;
-import com.android.yzd.mima.mvp.model.bean.God;
+import com.android.yzd.mima.mvp.model.Constants;
 import com.android.yzd.mima.mvp.model.Realm.RealmHelper;
+import com.android.yzd.mima.mvp.model.bean.God;
 import com.android.yzd.mima.mvp.presenter.ActivityPresenter;
 import com.android.yzd.mima.mvp.ui.activity.EditActivity;
-import com.android.yzd.mima.utils.TimeUtils;
 import com.android.yzd.mima.mvp.ui.view.EditAView;
+import com.android.yzd.mima.utils.SPUtils;
+import com.android.yzd.mima.utils.TimeUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,16 +44,19 @@ public class EditAImpl implements ActivityPresenter,
     private int positionType;
     private String mPositiveButtonMsg;
     private int p;
+    private String[] mSplit;
 
     public EditAImpl(Context context, EditAView view) {
         mContext = context;
         mEditAView = view;
     }
     @Override public void onCreate(Bundle savedInstanceState) {
-        String[] stringArray = mContext.getResources().getStringArray(R.array.spinner_item);
         ArrayList<String> arrayList = new ArrayList<>();
-        for (String str : stringArray) {
-            arrayList.add(str);
+        String typeString = (String) SPUtils.get(mContext, Constants.TYPE, "默认");
+        mSplit = typeString.split(";");
+        for (int i = 0; i < mSplit.length; i++) {
+            arrayList.add(mSplit[i]);
+
         }
         mEditAView.initSpinner(arrayList);
         mEditAView.getSwipeBack().addSwipeListener(this);
@@ -59,6 +64,7 @@ public class EditAImpl implements ActivityPresenter,
     }
 
     @Override public void getIntent(Intent intent) {
+
         createMode = intent.getIntExtra("CREATE_MODE", 1);
         switch (createMode) {
             case 0:// 查看

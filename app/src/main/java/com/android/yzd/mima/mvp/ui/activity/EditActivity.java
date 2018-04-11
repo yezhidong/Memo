@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,15 +15,22 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.yzd.mima.R;
+import com.android.yzd.mima.mvp.model.Constants;
 import com.android.yzd.mima.mvp.model.bean.God;
 import com.android.yzd.mima.mvp.model.evenbus.EventCenter;
 import com.android.yzd.mima.mvp.presenter.impl.EditAImpl;
 import com.android.yzd.mima.mvp.ui.activity.base.BaseSwipeBackActivity;
 import com.android.yzd.mima.mvp.ui.view.EditAView;
+import com.android.yzd.mima.utils.SPUtils;
 import com.android.yzd.mima.widget.spinner.NiceSpinner;
+import com.qq.e.ads.banner.ADSize;
+import com.qq.e.ads.banner.AbstractBannerADListener;
+import com.qq.e.ads.banner.BannerView;
+import com.qq.e.comm.util.AdError;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.util.List;
@@ -30,7 +38,7 @@ import java.util.List;
 import butterknife.Bind;
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 
-public class EditActivity extends BaseSwipeBackActivity implements EditAView {
+public class EditActivity extends BaseSwipeBackActivity implements EditAView, View.OnClickListener {
 
     public static final String CURRENT_TYPE = "CURRENT_TYPE";
     private static final int SUCCESS = 1;
@@ -45,6 +53,11 @@ public class EditActivity extends BaseSwipeBackActivity implements EditAView {
     @Bind(R.id.view) LinearLayout mView;
     @Bind(R.id.deleteButton) Button mDeleteButton;
     @Bind(R.id.memo) MaterialEditText mMemoInfo;
+    @Bind(R.id.adcontent)
+    RelativeLayout adcontent;
+    @Bind(R.id.close)
+    View close;
+    private BannerView mBanner;
     private EditAImpl mEditImpl;
     private MenuItem menuItem;
     private AlertDialog alertDialog;
@@ -157,6 +170,7 @@ public class EditActivity extends BaseSwipeBackActivity implements EditAView {
         addEdtChangeListener();
         mDeleteButton.setVisibility(View.VISIBLE);
         mDeleteButton.setOnClickListener(mEditImpl);
+        loadAd();
     }
 
 
@@ -248,5 +262,62 @@ public class EditActivity extends BaseSwipeBackActivity implements EditAView {
     @Override
     public SwipeBackLayout getSwipeBack() {
         return getSwipeBackLayout();
+    }
+
+    private void loadAd() {
+        int count = (int) SPUtils.get(this, Constants.COUNT, 1);
+        if (count > 8) {
+            adcontent.setVisibility(View.VISIBLE);
+            // 创建Banner广告AdView对象
+            // appId : 在 http://e.qq.com/dev/ 能看到的app唯一字符串
+            // posId : 在 http://e.qq.com/dev/ 生成的数字串，并非 appid 或者 appkey
+            mBanner = new BannerView(this, ADSize.BANNER, Constants.AD_AppId, Constants.DETAIL_BANNERID);
+            //设置广告轮播时间，为0或30~120之间的数字，单位为s,0标识不自动轮播
+            mBanner.setRefresh(30);
+            mBanner.setShowClose(true);
+            mBanner.setADListener(new AbstractBannerADListener() {
+
+
+                @Override
+                public void onNoAD(AdError adError) {
+                    Log.i("AD_DEMO", "onNoAD");
+
+                }
+
+                @Override
+                public void onADReceiv() {
+                    Log.i("AD_DEMO", "ONBannerReceive");
+                }
+            });
+            adcontent.addView(mBanner);
+            /* 发起广告请求，收到广告数据后会展示数据   */
+            mBanner.loadAD();
+            close.setOnClickListener(this);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        doCloseBanner();
+        super.onDestroy();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.close:
+                doCloseBanner();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void doCloseBanner() {
+        adcontent.removeAllViews();
+        if (mBanner != null) {
+            mBanner.destroy();
+            mBanner = null;
+        }
     }
 }

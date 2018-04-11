@@ -1,16 +1,27 @@
 package com.android.yzd.mima.mvp.ui.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.yzd.mima.R;
 import com.android.yzd.mima.databinding.ActivityIndexBinding;
@@ -20,13 +31,14 @@ import com.android.yzd.mima.mvp.presenter.impl.IndexPreImpl;
 import com.android.yzd.mima.mvp.ui.activity.base.BaseActivity;
 import com.android.yzd.mima.mvp.ui.adapter.IndexContentAdapter;
 import com.android.yzd.mima.mvp.ui.view.IndexAView;
+import com.android.yzd.mima.utils.SPUtils;
 import com.android.yzd.mima.widget.XViewPager;
 
 import org.greenrobot.eventbus.EventBus;
 
-import butterknife.Bind;
+import java.util.ArrayList;
 
-import static com.android.yzd.mima.R.id.navigationView;
+import butterknife.Bind;
 
 public class IndexActivity extends BaseActivity implements IndexAView{
 
@@ -35,19 +47,107 @@ public class IndexActivity extends BaseActivity implements IndexAView{
     private static final int EDIT_SAVE = 1;
     private int SUCCESS = 1;
     @Bind(R.id.common_toolbar) Toolbar mToolBar;
-    @Bind(navigationView) NavigationView mNavigationView;
+    @Bind(R.id.navigationView) NavigationView mNavigationView;
+    @Bind(R.id.typeRecyclerView) RecyclerView mRecyclerView;
     private IndexPreImpl mIndexPre;
     private ActivityIndexBinding mDataBinding;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
     private int INDEX_EVENT_SUCCESS = 1;
     private int currentIndex = 0;
+    private ArrayList<String> mData;
+    private XViewPager mXViewPager;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mDataBinding = (ActivityIndexBinding) super.mDataBinding;
+        initRecycler();
+        WindowManager wm = this.getWindowManager();//获取屏幕宽高
+        int width1 = wm.getDefaultDisplay().getWidth();
+        int height1 = wm.getDefaultDisplay().getHeight();
+        ViewGroup.LayoutParams para = mDataBinding.drawerLayout.getLayoutParams();//获取drawerlayout的布局
+        para.width=width1/3*2;//修改宽度
+        para.height=height1;//修改高度
+        mDataBinding.drawerLayout.setLayoutParams(para); //设置修改后的布局。
         mIndexPre = new IndexPreImpl(this, this, mDataBinding);
         mIndexPre.getIntent(getIntent());
         mIndexPre.onCreate(savedInstanceState);
+    }
+
+    private void initRecycler() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+        String typeString = (String) SPUtils.get(this, Constants.TYPE, "默认");
+        String[] split = typeString.split(";");
+        mData = new ArrayList<>();
+        for (int i = 0; i < split.length; i++) {
+            mData.add(split[i]);
+        }
+        mData.add("+新增分组");
+        mRecyclerView.setAdapter(new RecyclerView.Adapter() {
+            @Override
+            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(IndexActivity.this).inflate(R.layout.item_typ, parent, false);
+                return new Holder(view);
+            }
+
+            @Override
+            public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+                Holder viewHolder = (Holder) holder;
+                viewHolder.mTypeName.setText(mData.get(position));
+                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (mData.size() - 1 == position) {
+                            showCreateTypeDialog();
+                        } else {
+                            mXViewPager.setCurrentItem(position, false);
+                            mDataBinding.drawerLayout.closeDrawer(GravityCompat.START);
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public int getItemCount() {
+                return mData.size();
+            }
+        });
+    }
+
+    private void showCreateTypeDialog() {
+        final EditText editText = new EditText(this);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this,3);
+        builder.setTitle("添加新分组");
+        builder.setView(editText);
+        builder.setPositiveButton("添加", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String text = editText.getText().toString().trim();
+                if (TextUtils.isEmpty(text)) {
+                    return;
+                }
+                String typeString = (String) SPUtils.get(IndexActivity.this, Constants.TYPE, "默认");
+                text = typeString + ";" + text;
+                SPUtils.put(IndexActivity.this, Constants.TYPE, text);
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.create().show();
+    }
+
+    class Holder extends RecyclerView.ViewHolder {
+
+        private final TextView mTypeName;
+
+        public Holder(View itemView) {
+            super(itemView);
+            mTypeName = (TextView) itemView.findViewById(R.id.typeName);
+        }
     }
 
     @Override
@@ -72,7 +172,7 @@ public class IndexActivity extends BaseActivity implements IndexAView{
 
     @Override protected void initToolbar() {
         super.initToolBar(mToolBar);
-        mToolBar.setTitle("社交");
+        mToolBar.setTitle("私人密码本");
     }
 
     @Override protected boolean isApplyTranslucency() {
@@ -103,11 +203,11 @@ public class IndexActivity extends BaseActivity implements IndexAView{
     }
 
     @Override public void initXViewPager() {
-        mDataBinding.content.setOffscreenPageLimit(3);
-        IndexContentAdapter indexContentAdapter = new IndexContentAdapter(getSupportFragmentManager());
+        mDataBinding.content.setOffscreenPageLimit(mData.size() - 1);
+        IndexContentAdapter indexContentAdapter = new IndexContentAdapter(getSupportFragmentManager(), mData);
         mDataBinding.content.setAdapter(indexContentAdapter);
-        XViewPager content = mDataBinding.content;
-        content.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mXViewPager = mDataBinding.content;
+        mXViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -116,13 +216,13 @@ public class IndexActivity extends BaseActivity implements IndexAView{
             @Override
             public void onPageSelected(int position) {
                 currentIndex = position;
-                if (position == 0) {
-                    mToolBar.setTitle("社交");
-                } else if (position == 1) {
-                    mToolBar.setTitle("游戏");
-                } else {
-                    mToolBar.setTitle("购物");
-                }
+//                if (position == 0) {
+//                    mToolBar.setTitle("社交");
+//                } else if (position == 1) {
+//                    mToolBar.setTitle("游戏");
+//                } else {
+//                    mToolBar.setTitle("购物");
+//                }
             }
 
             @Override

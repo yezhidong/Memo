@@ -68,8 +68,6 @@ public class IndexPreImpl implements ActivityPresenter, NavigationView.OnNavigat
                 }
             }
         }));
-        mDataBinding.navigationView.setCheckedItem(R.id.nav_login_type);
-        mDataBinding.navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -110,21 +108,6 @@ public class IndexPreImpl implements ActivityPresenter, NavigationView.OnNavigat
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.nav_login_type:
-                currentSelectedItem = 0;
-                mDataBinding.drawerLayout.closeDrawer(GravityCompat.START);
-                mDataBinding.content.setCurrentItem(currentSelectedItem, false);
-                break;
-            case R.id.nav_mail_type:
-                currentSelectedItem = 1;
-                mDataBinding.drawerLayout.closeDrawer(GravityCompat.START);
-                mDataBinding.content.setCurrentItem(currentSelectedItem, false);
-                break;
-            case R.id.nav_note_type:
-                currentSelectedItem = 2;
-                mDataBinding.drawerLayout.closeDrawer(GravityCompat.START);
-                mDataBinding.content.setCurrentItem(currentSelectedItem, false);
-                break;
             default:
                 break;
         }

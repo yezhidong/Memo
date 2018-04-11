@@ -7,6 +7,8 @@ public class Constants {
 
     public static final String AD_AppId = "1106256606";
     public static final String SplashPosID = "6030226460238558";
+    public static final String BANNERID = "8090138216619610";
+    public static final String DETAIL_BANNERID = "6080634206619661";
 
 
     public static int REALM_VERSION = 1;
@@ -19,6 +21,7 @@ public class Constants {
 
     public static String COUNT = "COUNT";
     public static String IS_COMMENT = "IS_COMMENT";
+    public static String TYPE = "TYPE";
 
     public final static class EVEN_BUS {
         public static int CHANGE_THEME = 2;

@@ -13,8 +13,8 @@ android {
         applicationId "com.android.yzd.mima"
         minSdkVersion 15
         targetSdkVersion 22
-        versionCode 202
-        versionName "2.0.2"
+        versionCode 210
+        versionName "2.1.0"
         multiDexEnabled true
         resConfigs "zh"
     }
@@ -99,4 +99,5 @@ dependencies {
     compile 'me.imid.swipebacklayout.lib:library:1.0.0'
     compile 'com.jakewharton.rxbinding:rxbinding:0.3.0'
     compile 'com.alibaba:fastjson:1.2.7'
+    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-3'
 }

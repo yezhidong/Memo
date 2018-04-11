@@ -26,6 +26,7 @@ import com.android.yzd.mima.mvp.ui.activity.base.BaseActivity;
 import com.android.yzd.mima.utils.SPUtils;
 import com.qq.e.ads.splash.SplashAD;
 import com.qq.e.ads.splash.SplashADListener;
+import com.qq.e.comm.util.AdError;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,7 @@ public class SplashActivity extends BaseActivity implements SplashADListener {
         Log.d("yzd", " count = " + count);
         boolean isOpenAd = (boolean) SPUtils.get(this, Constants.SETTING.OPEN_AD, true);
         Log.d("yzd", " isOpenAd = " + isOpenAd);
-        if (isOpenAd && count > 2) {
+        if (isOpenAd && count > 3) {
             container = (ViewGroup) this.findViewById(R.id.splash_container);
             skipView = (TextView) findViewById(R.id.skip_view);
             splashHolder = (ImageView) findViewById(R.id.splash_holder);
@@ -235,8 +236,7 @@ public class SplashActivity extends BaseActivity implements SplashADListener {
     }
 
     @Override
-    public void onNoAD(int errorCode) {
-        Log.i("AD_DEMO", "LoadSplashADFail, eCode=" + errorCode);
+    public void onNoAD(AdError adError) {
         /** 如果加载广告失败，则直接跳转 */
         go2Next();
     }

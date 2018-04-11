@@ -7,13 +7,18 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.android.yzd.mima.mvp.ui.fragment.PassWordFragment;
 
+import java.util.ArrayList;
+
 /**
  * Created by yezhidong on 2016/1/15.
  */
 public class IndexContentAdapter extends FragmentPagerAdapter{
 
-    public IndexContentAdapter(FragmentManager fm) {
+    private final ArrayList<String> mData;
+
+    public IndexContentAdapter(FragmentManager fm, ArrayList<String> data) {
         super(fm);
+        mData = data;
     }
 
     @Override public Fragment getItem(int position) {
@@ -25,6 +30,6 @@ public class IndexContentAdapter extends FragmentPagerAdapter{
     }
 
     @Override public int getCount() {
-        return 3;
+        return mData.size() - 1;
     }
 }

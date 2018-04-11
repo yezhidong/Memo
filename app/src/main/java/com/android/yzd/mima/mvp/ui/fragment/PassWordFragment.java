@@ -187,7 +187,6 @@ public class PassWordFragment extends BaseFragment implements LoginTypeFView, Vi
     }
 
     private void doCloseBanner() {
-        adcontent.removeAllViews();
         if (mBanner != null) {
             mBanner.destroy();
             mBanner = null;

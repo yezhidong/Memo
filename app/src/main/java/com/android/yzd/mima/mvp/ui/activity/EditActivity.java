@@ -314,7 +314,6 @@ public class EditActivity extends BaseSwipeBackActivity implements EditAView, Vi
     }
 
     private void doCloseBanner() {
-        adcontent.removeAllViews();
         if (mBanner != null) {
             mBanner.destroy();
             mBanner = null;

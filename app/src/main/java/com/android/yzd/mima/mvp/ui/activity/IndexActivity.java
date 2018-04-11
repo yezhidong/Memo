@@ -56,6 +56,7 @@ public class IndexActivity extends BaseActivity implements IndexAView{
     private int currentIndex = 0;
     private ArrayList<String> mData;
     private XViewPager mXViewPager;
+    private IndexContentAdapter mIndexContentAdapter;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,6 +134,7 @@ public class IndexActivity extends BaseActivity implements IndexAView{
                 text = typeString + ";" + text;
                 SPUtils.put(IndexActivity.this, Constants.TYPE, text);
                 adapter.notifyDataSetChanged();
+                mIndexContentAdapter.notifyDataSetChanged();
             }
         });
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -207,9 +209,9 @@ public class IndexActivity extends BaseActivity implements IndexAView{
     }
 
     @Override public void initXViewPager() {
-        mDataBinding.content.setOffscreenPageLimit(mData.size() - 1);
-        IndexContentAdapter indexContentAdapter = new IndexContentAdapter(getSupportFragmentManager(), mData);
-        mDataBinding.content.setAdapter(indexContentAdapter);
+//        mDataBinding.content.setOffscreenPageLimit(mData.size() - 1);
+        mIndexContentAdapter = new IndexContentAdapter(getSupportFragmentManager(), mData);
+        mDataBinding.content.setAdapter(mIndexContentAdapter);
         mXViewPager = mDataBinding.content;
         mXViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -220,13 +222,6 @@ public class IndexActivity extends BaseActivity implements IndexAView{
             @Override
             public void onPageSelected(int position) {
                 currentIndex = position;
-//                if (position == 0) {
-//                    mToolBar.setTitle("社交");
-//                } else if (position == 1) {
-//                    mToolBar.setTitle("游戏");
-//                } else {
-//                    mToolBar.setTitle("购物");
-//                }
             }
 
             @Override

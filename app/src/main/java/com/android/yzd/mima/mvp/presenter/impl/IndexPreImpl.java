@@ -39,7 +39,7 @@ public class IndexPreImpl implements ActivityPresenter, NavigationView.OnNavigat
     private int currentSelectedItem = 0;
     private static long DOUBLE_CLICK_TIME = 0L;
     private AlertDialog mAlertDialog;
-    private final ArrayList<God> mQuery;
+    private ArrayList<God> mQuery;
     private boolean goComment;
     private long mCommentCurrentTimeMillis;
 
@@ -49,7 +49,6 @@ public class IndexPreImpl implements ActivityPresenter, NavigationView.OnNavigat
         mDataBinding = dataBinding;
         giveMeFive();
         RealmHelper.getInstances(mContext);
-        mQuery = RealmHelper.query(mContext);
     }
 
     @Override
@@ -60,8 +59,9 @@ public class IndexPreImpl implements ActivityPresenter, NavigationView.OnNavigat
         RxView.clicks(fab).throttleFirst(500, TimeUnit.MILLISECONDS).subscribe((new Action1<Void>() {
             @Override
             public void call(Void aVoid) {
+                mQuery = RealmHelper.query(mContext);
                 boolean isComment = (boolean) SPUtils.get(mContext, Constants.IS_COMMENT, false);
-                if (isComment || mQuery != null && mQuery.size() == 3) {
+                if (isComment || mQuery == null || mQuery.size() < 3) {
                     mIndexView.readyGoForResult(EditActivity.class);
                 } else {
                     showDialogToComment();

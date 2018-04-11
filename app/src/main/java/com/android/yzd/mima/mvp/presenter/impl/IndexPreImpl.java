@@ -13,7 +13,6 @@ import android.view.MenuItem;
 
 import com.android.yzd.mima.R;
 import com.android.yzd.mima.databinding.ActivityIndexBinding;
-import com.android.yzd.mima.module.push.bean.MiPushMessageInfo;
 import com.android.yzd.mima.mvp.model.Constants;
 import com.android.yzd.mima.mvp.presenter.ActivityPresenter;
 import com.android.yzd.mima.mvp.ui.activity.EditActivity;
@@ -56,10 +55,6 @@ public class IndexPreImpl implements ActivityPresenter, NavigationView.OnNavigat
     public void getIntent(Intent intent) {
         if (intent != null) {
             boolean fromNotification = intent.getBooleanExtra(com.android.yzd.mima.constant.Constants.INTENT.from_notification, false);
-            if (fromNotification) {
-                MiPushMessageInfo pushMessageInfo = (MiPushMessageInfo) intent.getSerializableExtra(com.android.yzd.mima.constant.Constants.INTENT.push_message_info);
-
-            }
         }
     }
 

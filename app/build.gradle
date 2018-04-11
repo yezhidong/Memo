@@ -98,6 +98,5 @@ dependencies {
     compile 'com.rengwuxian.materialedittext:library:2.1.4'
     compile 'me.imid.swipebacklayout.lib:library:1.0.0'
     compile 'com.jakewharton.rxbinding:rxbinding:0.3.0'
-    compile 'com.taobao.android:alisdk-hotfix:2.0.9'
     compile 'com.alibaba:fastjson:1.2.7'
 }

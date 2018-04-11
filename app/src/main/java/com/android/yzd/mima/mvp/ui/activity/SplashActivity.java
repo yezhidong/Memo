@@ -51,7 +51,7 @@ public class SplashActivity extends BaseActivity implements SplashADListener {
         Log.d("yzd", " count = " + count);
         boolean isOpenAd = (boolean) SPUtils.get(this, Constants.SETTING.OPEN_AD, true);
         Log.d("yzd", " isOpenAd = " + isOpenAd);
-        if (isOpenAd) {
+        if (isOpenAd && count > 2) {
             container = (ViewGroup) this.findViewById(R.id.splash_container);
             skipView = (TextView) findViewById(R.id.skip_view);
             splashHolder = (ImageView) findViewById(R.id.splash_holder);

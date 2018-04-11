@@ -61,7 +61,7 @@ public class IndexPreImpl implements ActivityPresenter, NavigationView.OnNavigat
             @Override
             public void call(Void aVoid) {
                 boolean isComment = (boolean) SPUtils.get(mContext, Constants.IS_COMMENT, false);
-                if (isComment || mQuery != null && mQuery.size() < 3) {
+                if (isComment || mQuery != null && mQuery.size() == 3) {
                     mIndexView.readyGoForResult(EditActivity.class);
                 } else {
                     showDialogToComment();
